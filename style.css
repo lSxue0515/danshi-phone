@@ -1,0 +1,180 @@
+:root {
+    --app-size: 48px;
+    --gap-size: 12px;
+    --radius-app: 12px;
+    --radius-widget: 20px;
+    --icon-bg: #ffffff;
+    --icon-stroke: #FFB7C5;
+    --glass-white: rgba(255, 255, 255, 0.65);
+    --glass-panel: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    --accent-pink: #FFB7C5;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; user-select: none; outline: none; }
+body {
+    display: flex; justify-content: center; align-items: center; min-height: 100vh;
+    background-color: #111; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 手机容器 */
+.phone-container {
+    width: 100%; height: 100vh;
+    background: url('https://s3.bmp.ovh/2026/02/01/TiEzLWqk.jpg') no-repeat center center;
+    background-size: cover; position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+}
+@media (min-width: 480px) {
+    .phone-container { width: 390px; height: 844px; border-radius: 45px; box-shadow: 0 0 0 10px #222, 0 20px 50px rgba(0,0,0,0.6); }
+}
+
+.status-bar { height: 44px; flex-shrink: 0; }
+.home-screen { flex: 1; padding: 10px 18px; overflow-y: auto; scrollbar-width: none; }
+.home-screen::-webkit-scrollbar { display: none; }
+.grid-layout { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-size); padding-bottom: 20px; }
+
+/* 通用组件 */
+.widget {
+    background: var(--glass-panel); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: var(--radius-widget);
+    overflow: hidden; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* 顶部 Banner */
+.widget-banner { grid-column: span 4; height: 130px; position: relative; }
+.widget-banner img { width: 100%; height: 100%; object-fit: cover; }
+.banner-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 8px; z-index: 10; }
+.icon-btn {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(255,255,255,0.8); box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex; justify-content: center; align-items: center; cursor: pointer;
+}
+.icon-btn svg { width: 14px; height: 14px; stroke: #555; stroke-width: 2; fill: none; }
+
+/* 音乐组件 */
+.widget-music {
+    grid-column: span 2; grid-row: span 2;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.music-disc {
+    width: 80px; height: 80px; border-radius: 50%; background: #000;
+    border: 2px solid rgba(255,255,255,0.8); position: relative; overflow: hidden;
+    animation: spin 10s linear infinite; cursor: pointer;
+}
+.music-disc.paused { animation-play-state: paused; }
+.music-cover { width: 100%; height: 100%; object-fit: cover; }
+.music-controls-row { display: flex; gap: 12px; align-items: center; }
+.music-btn svg { width: 18px; height: 18px; fill: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); }
+
+/* APP 图标 */
+.app-cell { grid-column: span 1; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; }
+.app-cell:active { transform: scale(0.95); }
+.app-icon {
+    width: var(--app-size); height: var(--app-size); border-radius: var(--radius-app);
+    background: var(--icon-bg); border: none;
+    display: flex; justify-content: center; align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.app-name { font-size: 10px; color: #fff; text-shadow: var(--text-shadow); text-align: center; white-space: nowrap; }
+.app-icon svg {
+    width: 24px; height: 24px; stroke: var(--icon-stroke);
+    stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+
+/* 倒数日组件 */
+.widget-countdown {
+    grid-column: span 2; grid-row: span 1; height: 85px;
+    background-size: cover; background-position: center;
+    display: flex; flex-direction: row; align-items: center; justify-content: space-between;
+    padding: 0 15px; color: #fff; cursor: pointer;
+}
+.widget-countdown::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.25); z-index: 1;
+}
+.countdown-info { position: relative; z-index: 2; display: flex; flex-direction: column; }
+.cd-title { font-size: 11px; font-weight: 500; }
+.cd-date { font-size: 9px; opacity: 0.8; margin-top: 3px; }
+.cd-days { position: relative; z-index: 2; font-size: 26px; font-weight: 800; letter-spacing: 1px; }
+.cd-days span { font-size: 10px; font-weight: normal; margin-left: 2px; }
+
+/* 文案组件 */
+.widget-text {
+    grid-column: span 2; height: 85px;
+    display: flex; align-items: center; justify-content: center; padding: 10px;
+}
+.ins-text { font-size: 11px; color: #fff; text-align: center; line-height: 1.5; text-shadow: var(--text-shadow); width: 100%; cursor: text; }
+
+/* Dock */
+.dock-container {
+    margin: 0 20px 25px 20px; height: 80px; border-radius: 32px;
+    background: rgba(255, 255, 255, 0.18); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex; justify-content: space-evenly; align-items: center; z-index: 10;
+}
+.dock-container .app-icon { width: 54px; height: 54px; }
+
+/* APP 悬浮层 */
+.app-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(240, 242, 245, 0.8); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+    z-index: 100; display: flex; flex-direction: column;
+    transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    color: #333;
+}
+.app-overlay.active { transform: translateY(0); }
+.app-header {
+    height: 50px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 20px; margin-top: 44px;
+}
+.nav-btn { font-size: 16px; color: #333; cursor: pointer; font-weight: 500; }
+.app-title { font-weight: 700; font-size: 18px; color: #000; }
+.app-body { flex: 1; padding: 20px; overflow-y: auto; }
+
+/* 面板与按钮 */
+.glass-panel {
+    background: var(--glass-white); border-radius: 16px; padding: 15px; margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid rgba(255,255,255,0.6);
+}
+.panel-title { font-size: 12px; color: #666; margin-bottom: 8px; font-weight: 600; }
+.glass-input {
+    width: 100%; background: rgba(255,255,255,0.5); border: none; border-radius: 8px;
+    padding: 10px; font-size: 14px; color: #333; margin-bottom: 8px;
+}
+.glass-btn {
+    width: 100%; padding: 12px; border-radius: 10px; border: none;
+    background: #fff; color: #333; font-weight: 600; font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; margin-top: 5px;
+}
+.glass-range { width: 100%; accent-color: var(--accent-pink); }
+
+/* 独立的毛玻璃 API 保存按钮 */
+.btn-save-api {
+    width: 100%; padding: 14px; margin-top: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    color: #333; font-weight: 700; font-size: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    cursor: pointer; transition: 0.2s;
+}
+.btn-save-api:active { transform: scale(0.98); background: rgba(255,255,255,0.6); }
+
+/* 预览区 */
+.preview-container { height: 120px; background: #eee; border-radius: 12px; overflow: hidden; position: relative; }
+#cdPreview { width: 100%; height: 100%; object-fit: cover; transition: object-position 0.1s; }
+
+/* API 列表 */
+.api-item {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px; background: rgba(255,255,255,0.4); border-radius: 8px;
+    margin-bottom: 8px; cursor: pointer;
+}
+.api-item.active { border: 1px solid var(--accent-pink); background: rgba(255,255,255,0.9); }
+.api-name { font-size: 14px; font-weight: 600; }
+.api-url { font-size: 10px; color: #888; margin-top: 2px; }
+input[type="color"] { width: 30px; height: 30px; border: none; border-radius: 50%; padding: 0; overflow: hidden; cursor: pointer; }
