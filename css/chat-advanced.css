@@ -1,0 +1,565 @@
+/* ============================================
+   chat-advanced.css
+   消息APP 聊天设置 - 记忆总结 & 时间感知
+   ============================================ */
+
+/* ===== 设置区块 ===== */
+.chat-adv-section {
+    margin: 12px 16px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 0;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .04);
+}
+
+.chat-adv-section-title {
+    font-size: 11px;
+    color: rgba(100, 90, 75, .45);
+    letter-spacing: 1px;
+    padding: 14px 16px 0;
+    font-weight: 600;
+}
+
+/* ===== 设置行 ===== */
+.chat-adv-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, .03);
+    transition: background .2s;
+}
+
+.chat-adv-row:last-child {
+    border-bottom: none;
+}
+
+.chat-adv-row:active {
+    background: rgba(0, 0, 0, .02);
+}
+
+.chat-adv-row-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-adv-row-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.chat-adv-row-icon.memory {
+    background: linear-gradient(135deg, #e8dfd4, #d4c8b8);
+}
+
+.chat-adv-row-icon.time {
+    background: linear-gradient(135deg, #d4dde8, #b8c8d8);
+}
+
+.chat-adv-row-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-adv-row-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3a3530;
+    line-height: 1.3;
+}
+
+.chat-adv-row-desc {
+    font-size: 10.5px;
+    color: rgba(100, 90, 75, .4);
+    line-height: 1.4;
+    margin-top: 2px;
+}
+
+/* ===== 开关 ===== */
+.chat-adv-toggle {
+    position: relative;
+    width: 44px;
+    height: 26px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.chat-adv-toggle input {
+    display: none;
+}
+
+.chat-adv-toggle-slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 13px;
+    background: rgba(180, 170, 155, .2);
+    transition: background .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+.chat-adv-toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
+    transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+}
+
+.chat-adv-toggle input:checked+.chat-adv-toggle-slider {
+    background: linear-gradient(135deg, #8b7a65, #a09080);
+}
+
+.chat-adv-toggle input:checked+.chat-adv-toggle-slider::after {
+    transform: translateX(18px);
+}
+
+/* ===== 记忆总结面板 ===== */
+.memory-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s cubic-bezier(.4, 0, .2, 1),
+        opacity .3s ease,
+        padding .3s ease;
+    opacity: 0;
+    padding: 0 16px;
+    background: rgba(245, 240, 233, .3);
+}
+
+.memory-panel.active {
+    max-height: 600px;
+    opacity: 1;
+    padding: 14px 16px;
+}
+
+/* 记忆状态卡片 */
+.memory-status-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
+}
+
+.memory-status-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.memory-status-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: rgba(100, 90, 75, .5);
+    letter-spacing: .5px;
+}
+
+.memory-status-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.memory-status-badge.idle {
+    background: rgba(180, 170, 155, .12);
+    color: rgba(140, 130, 110, .6);
+}
+
+.memory-status-badge.active {
+    background: rgba(120, 160, 100, .12);
+    color: rgba(80, 130, 60, .7);
+}
+
+/* 记忆进度条 */
+.memory-progress-wrap {
+    margin-bottom: 6px;
+}
+
+.memory-progress-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.memory-progress-text {
+    font-size: 10px;
+    color: rgba(100, 90, 75, .4);
+}
+
+.memory-progress-count {
+    font-size: 11px;
+    font-weight: 700;
+    color: #7a6a58;
+}
+
+.memory-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(180, 170, 155, .1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.memory-progress-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #c4b5a0, #8b7a65);
+    transition: width .5s ease;
+    min-width: 0%;
+}
+
+/* 记忆总结列表 */
+.memory-summaries {
+    margin-top: 10px;
+}
+
+.memory-summaries-title {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: rgba(100, 90, 75, .45);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.memory-summary-item {
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .03);
+    position: relative;
+}
+
+.memory-summary-time {
+    font-size: 9px;
+    color: rgba(140, 130, 115, .4);
+    margin-bottom: 4px;
+}
+
+.memory-summary-text {
+    font-size: 11px;
+    color: #5a5045;
+    line-height: 1.55;
+}
+
+.memory-summary-delete {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: rgba(200, 80, 70, .08);
+    border-radius: 50%;
+    font-size: 10px;
+    color: rgba(200, 80, 70, .4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.memory-summary-delete:active {
+    background: rgba(200, 80, 70, .15);
+    color: rgba(200, 80, 70, .7);
+}
+
+.memory-empty {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 10.5px;
+    color: rgba(140, 130, 115, .3);
+}
+
+.memory-empty-icon {
+    font-size: 24px;
+    margin-bottom: 6px;
+    opacity: .3;
+}
+
+/* 手动总结按钮 */
+.memory-manual-btn {
+    width: 100%;
+    padding: 9px 0;
+    border: 1.5px dashed rgba(180, 170, 155, .2);
+    border-radius: 8px;
+    background: transparent;
+    font-size: 11px;
+    color: rgba(120, 110, 90, .4);
+    cursor: pointer;
+    transition: all .2s;
+    margin-top: 8px;
+}
+
+.memory-manual-btn:active {
+    border-color: rgba(140, 120, 95, .4);
+    color: rgba(100, 85, 65, .6);
+    background: rgba(245, 240, 233, .5);
+}
+
+/* ===== 时间感知面板 ===== */
+.time-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s cubic-bezier(.4, 0, .2, 1),
+        opacity .3s ease,
+        padding .3s ease;
+    opacity: 0;
+    padding: 0 16px;
+    background: rgba(235, 240, 248, .2);
+}
+
+.time-panel.active {
+    max-height: 800px;
+    opacity: 1;
+    padding: 14px 16px;
+}
+
+/* 当前时间展示卡片 */
+.time-display-card {
+    background: linear-gradient(135deg, #f8f6f2, #f0ede8);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.time-display-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 20%, rgba(200, 215, 235, .15), transparent 60%);
+    pointer-events: none;
+}
+
+.time-display-zone {
+    font-size: 10px;
+    color: rgba(100, 95, 85, .4);
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.time-display-clock {
+    font-size: 36px;
+    font-weight: 300;
+    color: #5a5045;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.time-display-date {
+    font-size: 10.5px;
+    color: rgba(110, 100, 85, .35);
+    margin-top: 4px;
+}
+
+.time-display-offset {
+    font-size: 9px;
+    color: rgba(130, 120, 100, .3);
+    margin-top: 6px;
+    padding: 3px 10px;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 10px;
+    display: inline-block;
+}
+
+/* 国家/时区选择器 */
+.time-country-select {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.time-country-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.time-country-header:active {
+    background: rgba(0, 0, 0, .02);
+}
+
+.time-country-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.time-country-flag {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.time-country-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #3a3530;
+}
+
+.time-country-tz {
+    font-size: 10px;
+    color: rgba(130, 120, 100, .4);
+    margin-top: 1px;
+}
+
+.time-country-arrow {
+    font-size: 10px;
+    color: rgba(160, 150, 130, .3);
+    transition: transform .3s;
+}
+
+.time-country-arrow.open {
+    transform: rotate(180deg);
+}
+
+/* 国家列表 */
+.time-country-list {
+    max-height: 0;
+    overflow-y: auto;
+    transition: max-height .35s cubic-bezier(.4, 0, .2, 1);
+    border-top: 1px solid rgba(0, 0, 0, .03);
+}
+
+.time-country-list.open {
+    max-height: 240px;
+}
+
+/* 搜索框 */
+.time-country-search {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 8px 12px;
+    z-index: 1;
+}
+
+.time-country-search input {
+    width: 100%;
+    padding: 7px 10px 7px 28px;
+    border: 1px solid rgba(180, 170, 155, .15);
+    border-radius: 8px;
+    font-size: 11.5px;
+    color: #3a3530;
+    background: rgba(248, 245, 240, .5);
+    outline: none;
+    transition: border-color .2s;
+    box-sizing: border-box;
+}
+
+.time-country-search input:focus {
+    border-color: rgba(140, 120, 95, .3);
+}
+
+.time-country-search::before {
+    content: '🔍';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 11px;
+    pointer-events: none;
+}
+
+.time-country-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: background .15s;
+    border-bottom: 1px solid rgba(0, 0, 0, .02);
+}
+
+.time-country-option:active {
+    background: rgba(0, 0, 0, .03);
+}
+
+.time-country-option.selected {
+    background: rgba(140, 125, 100, .06);
+}
+
+.time-country-option-flag {
+    font-size: 16px;
+    width: 22px;
+    text-align: center;
+}
+
+.time-country-option-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.time-country-option-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #3a3530;
+}
+
+.time-country-option-zone {
+    font-size: 9.5px;
+    color: rgba(140, 130, 115, .4);
+    margin-top: 1px;
+}
+
+.time-country-option-check {
+    font-size: 13px;
+    color: #8b7a65;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.time-country-option.selected .time-country-option-check {
+    opacity: 1;
+}
+
+/* AI时间提示 */
+.time-ai-hint {
+    background: rgba(245, 240, 233, .5);
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.time-ai-hint-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.time-ai-hint-text {
+    font-size: 10px;
+    color: rgba(110, 100, 85, .4);
+    line-height: 1.6;
+}

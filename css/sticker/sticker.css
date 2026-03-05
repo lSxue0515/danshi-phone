@@ -1,0 +1,475 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — sticker.css
+   表情包管理 + 对话面板
+   ============================================ */
+
+/* ===== 管理页面容器 ===== */
+.sticker-manager-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    background: rgba(245, 235, 240, 0.97);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 999;
+}
+
+.sticker-manager-page.show {
+    display: flex;
+}
+
+/* ===== 顶栏 ===== */
+.stk-header {
+    height: 56px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stk-header-back {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: rgba(80, 60, 70, 0.8);
+}
+
+.stk-header-back:active {
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(0.93);
+}
+
+.stk-header-back svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.stk-header-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.stk-header-spacer {
+    width: 36px;
+}
+
+/* ===== 滚动体 ===== */
+.stk-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 18px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== 操作栏 ===== */
+.stk-action-bar {
+    display: flex;
+    gap: 8px;
+}
+
+.stk-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 11px 0;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(80, 60, 70, 0.75);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.stk-action-btn:active {
+    transform: scale(0.96);
+    background: rgba(248, 164, 184, 0.2);
+}
+
+.stk-action-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* ===== 板块 ===== */
+.stk-section {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    padding: 14px 14px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.stk-section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.8);
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+}
+
+/* ===== 输入控件 ===== */
+.stk-textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    font-size: 12px;
+    color: rgba(80, 60, 70, 0.9);
+    outline: none;
+    font-family: inherit;
+    line-height: 1.5;
+    resize: vertical;
+    min-height: 60px;
+    transition: all 0.2s;
+}
+
+.stk-textarea:focus {
+    border-color: rgba(248, 164, 184, 0.6);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(248, 164, 184, 0.15);
+}
+
+.stk-textarea::placeholder {
+    color: rgba(140, 120, 130, 0.45);
+}
+
+.stk-import-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.stk-select {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    font-size: 12px;
+    color: rgba(80, 60, 70, 0.9);
+    outline: none;
+    font-family: inherit;
+}
+
+.stk-btn {
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(80, 60, 70, 0.75);
+}
+
+.stk-btn:active {
+    transform: scale(0.95);
+}
+
+.stk-btn-primary {
+    background: rgba(248, 164, 184, 0.5);
+    border-color: rgba(248, 164, 184, 0.4);
+    color: #fff;
+}
+
+/* ===== 分组 Tabs ===== */
+.stk-group-bar {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.stk-group-tab {
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(100, 80, 90, 0.6);
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.stk-group-tab.active {
+    background: rgba(248, 164, 184, 0.2);
+    border-color: rgba(248, 164, 184, 0.4);
+    color: rgba(80, 60, 70, 0.9);
+    font-weight: 600;
+}
+
+.stk-group-tab:active {
+    transform: scale(0.95);
+}
+
+.stk-group-add {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(100, 80, 90, 0.5);
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 14px;
+}
+
+/* ===== 分组操作 ===== */
+.stk-group-actions {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.stk-small-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: rgba(80, 60, 70, 0.6);
+    transition: all 0.2s;
+}
+
+.stk-small-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.stk-small-btn:active {
+    transform: scale(0.9);
+}
+
+.stk-danger-btn {
+    background: rgba(255, 100, 100, 0.15);
+    border-color: rgba(255, 100, 100, 0.2);
+    color: rgba(200, 80, 80, 0.7);
+}
+
+/* ===== 表情网格 ===== */
+.stk-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.stk-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.stk-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    padding: 4px;
+}
+
+.stk-item:active {
+    transform: scale(0.93);
+}
+
+.stk-item-del {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 80, 80, 0.7);
+    color: #fff;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.stk-item:hover .stk-item-del,
+.stk-item:active .stk-item-del {
+    opacity: 1;
+}
+
+.stk-empty {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 24px 10px;
+    font-size: 11px;
+    color: rgba(120, 100, 110, 0.4);
+}
+
+/* ================================================
+   ===== 对话页表情选择面板 =====
+   ================================================ */
+.chat-sticker-panel {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    height: 240px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-top: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 18px 18px 0 0;
+    z-index: 50;
+    display: none;
+    /* ← 改：默认不显示 */
+    flex-direction: column;
+    transform: translateY(0);
+    /* ← 改：不用位移 */
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.chat-sticker-panel.show {
+    display: flex;
+}
+
+/* 面板分组 tabs */
+.stk-panel-tabs {
+    display: flex;
+    gap: 2px;
+    padding: 8px 12px 4px;
+    overflow-x: auto;
+    flex-shrink: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.stk-panel-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.stk-panel-tab {
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(100, 80, 90, 0.5);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.stk-panel-tab.active {
+    background: rgba(248, 164, 184, 0.2);
+    color: rgba(80, 60, 70, 0.9);
+    font-weight: 600;
+}
+
+/* 面板表情网格 */
+.stk-panel-grid {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 10px 10px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    align-content: start;
+    -webkit-overflow-scrolling: touch;
+}
+
+.stk-panel-item {
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(245, 235, 240, 0.4);
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+}
+
+.stk-panel-item:active {
+    transform: scale(0.88);
+    border-color: rgba(248, 164, 184, 0.5);
+    background: rgba(248, 164, 184, 0.15);
+}
+
+.stk-panel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    padding: 3px;
+}
+
+.stk-panel-empty {
+    grid-column: 1/-1;
+    text-align: center;
+    padding: 40px 10px;
+    font-size: 11px;
+    color: rgba(120, 100, 110, 0.4);
+    line-height: 1.8;
+}
+
+/* ===== 表情包气泡样式 ===== */
+.chat-bubble-sticker {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 2px !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.stk-bubble-img {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 6px;
+    display: block;
+    object-fit: contain;
+}

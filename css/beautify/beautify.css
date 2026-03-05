@@ -1,0 +1,793 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — beautify.css
+   聊天美化内置 App
+   ============================================ */
+
+/* ===== 面板容器（全屏子页面） ===== */
+.beautify-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    background: rgba(245, 235, 240, 0.92);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 60;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.beautify-page.show {
+    transform: translateX(0);
+}
+
+/* ===== 顶栏 ===== */
+.beautify-header {
+    height: 56px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.beautify-back {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: rgba(80, 60, 70, 0.8);
+}
+
+.beautify-back:hover {
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(1.08);
+}
+
+.beautify-back svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.beautify-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.beautify-header-spacer {
+    width: 36px;
+}
+
+/* ===== 滚动内容区 ===== */
+.beautify-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 18px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== 毛玻璃板块 ===== */
+.beautify-section {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.beautify-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.8);
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+}
+
+.beautify-section-title svg {
+    fill: none;
+    stroke: rgba(248, 164, 184, 0.8);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.beautify-sub-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(100, 80, 90, 0.55);
+    margin-top: 14px;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+}
+
+/* ===== 实时预览区 ===== */
+.beautify-preview-box {
+    background: rgba(245, 235, 240, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.beautify-preview-bubble-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.beautify-preview-left {
+    justify-content: flex-start;
+}
+
+.beautify-preview-right {
+    justify-content: flex-end;
+}
+
+/* 头像 + 挂件容器 */
+.beautify-preview-avatar-wrap {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+}
+
+.beautify-preview-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(200, 180, 190, 0.3);
+    display: block;
+}
+
+.beautify-preview-pendant {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.beautify-preview-pendant img {
+    display: block;
+}
+
+/* 预览气泡 */
+.beautify-preview-bubble {
+    max-width: 65%;
+    padding: 9px 13px;
+    border-radius: 16px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(80, 60, 70, 0.9);
+}
+
+.beautify-preview-bubble-char {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-top-left-radius: 4px;
+}
+
+.beautify-preview-bubble-user {
+    background: rgba(248, 164, 184, 0.25);
+    border: 1px solid rgba(248, 164, 184, 0.2);
+    border-top-right-radius: 4px;
+}
+
+/* ===== 挂件 Tab 切换 ===== */
+.beautify-pendant-tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 14px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 3px;
+}
+
+.beautify-pendant-tab {
+    flex: 1;
+    text-align: center;
+    padding: 7px 0;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(100, 80, 90, 0.6);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.beautify-pendant-tab.active {
+    background: rgba(255, 255, 255, 0.6);
+    color: rgba(80, 60, 70, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    font-weight: 600;
+}
+
+.beautify-pendant-tab:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== 输入框 ===== */
+.beautify-field {
+    margin-bottom: 10px;
+}
+
+.beautify-field:last-child {
+    margin-bottom: 0;
+}
+
+.beautify-field label {
+    display: block;
+    font-size: 11px;
+    color: rgba(100, 80, 90, 0.6);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.beautify-input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 13px;
+    color: rgba(80, 60, 70, 0.9);
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+}
+
+.beautify-input:focus {
+    border-color: rgba(248, 164, 184, 0.6);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(248, 164, 184, 0.15);
+}
+
+.beautify-input::placeholder {
+    color: rgba(140, 120, 130, 0.45);
+}
+
+.beautify-input-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.beautify-input-flex {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Textarea */
+.beautify-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 12px;
+    color: rgba(80, 60, 70, 0.9);
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 120px;
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    tab-size: 2;
+}
+
+.beautify-textarea:focus {
+    border-color: rgba(248, 164, 184, 0.6);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(248, 164, 184, 0.15);
+}
+
+.beautify-textarea::placeholder {
+    color: rgba(140, 120, 130, 0.4);
+    font-family: inherit;
+}
+
+/* ===== Range 滑块 ===== */
+.beautify-range-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.beautify-range {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(200, 180, 190, 0.3);
+    outline: none;
+}
+
+.beautify-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(248, 164, 184, 0.8);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.beautify-range::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+}
+
+.beautify-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(248, 164, 184, 0.8);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.beautify-range-val {
+    font-size: 11px;
+    color: rgba(100, 80, 90, 0.6);
+    min-width: 36px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ===== 按钮 ===== */
+.beautify-btn-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.beautify-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(80, 60, 70, 0.75);
+}
+
+.beautify-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.beautify-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.beautify-btn:active {
+    transform: scale(0.97);
+}
+
+.beautify-btn-primary {
+    background: rgba(248, 164, 184, 0.5);
+    border-color: rgba(248, 164, 184, 0.4);
+    color: #fff;
+}
+
+.beautify-btn-primary:hover {
+    background: rgba(248, 164, 184, 0.72);
+}
+
+.beautify-small-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(248, 164, 184, 0.35);
+    border: 1px solid rgba(248, 164, 184, 0.3);
+    color: rgba(80, 60, 70, 0.7);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.beautify-small-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.beautify-small-btn:hover {
+    background: rgba(248, 164, 184, 0.55);
+    transform: scale(1.05);
+}
+
+/* ===== 预设列表 ===== */
+.beautify-preset-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.beautify-preset-empty {
+    text-align: center;
+    padding: 16px 10px;
+    font-size: 11px;
+    color: rgba(120, 100, 110, 0.4);
+    letter-spacing: 0.3px;
+}
+
+.beautify-preset-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.beautify-preset-card:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.beautify-preset-card.active {
+    border-color: rgba(248, 164, 184, 0.55);
+    background: rgba(248, 164, 184, 0.12);
+    box-shadow: 0 2px 10px rgba(248, 164, 184, 0.12);
+}
+
+.beautify-preset-card.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: rgba(248, 164, 184, 0.7);
+}
+
+.beautify-preset-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: rgba(200, 180, 190, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.beautify-preset-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.beautify-preset-thumb svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: rgba(120, 100, 110, 0.4);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.beautify-preset-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.beautify-preset-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(80, 60, 70, 0.85);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.beautify-preset-desc {
+    font-size: 9px;
+    color: rgba(120, 100, 110, 0.45);
+    margin-top: 2px;
+}
+
+.beautify-preset-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(248, 164, 184, 0.4);
+    color: rgba(80, 60, 70, 0.75);
+    flex-shrink: 0;
+}
+
+.beautify-preset-actions {
+    display: flex;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.beautify-preset-act-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(100, 80, 90, 0.5);
+}
+
+.beautify-preset-act-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: rgba(80, 60, 70, 0.8);
+    transform: scale(1.1);
+}
+
+.beautify-preset-act-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.beautify-preset-act-btn.delete-btn:hover {
+    background: rgba(255, 100, 100, 0.2);
+    border-color: rgba(255, 100, 100, 0.3);
+    color: rgba(200, 60, 60, 0.75);
+}
+
+/* ===== 全局背景预览 ===== */
+.beautify-wallpaper-preview {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 150px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.03);
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.beautify-wallpaper-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.beautify-wallpaper-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: rgba(150, 130, 140, 0.4);
+}
+
+.beautify-wallpaper-placeholder svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.beautify-wallpaper-placeholder span {
+    font-size: 11px;
+}
+
+/* ===== 恢复默认危险区 ===== */
+.beautify-section-danger {
+    background: rgba(255, 200, 200, 0.2) !important;
+    border-color: rgba(255, 150, 150, 0.25) !important;
+}
+
+.beautify-danger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255, 100, 100, 0.12);
+    border: 1px solid rgba(255, 100, 100, 0.2);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(200, 60, 60, 0.75);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.beautify-danger-btn:hover {
+    background: rgba(255, 100, 100, 0.25);
+    transform: scale(1.02);
+}
+
+.beautify-danger-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===== 动态注入的自定义CSS容器标记 ===== */
+#beautifyCustomStyle {
+    /* 由JS动态创建的<style>标签 */
+}
+
+/* ===== 头像挂件实际应用到聊天页 ===== */
+.chat-msg-avatar-wrap {
+    position: relative;
+}
+
+.chat-msg-pendant {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.chat-msg-pendant img {
+    display: block;
+}
+
+/* ===== CSS气泡实时预览区（无头像） ===== */
+.beautify-bubble-preview-wrap {
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.beautify-bubble-preview-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: rgba(100, 80, 90, 0.45);
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.beautify-bubble-preview-box {
+    background: rgba(245, 235, 240, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 14px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 行容器 */
+.beautify-bp-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.beautify-bp-left {
+    justify-content: flex-start;
+}
+
+.beautify-bp-right {
+    justify-content: flex-end;
+}
+
+/* 小名字标签 */
+.beautify-bp-name-left,
+.beautify-bp-name-right {
+    font-size: 9px;
+    color: rgba(120, 100, 110, 0.4);
+    flex-shrink: 0;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+/* 预览气泡 — 使用与聊天页相同的 class 名 */
+.beautify-bubble-preview-box .chat-bubble {
+    max-width: 72%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    border-top-left-radius: 4px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: rgba(80, 60, 70, 0.9);
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    word-break: break-word;
+}
+
+.beautify-bubble-preview-box .chat-bubble-self {
+    background: rgba(248, 164, 184, 0.25);
+    border: 1px solid rgba(248, 164, 184, 0.2);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 4px;
+}
+
+/* 预览区的过渡动画 */
+.beautify-bubble-preview-box .beautify-bp-bubble {
+    transition: all 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+}

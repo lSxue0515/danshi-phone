@@ -1,0 +1,98 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — dock.css
+   ============================================ */
+
+.dock-container {
+    height: var(--dock-height);
+    padding: 0 36px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 50;
+}
+
+.dock-container::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 24px;
+    right: 24px;
+    bottom: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.dock-container .app-cell {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+/* ★ Dock 图标：48px */
+.dock-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+/* ★ 图标SVG等比放大 */
+.dock-icon svg {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.25));
+}
+
+.dock-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.22) 0%,
+            transparent 100%);
+    border-radius: 12px 12px 0 0;
+    pointer-events: none;
+}
+
+.dock-icon:hover {
+    background: rgba(255, 255, 255, 0.72);
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.75);
+}
+
+.dock-icon:active {
+    transform: scale(0.9);
+}

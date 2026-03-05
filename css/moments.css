@@ -1,0 +1,1435 @@
+/* ============================================
+   蛋薯机 DanShu Pro — moments.css
+   动态页 INS风白色 + 浅粉色主题
+   ============================================ */
+
+/* ========== 身份卡片 ========== */
+.mt-id-card {
+    margin: 16px 14px 6px;
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 200, 215, 0.3);
+    box-shadow: 0 2px 16px rgba(255, 180, 200, 0.08);
+    overflow: hidden;
+    position: relative;
+}
+
+.mt-id-card-inner {
+    display: flex;
+    gap: 14px;
+    padding: 18px 16px 16px;
+    position: relative;
+}
+
+/* 左侧头像区 */
+.mt-id-avatar-zone {
+    width: 80px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.mt-id-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2.5px solid rgba(255, 180, 200, 0.35);
+    box-shadow: 0 2px 12px rgba(255, 180, 200, 0.12);
+    background: rgba(255, 245, 248, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.mt-id-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mt-id-avatar svg {
+    width: 32px;
+    height: 32px;
+    stroke: rgba(255, 180, 200, 0.45);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+/* 头像渐变光环 — ins 风粉色系 */
+.mt-id-avatar::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: conic-gradient(rgba(255, 180, 200, 0.55),
+            rgba(255, 160, 210, 0.45),
+            rgba(240, 180, 230, 0.4),
+            rgba(255, 200, 200, 0.45),
+            rgba(255, 220, 200, 0.4),
+            rgba(255, 180, 200, 0.55));
+    z-index: -1;
+    opacity: 0.75;
+}
+
+.mt-id-avatar-label {
+    font-size: 9px;
+    color: rgba(255, 160, 185, 0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* 右侧信息 */
+.mt-id-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 2px;
+}
+
+.mt-id-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    line-height: 1.4;
+}
+
+.mt-id-label {
+    font-size: 10px;
+    color: rgba(255, 150, 180, 0.6);
+    flex-shrink: 0;
+    min-width: 42px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.mt-id-value {
+    font-size: 13px;
+    color: rgba(50, 40, 55, 0.82);
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mt-id-value.name-main {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.9);
+}
+
+/* 签名 */
+.mt-id-signature {
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(255, 190, 210, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mt-id-sig-label {
+    font-size: 10px;
+    color: rgba(255, 150, 180, 0.6);
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.mt-id-sig-value {
+    font-size: 11.5px;
+    color: rgba(180, 100, 130, 0.55);
+    font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 底部粉色渐变条 */
+.mt-id-card-footer {
+    height: 5px;
+    background: linear-gradient(90deg,
+            rgba(255, 180, 200, 0.4),
+            rgba(255, 160, 210, 0.35),
+            rgba(240, 180, 230, 0.3),
+            rgba(255, 200, 200, 0.35));
+    border-radius: 0 0 16px 16px;
+}
+
+/* 顶部标签 */
+.mt-id-card-tag {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 8px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255, 170, 195, 0.4);
+    font-weight: 700;
+}
+
+.mt-id-card-no {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    font-size: 8.5px;
+    color: rgba(255, 170, 195, 0.4);
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+}
+
+/* 星星装饰 — 粉色 */
+.mt-id-deco-star {
+    position: absolute;
+    opacity: 0.35;
+}
+
+.mt-id-deco-star svg {
+    fill: rgba(255, 170, 200, 0.65);
+    stroke: none;
+}
+
+/* ========== 统计栏 — 白色毛玻璃 ========== */
+.mt-stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    margin: 8px 14px 4px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 200, 215, 0.25);
+    box-shadow: 0 2px 12px rgba(255, 180, 200, 0.06);
+    overflow: hidden;
+}
+
+.mt-stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 12px 0;
+    cursor: default;
+    position: relative;
+}
+
+.mt-stat-item+.mt-stat-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 20%;
+    bottom: 20%;
+    width: 1px;
+    background: rgba(255, 190, 210, 0.2);
+}
+
+.mt-stat-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.82);
+}
+
+.mt-stat-label {
+    font-size: 10px;
+    color: rgba(200, 140, 165, 0.6);
+    letter-spacing: 0.5px;
+}
+
+/* ========== 分割线 ========== */
+.mt-divider {
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 190, 210, 0.25) 20%,
+            rgba(255, 190, 210, 0.25) 80%,
+            transparent);
+    margin: 10px 20px;
+}
+
+/* ========== 动态卡片 ========== */
+.mt-feed-area {
+    padding: 0 14px 20px;
+    min-height: 200px;
+}
+
+.mt-empty-feed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 0;
+    gap: 12px;
+    color: rgba(200, 150, 175, 0.5);
+}
+
+.mt-empty-feed svg {
+    opacity: 0.35;
+}
+
+.mt-empty-feed p {
+    font-size: 12px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.mt-post-card {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 210, 225, 0.35);
+    box-shadow: 0 1px 8px rgba(255, 180, 200, 0.06);
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.mt-post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 0;
+}
+
+.mt-post-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 190, 210, 0.3);
+    flex-shrink: 0;
+    background: rgba(255, 245, 248, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mt-post-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mt-post-avatar svg {
+    width: 18px;
+    height: 18px;
+    stroke: rgba(255, 180, 200, 0.4);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.mt-post-meta {
+    flex: 1;
+    min-width: 0;
+}
+
+.mt-post-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mt-post-time {
+    font-size: 10px;
+    color: rgba(200, 150, 175, 0.55);
+    margin-top: 1px;
+}
+
+/* 正文 */
+.mt-post-body {
+    padding: 10px 14px 6px;
+}
+
+.mt-post-text {
+    font-size: 13.5px;
+    color: rgba(50, 40, 55, 0.78);
+    line-height: 1.7;
+    word-break: break-word;
+}
+
+/* 图片网格 */
+.mt-post-images {
+    display: grid;
+    gap: 3px;
+    margin-top: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.mt-post-images.cols-1 {
+    grid-template-columns: 1fr;
+}
+
+.mt-post-images.cols-2 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.mt-post-images.cols-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mt-post-images img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+}
+
+.mt-post-images.cols-1 img {
+    aspect-ratio: 16/10;
+    max-height: 260px;
+}
+
+/* 底部操作栏 — 右对齐 */
+.mt-post-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+    padding: 6px 14px 12px;
+}
+
+.mt-post-action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    padding: 4px 2px;
+    transition: opacity 0.15s;
+}
+
+.mt-post-action:active {
+    opacity: 0.5;
+}
+
+.mt-post-action svg {
+    width: 18px;
+    height: 18px;
+    stroke: rgba(200, 160, 180, 0.5);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.mt-post-action.liked svg {
+    stroke: rgba(240, 80, 110, 0.8);
+    fill: rgba(240, 80, 110, 0.8);
+}
+
+.mt-post-action span {
+    font-size: 11px;
+    color: rgba(180, 140, 165, 0.6);
+}
+
+/* ========== 评论区 ========== */
+.mt-comments-area {
+    padding: 0 14px 10px;
+    border-top: 1px solid rgba(255, 215, 225, 0.2);
+    margin: 0 8px;
+}
+
+.mt-comment-item {
+    display: flex;
+    gap: 8px;
+    padding: 8px 0 4px;
+}
+
+.mt-comment-item+.mt-comment-item {
+    border-top: 1px solid rgba(255, 220, 230, 0.15);
+}
+
+.mt-comment-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 200, 215, 0.25);
+    background: rgba(255, 245, 248, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mt-comment-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mt-comment-avatar svg {
+    width: 12px;
+    height: 12px;
+    stroke: rgba(255, 180, 200, 0.4);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.mt-comment-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.mt-comment-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(220, 120, 150, 0.7);
+}
+
+.mt-comment-text {
+    font-size: 12px;
+    color: rgba(50, 40, 55, 0.72);
+    line-height: 1.5;
+    margin-top: 1px;
+    word-break: break-word;
+}
+
+.mt-comment-time {
+    font-size: 9px;
+    color: rgba(200, 160, 180, 0.45);
+    margin-top: 2px;
+}
+
+/* ========== 评论输入弹窗 ========== */
+.mt-comment-input-bar {
+    position: absolute;
+    bottom: 58px;
+    left: 0;
+    right: 0;
+    z-index: 860;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(255, 200, 215, 0.25);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    animation: mtSlideUp 0.2s ease;
+}
+
+@keyframes mtSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mt-comment-input-bar input {
+    flex: 1;
+    height: 36px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 200, 215, 0.35);
+    background: rgba(255, 248, 250, 1);
+    color: rgba(50, 40, 55, 0.82);
+    padding: 0 16px;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+}
+
+.mt-comment-input-bar input::placeholder {
+    color: rgba(200, 160, 180, 0.4);
+}
+
+.mt-comment-input-bar input:focus {
+    border-color: rgba(255, 180, 200, 0.5);
+}
+
+.mt-comment-send-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 180, 200, 0.8), rgba(240, 160, 190, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.15s;
+}
+
+.mt-comment-send-btn:active {
+    opacity: 0.6;
+}
+
+.mt-comment-send-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* ========== 发布动态弹窗 ========== */
+.mt-publish-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 850;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 44px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    overflow: hidden;
+}
+
+.mt-publish-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mt-publish-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 54px 18px 12px;
+    flex-shrink: 0;
+}
+
+.mt-publish-cancel {
+    font-size: 14px;
+    color: rgba(180, 130, 155, 0.7);
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.mt-publish-cancel:active {
+    opacity: 0.5;
+}
+
+.mt-publish-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+}
+
+.mt-publish-send {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, rgba(255, 170, 195, 0.85), rgba(255, 140, 175, 0.85));
+    padding: 6px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+}
+
+.mt-publish-send:active {
+    opacity: 0.6;
+}
+
+.mt-publish-body {
+    flex: 1;
+    padding: 12px 18px;
+    overflow-y: auto;
+}
+
+.mt-publish-textarea {
+    width: 100%;
+    min-height: 120px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: rgba(50, 40, 55, 0.82);
+    line-height: 1.7;
+    resize: none;
+    background: transparent;
+    font-family: inherit;
+}
+
+.mt-publish-textarea::placeholder {
+    color: rgba(200, 160, 180, 0.4);
+}
+
+.mt-publish-img-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.mt-publish-img-item {
+    width: 72px;
+    height: 72px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 200, 215, 0.3);
+}
+
+.mt-publish-img-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mt-publish-img-remove {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.mt-publish-img-remove svg {
+    width: 10px;
+    height: 10px;
+    stroke: #fff;
+    stroke-width: 2.5;
+    fill: none;
+}
+
+.mt-publish-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 18px 32px;
+    border-top: 1px solid rgba(255, 210, 225, 0.25);
+    flex-shrink: 0;
+}
+
+.mt-publish-tool-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 240, 245, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.mt-publish-tool-btn:active {
+    background: rgba(255, 220, 230, 0.8);
+}
+
+.mt-publish-tool-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(220, 140, 170, 0.6);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+/* ========== 加载指示 ========== */
+.mt-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 0;
+    color: rgba(200, 150, 175, 0.5);
+    font-size: 12px;
+}
+
+@keyframes mtSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.mt-loading svg {
+    animation: mtSpin 1s linear infinite;
+}
+
+/* ========== 新动态提示 ========== */
+.mt-new-post-toast {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 870;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 200, 215, 0.3);
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 12px;
+    color: rgba(220, 100, 140, 0.8);
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(255, 180, 200, 0.12);
+    cursor: pointer;
+    animation: mtSlideDown 0.3s ease;
+}
+
+@keyframes mtSlideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ========== 分享联系人弹窗 ========== */
+.mt-share-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 860;
+    background: rgba(0, 0, 0, 0.28);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 44px;
+    overflow: hidden;
+    animation: mtFadeIn 0.15s;
+}
+
+@keyframes mtFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.mt-share-panel {
+    width: 100%;
+    max-height: 60%;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: column;
+    animation: mtSlideUp 0.25s ease;
+    overflow: hidden;
+}
+
+@keyframes mtSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mt-share-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px 10px;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 210, 225, 0.2);
+}
+
+.mt-share-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+}
+
+.mt-share-close {
+    font-size: 13px;
+    color: rgba(180, 140, 160, 0.6);
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.mt-share-close:active {
+    opacity: 0.5;
+}
+
+/* 分享弹窗内的卡片预览 */
+.mt-share-preview {
+    margin: 10px 16px;
+    padding: 10px 12px;
+    background: rgba(255, 245, 248, 0.6);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 210, 225, 0.25);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.mt-share-preview-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 200, 215, 0.3);
+    background: rgba(255, 248, 250, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mt-share-preview-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mt-share-preview-avatar svg {
+    width: 16px;
+    height: 16px;
+    stroke: rgba(255, 180, 200, 0.4);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.mt-share-preview-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.mt-share-preview-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.75);
+}
+
+.mt-share-preview-text {
+    font-size: 11px;
+    color: rgba(120, 100, 140, 0.55);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 1px;
+}
+
+.mt-share-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 0 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mt-share-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.mt-share-item:active {
+    background: rgba(255, 230, 240, 0.4);
+}
+
+.mt-share-item-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 200, 215, 0.3);
+    flex-shrink: 0;
+    background: rgba(255, 245, 248, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mt-share-item-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mt-share-item-avatar svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(255, 180, 200, 0.4);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.mt-share-item-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.82);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mt-share-item-btn {
+    font-size: 11px;
+    padding: 5px 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 180, 200, 0.7), rgba(255, 150, 185, 0.7));
+    color: #fff;
+    font-weight: 600;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.mt-share-item-btn:active {
+    opacity: 0.6;
+}
+
+.mt-share-item-btn.sent {
+    background: rgba(220, 215, 230, 0.5);
+    color: rgba(160, 140, 180, 0.6);
+    pointer-events: none;
+}
+
+/* ========== 删除确认弹窗 ========== */
+.mt-delete-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 865;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 44px;
+    overflow: hidden;
+    animation: mtFadeIn 0.15s;
+}
+
+.mt-delete-dialog {
+    width: 260px;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    animation: mtScaleIn 0.2s ease;
+}
+
+@keyframes mtScaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.mt-delete-dialog-body {
+    padding: 24px 20px 16px;
+    text-align: center;
+}
+
+.mt-delete-dialog-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+    margin-bottom: 6px;
+}
+
+.mt-delete-dialog-desc {
+    font-size: 12px;
+    color: rgba(140, 120, 160, 0.6);
+    line-height: 1.5;
+}
+
+.mt-delete-dialog-actions {
+    display: flex;
+    border-top: 1px solid rgba(230, 220, 240, 0.3);
+}
+
+.mt-delete-dialog-btn {
+    flex: 1;
+    padding: 14px 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+
+.mt-delete-dialog-btn:active {
+    background: rgba(245, 240, 250, 0.8);
+}
+
+.mt-delete-dialog-btn.cancel {
+    color: rgba(140, 120, 160, 0.65);
+    border-right: 1px solid rgba(230, 220, 240, 0.3);
+}
+
+.mt-delete-dialog-btn.confirm {
+    color: rgba(230, 80, 100, 0.8);
+}
+
+/* ========== 动态帖子右上角更多按钮 ========== */
+.mt-post-more-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.mt-post-more-btn:active {
+    background: rgba(255, 230, 240, 0.5);
+}
+
+.mt-post-more-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke: rgba(200, 170, 190, 0.5);
+    fill: none;
+    stroke-width: 2;
+}
+
+/* ========== 聊天气泡中的分享卡片 ========== */
+.chat-share-card {
+    display: flex;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(255, 248, 252, 0.85);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 210, 225, 0.3);
+    min-width: 180px;
+    max-width: 240px;
+    cursor: default;
+    margin: 2px 0;
+}
+
+.chat-share-card-left {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.chat-share-card-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 200, 215, 0.35);
+    background: rgba(255, 245, 248, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-share-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-share-card-avatar svg {
+    width: 18px;
+    height: 18px;
+    stroke: rgba(255, 180, 200, 0.45);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.chat-share-card-right {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.chat-share-card-tag {
+    font-size: 9px;
+    color: rgba(200, 140, 170, 0.55);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.chat-share-card-tag svg {
+    width: 10px;
+    height: 10px;
+    stroke: rgba(200, 140, 170, 0.5);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.chat-share-card-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.82);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-share-card-text {
+    font-size: 12px;
+    color: rgba(80, 65, 95, 0.6);
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.chat-share-card-footer {
+    height: 3px;
+    background: linear-gradient(90deg,
+            rgba(255, 180, 200, 0.3),
+            rgba(240, 170, 220, 0.25),
+            rgba(200, 180, 240, 0.2));
+    border-radius: 0 0 12px 12px;
+    margin: 0 -12px -10px;
+    margin-top: 4px;
+}
+
+/* self发出的分享卡片 */
+.chat-bubble-row.self .chat-share-card {
+    background: rgba(248, 240, 255, 0.85);
+    border-color: rgba(220, 200, 240, 0.3);
+}
+
+.chat-bubble-row.self .chat-share-card-footer {
+    background: linear-gradient(90deg,
+            rgba(200, 170, 240, 0.3),
+            rgba(180, 160, 230, 0.25),
+            rgba(160, 180, 240, 0.2));
+}
+
+/* ========== 翻译按钮 & 翻译区 ========== */
+.mt-translate-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 6px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    background: rgba(255, 240, 245, 0.7);
+    border: 1px solid rgba(255, 200, 215, 0.25);
+    font-size: 10px;
+    color: rgba(200, 120, 150, 0.65);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+}
+
+.mt-translate-btn:active {
+    background: rgba(255, 220, 230, 0.8);
+}
+
+.mt-translate-btn svg {
+    width: 12px;
+    height: 12px;
+    stroke: rgba(200, 120, 150, 0.55);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.mt-translate-area {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(255, 200, 215, 0.3);
+}
+
+.mt-translate-text {
+    font-size: 12.5px;
+    color: rgba(140, 100, 130, 0.65);
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.mt-translate-loading {
+    font-size: 11px;
+    color: rgba(200, 160, 180, 0.5);
+    font-style: italic;
+}
+
+/* ========== 新动态提示 ========== */
+.mt-new-post-toast {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 870;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 200, 215, 0.3);
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 12px;
+    color: rgba(220, 100, 140, 0.8);
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(255, 180, 200, 0.12);
+    cursor: pointer;
+    animation: mtBounceIn 0.3s ease;
+}
+
+@keyframes mtBounceIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ========== 聊天气泡中的分享卡片 ========== */
+.chat-bubble.chat-bubble-share-card {
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    max-width: 230px;
+    min-width: 190px;
+}
+
+.chat-bubble-share-card .chat-sc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 0;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 14px 14px 0 0;
+    border: 1px solid rgba(255, 210, 225, 0.3);
+    border-bottom: none;
+}
+
+.chat-bubble-row.self .chat-bubble-share-card .chat-sc-header {
+    background: rgba(248, 240, 255, 0.92);
+    border-color: rgba(220, 200, 240, 0.3);
+}
+
+.chat-sc-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 195, 215, 0.35);
+    flex-shrink: 0;
+    background: rgba(255, 248, 252, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-sc-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat-sc-avatar svg {
+    width: 20px;
+    height: 20px;
+    stroke: rgba(255, 180, 200, 0.45);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.chat-sc-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-sc-tag {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 9px;
+    color: rgba(200, 140, 170, 0.6);
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
+}
+
+.chat-sc-tag svg {
+    stroke: rgba(200, 140, 170, 0.5);
+    fill: none;
+    stroke-width: 1.5;
+}
+
+.chat-sc-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chat-bubble-share-card .chat-sc-body {
+    padding: 8px 14px 10px;
+    font-size: 12.5px;
+    color: rgba(60, 50, 75, 0.65);
+    line-height: 1.55;
+    background: rgba(255, 255, 255, 0.92);
+    border-left: 1px solid rgba(255, 210, 225, 0.3);
+    border-right: 1px solid rgba(255, 210, 225, 0.3);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word;
+}
+
+.chat-bubble-row.self .chat-bubble-share-card .chat-sc-body {
+    background: rgba(248, 240, 255, 0.92);
+    border-color: rgba(220, 200, 240, 0.3);
+}
+
+.chat-bubble-share-card .chat-sc-footer {
+    height: 5px;
+    background: linear-gradient(90deg,
+            rgba(255, 180, 200, 0.4),
+            rgba(240, 170, 220, 0.35),
+            rgba(200, 180, 240, 0.3));
+    border-radius: 0 0 14px 14px;
+    border: 1px solid rgba(255, 210, 225, 0.3);
+    border-top: none;
+}
+
+.chat-bubble-row.self .chat-bubble-share-card .chat-sc-footer {
+    background: linear-gradient(90deg,
+            rgba(200, 170, 240, 0.4),
+            rgba(180, 160, 230, 0.35),
+            rgba(160, 180, 240, 0.3));
+    border-color: rgba(220, 200, 240, 0.3);
+}

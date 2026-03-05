@@ -1,0 +1,677 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — page3widget.css
+   第三页 · 联系卡片组件（浅灰毛玻璃风格）
+   ============================================ */
+
+/* =============================================
+   第三页 · 个人资料卡片组件（Profile Card）
+   ============================================= */
+.p3-profile-widget {
+    margin-top: 20px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(245, 244, 248, 0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* 封面图区域 */
+.p3-profile-banner {
+    width: 100%;
+    height: 110px;
+    background: rgba(230, 228, 235, 0.4);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.p3-profile-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.p3-profile-banner img[src=""] {
+    display: none;
+}
+
+.p3-profile-banner-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(220, 218, 228, 0.15);
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.p3-profile-banner img:not([src=""])~.p3-profile-banner-hint {
+    opacity: 0;
+}
+
+.p3-profile-banner-hint svg {
+    fill: none;
+    stroke: rgba(160, 155, 170, 0.3);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 头像容器 — 让圆形头像居中悬浮在封面底部 */
+.p3-profile-avatar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: -34px;
+    position: relative;
+    z-index: 2;
+}
+
+.p3-profile-avatar {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(245, 244, 248, 0.9);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    position: relative;
+    background: rgba(235, 233, 240, 0.5);
+    transition: border-color 0.3s;
+}
+
+.p3-profile-avatar:hover {
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.p3-profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.p3-profile-avatar img[src=""] {
+    display: none;
+}
+
+.p3-profile-avatar-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(210, 208, 218, 0.25);
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.p3-profile-avatar img:not([src=""])~.p3-profile-avatar-hint {
+    opacity: 0;
+}
+
+.p3-profile-avatar-hint svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: rgba(140, 140, 155, 0.45);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 文字信息区 */
+.p3-profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 16px 16px;
+    gap: 3px;
+}
+
+/* 名字 */
+.p3-profile-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(40, 35, 50, 0.85);
+    letter-spacing: 0.5px;
+    text-align: center;
+    outline: none;
+    min-height: 1em;
+    line-height: 1.4;
+}
+
+.p3-profile-name:focus {
+    outline: 1px dashed rgba(180, 175, 190, 0.35);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* @ 用户名 */
+.p3-profile-handle {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: rgba(120, 115, 135, 0.7);
+    letter-spacing: 0.3px;
+    text-align: center;
+    outline: none;
+    min-height: 1em;
+    line-height: 1.4;
+}
+
+.p3-profile-handle:focus {
+    outline: 1px dashed rgba(180, 175, 190, 0.35);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* 签名 / Bio */
+.p3-profile-bio {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(80, 75, 95, 0.6);
+    letter-spacing: 0.4px;
+    text-align: center;
+    outline: none;
+    min-height: 1em;
+    line-height: 1.5;
+    margin-top: 4px;
+}
+
+.p3-profile-bio:focus {
+    outline: 1px dashed rgba(180, 175, 190, 0.35);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* 定位行 */
+.p3-profile-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.p3-profile-location svg {
+    fill: none;
+    stroke: rgba(150, 145, 165, 0.5);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.p3-profile-loc-text {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: rgba(100, 95, 115, 0.6);
+    letter-spacing: 0.3px;
+    outline: none;
+    min-height: 1em;
+    line-height: 1.4;
+}
+
+.p3-profile-loc-text:focus {
+    outline: 1px dashed rgba(180, 175, 190, 0.35);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ===== 整体容器 ===== */
+.p3-contact-widget {
+    padding: 30px 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ===== 顶部区域：头像 + 气泡 ===== */
+.p3-contact-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 2px;
+}
+
+/* 头像 — 小号圆形 */
+.p3-contact-avatar {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    position: relative;
+    background: rgba(220, 220, 228, 0.35);
+    transition: border-color 0.3s;
+}
+
+.p3-contact-avatar:hover {
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.p3-contact-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.p3-contact-avatar img[src=""] {
+    display: none;
+}
+
+.p3-contact-avatar-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(200, 200, 210, 0.25);
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.p3-contact-avatar img:not([src=""])~.p3-contact-avatar-hint {
+    opacity: 0;
+}
+
+.p3-contact-avatar-hint svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: rgba(140, 140, 155, 0.5);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 气泡 */
+.p3-contact-bubble {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(235, 235, 242, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 24px;
+    padding: 5px 12px !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    position: relative;
+}
+
+/* 气泡小尖角 */
+.p3-contact-bubble::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid rgba(235, 235, 242, 0.55);
+}
+
+.p3-contact-bubble-text {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(60, 55, 70, 0.8);
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    outline: none;
+    min-height: 1em;
+}
+
+.p3-contact-bubble-text:focus {
+    outline: 1px dashed rgba(180, 175, 190, 0.35);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* 爪印 */
+.p3-contact-paw {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p3-contact-paw svg {
+    fill: rgba(100, 105, 120, 0.55);
+    stroke: none;
+}
+
+/* ===== 下方信息卡片（浅灰毛玻璃，大圆角） ===== */
+.p3-contact-card {
+    display: flex;
+    align-items: stretch;
+    background: rgba(235, 235, 242, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 26px;
+    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    margin: 0 2px;
+}
+
+/* 左侧信息区 */
+.p3-contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px 10px 12px 14px;
+    gap: 6px;
+    min-width: 0;
+}
+
+/* 每行 */
+.p3-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.p3-contact-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(55, 50, 60, 0.7);
+    flex-shrink: 0;
+    min-width: 52px;
+    letter-spacing: 0.2px;
+}
+
+/* ★ 输入框容器：修改按钮在里面 ★ */
+.p3-contact-input-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: rgba(250, 249, 252, 0.6);
+    border-radius: 8px;
+    padding: 4px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transition: border-color 0.2s;
+    gap: 4px;
+    min-width: 0;
+}
+
+.p3-contact-input-wrap:focus-within {
+    border-color: rgba(180, 170, 195, 0.35);
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.p3-contact-value {
+    flex: 1;
+    font-size: 11.5px;
+    font-weight: 400;
+    color: rgba(75, 70, 85, 0.6);
+    letter-spacing: 0.2px;
+    outline: none;
+    min-height: 1em;
+    line-height: 1.4;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ★ "修改"在输入框内 ★ */
+.p3-contact-edit {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(90, 130, 195, 0.7);
+    cursor: pointer;
+    padding: 1px 2px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.p3-contact-edit:active {
+    color: rgba(90, 130, 195, 0.9);
+    transform: scale(0.95);
+}
+
+/* ===== 右侧图片（小号 + 圆角，嵌在卡片里） ===== */
+.p3-contact-photo {
+    width: 80px;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background: rgba(240, 238, 245, 0.35);
+    transition: opacity 0.2s;
+    margin: 8px 8px 8px 0;
+    border-radius: 14px;
+}
+
+.p3-contact-photo:active {
+    opacity: 0.85;
+}
+
+.p3-contact-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+}
+
+.p3-contact-photo img[src=""] {
+    display: none;
+}
+
+.p3-contact-photo-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(220, 218, 228, 0.2);
+    opacity: 1;
+    transition: opacity 0.3s;
+    border-radius: 14px;
+}
+
+.p3-contact-photo img:not([src=""])~.p3-contact-photo-hint {
+    opacity: 0;
+}
+
+.p3-contact-photo-hint svg {
+    fill: none;
+    stroke: rgba(160, 155, 170, 0.35);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* =============================================
+   第三页下半区：左侧 App + 右侧拍立得
+   ============================================= */
+
+.p3-bottom-row {
+    display: flex;
+    gap: 16px;
+    /* 增大左右两大部分的间距，参考p2的宽敞感 */
+    align-items: flex-start;
+}
+
+/* ===== 左侧 2×2 App（与全局同尺寸 54px） ===== */
+.p3-apps-left {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 14px 18px;
+    /* 列间距从 6px 增大到 18px，让猫尾薄荷不那么挤 */
+    flex-shrink: 0;
+    width: 160px;
+    /* 配合间距加大整体宽度 */
+    margin-left: -12px;
+    /* 关键：把整个网格往左拉，这样左列往左，右列也跟着往左 */
+    margin-right: 0;
+    /* 去掉之前的右偏移 */
+}
+
+/* =============================================
+   拍立得（Polaroid）小组件
+   ============================================= */
+.p3-polaroid {
+    width: 126px;
+    flex-shrink: 0;
+    margin-left: auto;
+    background: #fff;
+    border-radius: 3px;
+    padding: 6px 6px 0 6px;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 6px 20px rgba(0, 0, 0, 0.05),
+        0 0 0 1px rgba(0, 0, 0, 0.03);
+    transform: rotate(2deg);
+    transition: transform 0.3s ease;
+    position: relative;
+    margin-left: 0;
+}
+
+.p3-polaroid:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+/* 纸张纹理感 */
+.p3-polaroid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    background: linear-gradient(135deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.01) 50%,
+            rgba(0, 0, 0, 0.02) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 照片区域（正方形） */
+.p3-polaroid-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: rgba(235, 232, 240, 0.4);
+    border-radius: 1px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.p3-polaroid-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.p3-polaroid-photo img[src=""] {
+    display: none;
+}
+
+/* 未上传时的占位提示 */
+.p3-polaroid-photo-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.p3-polaroid-photo img:not([src=""])~.p3-polaroid-photo-hint {
+    opacity: 0;
+}
+
+.p3-polaroid-photo-hint svg {
+    fill: none;
+    stroke: rgba(180, 175, 190, 0.3);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 底部白边 — 文字区（拍立得经典宽下巴） */
+.p3-polaroid-caption {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(60, 55, 70, 0.6);
+    letter-spacing: 0.5px;
+    text-transform: none;
+    text-align: center;
+    outline: none;
+    min-height: 1em;
+    cursor: text;
+    font-family: -apple-system, 'PingFang SC', sans-serif;
+}
+
+.p3-polaroid-caption:focus {
+    outline: 1px dashed rgba(180, 175, 190, 0.35);
+    outline-offset: 2px;
+    border-radius: 3px;
+}
+
+/* ====== 拍立得双图排版 ====== */
+.p3-polaroid-group {
+    display: flex;
+    align-items: flex-start;
+    margin-left: -4px;
+    /* 整体组的位置微调 */
+}
+
+/* 确保原来的大拍立得在最上层 */
+.p3-polaroid-group .p3-polaroid:not(.p3-polaroid-sm) {
+    z-index: 2;
+    margin-left: 0;
+    /* 清除自带的偏移，交给外层group控制 */
+}
+
+/* 修改小拍立得样式，改为并排 */
+.p3-polaroid-sm {
+    width: 90px;
+    padding: 5px 5px 0 5px;
+    transform: rotate(-4deg);
+    /* 倾斜稍微收一点点，看着更自然 */
+
+    margin-right: 12px;
+    /* ★ 核心重点：把原来的 -30px 改成正数 12px，就能产生合适的空隙 */
+    margin-top: 5px;
+    /* 高度上稍微错开一丢丢，如果想两张图上边缘完全平齐，可以改成 0 */
+    margin-left: 0;
+
+    z-index: 1;
+}
+
+/* 小拍立得悬浮微动 */
+.p3-polaroid-sm:hover {
+    transform: rotate(-3deg) scale(1.02);
+}
+
+/* 缩小小拍立得的文字区高度 */
+.p3-polaroid-sm .p3-polaroid-caption {
+    height: 24px;
+    font-size: 9px;
+}

@@ -1,0 +1,83 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — animations.css
+   ============================================ */
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.6) translateY(20px);
+    }
+    60% {
+        transform: scale(1.04) translateY(-2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* 第1页逐个弹入 */
+.page-1 .grid-container > * {
+    opacity: 0;
+    animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.page-1 .grid-container > *:nth-child(1) { animation-delay: 0.06s; }
+.page-1 .grid-container > *:nth-child(2) { animation-delay: 0.12s; }
+.page-1 .grid-container > *:nth-child(3) { animation-delay: 0.18s; }
+.page-1 .grid-container > *:nth-child(4) { animation-delay: 0.24s; }
+.page-1 .grid-container > *:nth-child(5) { animation-delay: 0.30s; }
+.page-1 .grid-container > *:nth-child(6) { animation-delay: 0.36s; }
+.page-1 .grid-container > *:nth-child(7) { animation-delay: 0.42s; }
+.page-1 .grid-container > *:nth-child(8) { animation-delay: 0.48s; }
+.page-1 .grid-container > *:nth-child(9) { animation-delay: 0.54s; }
+
+/* Dock 弹入 */
+.dock-container .app-cell {
+    opacity: 0;
+    animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.dock-container .app-cell:nth-child(1) { animation-delay: 0.55s; }
+.dock-container .app-cell:nth-child(2) { animation-delay: 0.62s; }
+.dock-container .app-cell:nth-child(3) { animation-delay: 0.69s; }
+
+/* 第2页弹入 */
+.page-2 .grid-container > * {
+    opacity: 0;
+    animation: pop-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-play-state: paused;
+}
+
+.page-2.visible .grid-container > * {
+    animation-play-state: running;
+}
+
+.page-2 .grid-container > *:nth-child(1) { animation-delay: 0.05s; }
+.page-2 .grid-container > *:nth-child(2) { animation-delay: 0.12s; }
+.page-2 .grid-container > *:nth-child(3) { animation-delay: 0.19s; }
+.page-2 .grid-container > *:nth-child(4) { animation-delay: 0.26s; }
+
+/* 冒号闪烁 */
+@keyframes blink-colon {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.3; }
+}
+
+.status-time .colon {
+    animation: blink-colon 1s step-end infinite;
+}
+
+/* ★ 修复：倒数日 hover 用 transition 代替 animation，防止消失 */
+.widget-countdown {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.widget-countdown:hover {
+    box-shadow: 0 6px 30px rgba(248, 164, 184, 0.15);
+}
+
+.dot {
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+

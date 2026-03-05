@@ -1,0 +1,399 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — favorite.css
+   收藏页面样式
+   ============================================ */
+
+/* ===== 全屏遮罩 ===== */
+.chat-fav-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(245, 235, 240, 0.97);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 900;
+    display: none;
+}
+
+.chat-fav-overlay.show {
+    display: block;
+}
+
+/* ===== 面板 ===== */
+.chat-fav-panel {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ===== 顶栏 ===== */
+.chat-fav-header {
+    height: 56px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chat-fav-back {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chat-fav-back:active {
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(0.93);
+}
+
+.chat-fav-back svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: rgba(80, 60, 70, 0.8);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.chat-fav-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.chat-fav-clear {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 100, 100, 0.1);
+    border: 1px solid rgba(255, 100, 100, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chat-fav-clear:active {
+    background: rgba(255, 100, 100, 0.25);
+    transform: scale(0.93);
+}
+
+.chat-fav-clear svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: rgba(200, 80, 80, 0.6);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===== 统计栏 ===== */
+.chat-fav-stats {
+    display: flex;
+    padding: 16px 18px;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.chat-fav-stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px 4px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.chat-fav-stat-num {
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba(80, 60, 70, 0.85);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.chat-fav-stat-label {
+    font-size: 10px;
+    color: rgba(120, 100, 110, 0.5);
+    font-weight: 500;
+}
+
+/* ===== 收藏列表 ===== */
+.chat-fav-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 18px 40px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== 空状态 ===== */
+.chat-fav-empty {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.chat-fav-empty svg {
+    width: 48px;
+    height: 48px;
+    fill: none;
+    stroke: rgba(200, 180, 190, 0.35);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-bottom: 14px;
+}
+
+.chat-fav-empty p {
+    font-size: 12px;
+    color: rgba(120, 100, 110, 0.4);
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ===== 收藏卡片 ===== */
+.chat-fav-item {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s;
+}
+
+.chat-fav-item:active {
+    transform: scale(0.985);
+}
+
+/* ===== 来源行 ===== */
+.chat-fav-item-source {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.chat-fav-item-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(245, 235, 240, 0.6);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-fav-item-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.chat-fav-item-avatar svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: rgba(160, 140, 150, 0.5);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.chat-fav-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-fav-item-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.85);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chat-fav-item-from {
+    font-weight: 400;
+    font-size: 11px;
+    color: rgba(120, 100, 110, 0.45);
+}
+
+.chat-fav-item-time {
+    font-size: 10px;
+    color: rgba(120, 100, 110, 0.4);
+    margin-top: 1px;
+}
+
+.chat-fav-item-del {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 100, 100, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.chat-fav-item-del:active {
+    background: rgba(255, 100, 100, 0.25);
+    transform: scale(0.9);
+}
+
+.chat-fav-item-del svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: rgba(200, 80, 80, 0.5);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===== 消息内容区 ===== */
+.chat-fav-item-body {
+    padding-left: 42px;
+}
+
+/* 文字消息 */
+.chat-fav-item-text {
+    font-size: 13px;
+    color: rgba(80, 60, 70, 0.8);
+    line-height: 1.65;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+/* 图片消息 */
+.chat-fav-item-image {
+    margin-bottom: 6px;
+}
+
+.chat-fav-item-image img {
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: 10px;
+    display: block;
+    object-fit: contain;
+    background: rgba(245, 235, 240, 0.3);
+}
+
+/* 语音消息 */
+.chat-fav-item-voice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: rgba(248, 164, 184, 0.12);
+    border: 1px solid rgba(248, 164, 184, 0.2);
+    width: fit-content;
+    margin-bottom: 4px;
+}
+
+.chat-fav-item-voice svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: rgba(248, 164, 184, 0.8);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.chat-fav-item-voice span {
+    font-size: 12px;
+    color: rgba(80, 60, 70, 0.7);
+    font-weight: 500;
+}
+
+.chat-fav-item-transcript {
+    font-style: italic;
+    color: rgba(120, 100, 110, 0.55);
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* 表情包 */
+.chat-fav-item-sticker {
+    margin-bottom: 4px;
+}
+
+.chat-fav-item-sticker img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 8px;
+    display: block;
+    object-fit: contain;
+}
+
+/* 转账 */
+.chat-fav-item-transfer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: rgba(255, 180, 60, 0.1);
+    border: 1px solid rgba(255, 180, 60, 0.2);
+    width: fit-content;
+}
+
+.chat-fav-item-transfer svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: rgba(230, 160, 40, 0.8);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.chat-fav-item-transfer span {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.8);
+}
+
+.chat-fav-transfer-remark {
+    font-weight: 400 !important;
+    font-size: 11px !important;
+    color: rgba(120, 100, 110, 0.5) !important;
+}
+
+/* 原消息时间 */
+.chat-fav-item-orig-time {
+    font-size: 10px;
+    color: rgba(140, 120, 130, 0.35);
+    margin-top: 8px;
+}

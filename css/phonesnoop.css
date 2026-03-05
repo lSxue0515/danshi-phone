@@ -1,0 +1,378 @@
+/* ============================================
+   phonesnoop.css — 查手机功能样式
+   ============================================ */
+
+/* ====== 折叠选项区 ====== */
+.snoop-options {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .4s ease, opacity .3s, padding .3s;
+    opacity: 0;
+    padding: 0 14px;
+}
+
+.snoop-options.show {
+    max-height: 300px;
+    opacity: 1;
+    padding: 10px 14px 14px;
+}
+
+.snoop-option-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 182, 193, 0.08);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 130, 160, 0.15);
+}
+
+.snoop-option-label {
+    font-size: 13px;
+    color: #6b5060;
+    font-weight: 500;
+}
+
+.snoop-interval-select {
+    background: #fff;
+    border: 1px solid rgba(255, 130, 160, 0.3);
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #5a3d4a;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.snoop-option-hint {
+    font-size: 11px;
+    color: #c4899a;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 0 4px;
+}
+
+
+/* ====== 查手机弹窗 ====== */
+.snoop-popup-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .4s;
+    border-radius: inherit;
+}
+
+.snoop-popup-overlay.show {
+    opacity: 1;
+}
+
+.snoop-popup {
+    width: 84%;
+    max-width: 300px;
+    background: linear-gradient(160deg, #fff5f7 0%, #fff 100%);
+    border-radius: 20px;
+    padding: 28px 22px 22px;
+    text-align: center;
+    border: 1px solid rgba(255, 150, 180, 0.25);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    transform: scale(0.7) translateY(30px);
+    transition: transform .4s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+.snoop-popup-overlay.show .snoop-popup {
+    transform: scale(1) translateY(0);
+}
+
+.snoop-popup-phone-shake {
+    margin-bottom: 12px;
+    animation: snoopShake 0.6s ease-in-out infinite;
+}
+
+.snoop-action-icon {
+    width: 48px;
+    height: 48px;
+    stroke: #d4506a;
+    stroke-width: 1.8;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+@keyframes snoopShake {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-12deg);
+    }
+
+    50% {
+        transform: rotate(12deg);
+    }
+
+    75% {
+        transform: rotate(-8deg);
+    }
+}
+
+.snoop-popup-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    border: 2.5px solid rgba(255, 182, 193, 0.5);
+}
+
+.snoop-popup-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.snoop-popup-avatar svg {
+    width: 30px;
+    height: 30px;
+    margin: 13px;
+    stroke: #cba0ab;
+    stroke-width: 2;
+    fill: none;
+}
+
+.snoop-popup-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #d4506a;
+    margin-bottom: 6px;
+}
+
+.snoop-popup-desc {
+    font-size: 13px;
+    color: #6b5060;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    padding: 0 6px;
+}
+
+.snoop-popup-btns {
+    display: flex;
+    gap: 10px;
+}
+
+.snoop-popup-btn {
+    flex: 1;
+    padding: 10px 0;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform .15s;
+    text-align: center;
+}
+
+.snoop-popup-btn:active {
+    transform: scale(0.95);
+}
+
+.snoop-btn-resist {
+    background: #fff;
+    border: 1px solid rgba(255, 130, 160, 0.3);
+    color: #d4506a;
+}
+
+.snoop-btn-allow {
+    background: linear-gradient(135deg, #ffb6c1, #ff8fa0);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(255, 150, 180, 0.3);
+}
+
+
+/* ====== 锁屏悬浮通知（从顶部滑入，可关闭） ====== */
+/* ====== ★ 全屏锁屏（替换旧的悬浮通知） ====== */
+.snoop-full-lock {
+    position: absolute;
+    inset: 0;
+    z-index: 9800;
+    background: linear-gradient(160deg, rgba(20, 10, 30, 0.97) 0%, rgba(40, 20, 50, 0.99) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .5s ease;
+    pointer-events: all;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.snoop-full-lock.show {
+    opacity: 1;
+}
+
+/* 右上角解锁按钮 */
+.snoop-full-lock-unlock {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s;
+    z-index: 1;
+}
+
+.snoop-full-lock-unlock:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.snoop-full-lock-unlock svg {
+    stroke: rgba(255, 255, 255, 0.7);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.snoop-full-lock-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 32px;
+    text-align: center;
+    gap: 14px;
+}
+
+.snoop-full-lock-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 182, 193, 0.4);
+    box-shadow: 0 0 30px rgba(255, 130, 160, 0.3);
+}
+
+.snoop-full-lock-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.snoop-full-lock-avatar svg {
+    stroke: #cba0ab;
+    stroke-width: 2;
+    fill: none;
+    margin: 18px;
+}
+
+.snoop-full-lock-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.snoop-full-lock-msg {
+    font-size: 14px;
+    color: rgba(255, 182, 193, 0.9);
+    line-height: 1.7;
+    min-height: 44px;
+    padding: 10px 14px;
+    background: rgba(255, 130, 160, 0.1);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 130, 160, 0.2);
+    max-width: 260px;
+}
+
+.snoop-full-lock-timer {
+    font-size: 40px;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 3px;
+    font-variant-numeric: tabular-nums;
+}
+
+.snoop-full-lock-progress {
+    width: 160px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.snoop-full-lock-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ffb6c1, #ff8fa0);
+    border-radius: 2px;
+    transition: width 1s linear;
+}
+
+.snoop-full-lock-tip {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 4px;
+}
+
+/* ====== 聊天内操作提示条 ====== */
+.snoop-chat-tip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 14px;
+    margin: 8px auto;
+    width: fit-content;
+    max-width: 85%;
+    background: rgba(255, 182, 193, 0.12);
+    border-radius: 20px;
+    font-size: 11px;
+    color: #c4899a;
+    line-height: 1.4;
+    animation: snoopTipIn .4s ease;
+    transition: opacity .5s;
+}
+
+.snoop-chat-tip svg {
+    stroke: #d4506a;
+    stroke-width: 2;
+    fill: none;
+    flex-shrink: 0;
+}
+
+.snoop-chat-tip.fade-out {
+    opacity: 0;
+}
+
+@keyframes snoopTipIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

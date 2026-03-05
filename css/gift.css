@@ -1,0 +1,1440 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — gift.css
+   礼物商城 · 白色/浅粉毛玻璃半透明悬浮风格
+   ============================================ */
+
+/* ===== 礼物商城 Overlay ===== */
+.gift-shop-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 860;
+    background: rgba(248, 242, 250, 0.92);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.gift-shop-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+/* ===== 顶部导航 ===== */
+.gift-header {
+    display: flex;
+    align-items: center;
+    padding: 52px 16px 12px 16px;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.gift-back {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.gift-back:active {
+    background: rgba(255, 180, 200, 0.25);
+    transform: scale(0.93);
+}
+
+.gift-back svg {
+    width: 16px;
+    height: 16px;
+    stroke: rgba(50, 40, 55, 0.5);
+    stroke-width: 2;
+    fill: none;
+}
+
+.gift-header-title {
+    flex: 1;
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+    text-align: center;
+}
+
+.gift-header-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.gift-header-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gift-header-btn:active {
+    background: rgba(255, 180, 200, 0.25);
+    transform: scale(0.93);
+}
+
+.gift-header-btn svg {
+    width: 15px;
+    height: 15px;
+    stroke: rgba(50, 40, 55, 0.5);
+    stroke-width: 2;
+    fill: none;
+}
+
+/* ===== 顶部Tab栏 ===== */
+.gift-top-tabs {
+    display: flex;
+    padding: 0 18px;
+    gap: 0;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.gift-top-tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(50, 40, 55, 0.38);
+    cursor: pointer;
+    border-bottom: 2.5px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.gift-top-tab.active {
+    color: rgba(50, 40, 55, 0.85);
+    font-weight: 700;
+    border-bottom-color: rgba(255, 160, 190, 0.7);
+}
+
+/* ===== 主体滚动区 ===== */
+.gift-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0 30px;
+}
+
+/* ===== 推荐横滑区 ===== */
+.gift-recommend-section {
+    padding: 14px 0 6px;
+}
+
+.gift-recommend-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px 10px;
+}
+
+.gift-recommend-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.8);
+}
+
+.gift-recommend-more {
+    font-size: 12px;
+    color: rgba(50, 40, 55, 0.3);
+    cursor: pointer;
+}
+
+.gift-recommend-more svg {
+    width: 14px;
+    height: 14px;
+    stroke: rgba(50, 40, 55, 0.25);
+    stroke-width: 2;
+    fill: none;
+    vertical-align: middle;
+}
+
+.gift-recommend-scroll {
+    display: flex;
+    gap: 12px;
+    padding: 0 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.gift-recommend-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.gift-recommend-card {
+    flex-shrink: 0;
+    width: 120px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.gift-recommend-card:active {
+    transform: scale(0.96);
+}
+
+.gift-recommend-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid rgba(230, 230, 230, 0.8);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.gift-recommend-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gift-recommend-img .gift-placeholder {
+    font-size: 12px;
+    color: rgba(180, 180, 180, 0.6);
+    font-weight: 500;
+    user-select: none;
+}
+
+.gift-recommend-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.7);
+    margin-top: 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-recommend-price {
+    font-size: 11px;
+    color: rgba(50, 40, 55, 0.4);
+    margin-top: 2px;
+}
+
+/* ===== 分类横滑栏 ===== */
+.gift-category-bar {
+    display: flex;
+    gap: 8px;
+    padding: 14px 18px 10px;
+    overflow-x: auto;
+    flex-shrink: 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.gift-category-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.gift-category-chip {
+    padding: 6px 16px;
+    border-radius: 16px;
+    font-size: 13px;
+    color: rgba(50, 40, 55, 0.45);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    font-weight: 500;
+}
+
+.gift-category-chip.active {
+    background: rgba(255, 180, 200, 0.3);
+    color: rgba(50, 40, 55, 0.85);
+    font-weight: 600;
+    border-color: rgba(255, 180, 200, 0.45);
+}
+
+.gift-category-chip:active {
+    transform: scale(0.95);
+}
+
+/* ===== 商品网格 ===== */
+.gift-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 6px 14px 20px;
+}
+
+.gift-card {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.gift-card:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.gift-card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.gift-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gift-card-img .gift-placeholder {
+    font-size: 14px;
+    color: rgba(180, 180, 180, 0.6);
+    font-weight: 500;
+    user-select: none;
+}
+
+/* 上传覆盖提示 */
+.gift-card-img .gift-upload-hint {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.gift-card-img:hover .gift-upload-hint {
+    opacity: 1;
+}
+
+.gift-card-img .gift-upload-hint svg {
+    width: 28px;
+    height: 28px;
+    stroke: rgba(255, 255, 255, 0.8);
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.gift-card-info {
+    padding: 10px 12px 12px;
+}
+
+.gift-card-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.8);
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-card-price {
+    font-size: 13px;
+    color: rgba(255, 140, 170, 0.9);
+    font-weight: 600;
+}
+
+.gift-card-desc {
+    font-size: 11px;
+    color: rgba(50, 40, 55, 0.35);
+    margin-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ===== 搜索覆盖 ===== */
+.gift-search-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 870;
+    background: rgba(248, 242, 250, 0.97);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.gift-search-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.gift-search-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 52px 16px 12px;
+    flex-shrink: 0;
+}
+
+.gift-search-input {
+    flex: 1;
+    padding: 9px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    color: rgba(50, 40, 55, 0.85);
+    outline: none;
+    font-family: inherit;
+    -webkit-appearance: none;
+    transition: all 0.2s;
+}
+
+.gift-search-input:focus {
+    border-color: rgba(255, 180, 200, 0.5);
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.gift-search-input::placeholder {
+    color: rgba(50, 40, 55, 0.25);
+}
+
+.gift-search-cancel {
+    font-size: 14px;
+    color: rgba(255, 140, 170, 0.85);
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 4px 2px;
+}
+
+.gift-search-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 14px 30px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== 礼物详情弹窗 ===== */
+.gift-detail-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 880;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.gift-detail-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.gift-detail-panel {
+    width: 100%;
+    max-height: 80%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-radius: 28px 28px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-bottom: none;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.gift-detail-overlay.show .gift-detail-panel {
+    transform: translateY(0);
+}
+
+.gift-detail-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s;
+}
+
+.gift-detail-close:active {
+    background: rgba(0, 0, 0, 0.12);
+    transform: scale(0.9);
+}
+
+.gift-detail-close svg {
+    width: 14px;
+    height: 14px;
+    stroke: rgba(50, 40, 55, 0.5);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+}
+
+/* ===== 详情图片区（修复图片不显示） ===== */
+.gift-detail-img-wrap {
+    width: 100%;
+    aspect-ratio: 1.2;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.gift-detail-img-wrap>img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 1;
+}
+
+.gift-detail-img-wrap .gift-placeholder {
+    font-size: 16px;
+    color: rgba(180, 180, 180, 0.6);
+    font-weight: 500;
+    user-select: none;
+    z-index: 1;
+}
+
+.gift-detail-upload-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 6px 14px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    z-index: 2;
+}
+
+.gift-detail-upload-btn:active {
+    transform: scale(0.95);
+}
+
+.gift-detail-upload-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* ===== 详情内容区 ===== */
+.gift-detail-body {
+    padding: 16px 18px 24px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.gift-detail-field {
+    margin-bottom: 12px;
+}
+
+.gift-detail-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.45);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+}
+
+.gift-detail-name-input,
+.gift-detail-price-input {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.4);
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.85);
+    outline: none;
+    font-family: inherit;
+    -webkit-appearance: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+.gift-detail-name-input:focus,
+.gift-detail-price-input:focus {
+    border-color: rgba(255, 180, 200, 0.5);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(255, 180, 200, 0.12);
+}
+
+.gift-detail-name-input::placeholder,
+.gift-detail-price-input::placeholder {
+    color: rgba(50, 40, 55, 0.2);
+    font-weight: 400;
+}
+
+.gift-detail-cat-select {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    color: rgba(50, 40, 55, 0.8);
+    outline: none;
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(50,40,55,0.3)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+}
+
+.gift-detail-desc-input {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    color: rgba(50, 40, 55, 0.75);
+    outline: none;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 40px;
+    -webkit-appearance: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.gift-detail-desc-input:focus {
+    border-color: rgba(255, 180, 200, 0.5);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(255, 180, 200, 0.12);
+}
+
+.gift-detail-desc-input::placeholder {
+    color: rgba(50, 40, 55, 0.2);
+}
+
+/* ===== 详情双按钮 ===== */
+.gift-detail-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.gift-detail-save-btn {
+    flex: 1;
+    padding: 13px 0;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.65);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.gift-detail-save-btn:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.gift-detail-buy-btn {
+    flex: 1;
+    padding: 13px 0;
+    border-radius: 16px;
+    background: rgba(255, 160, 190, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 180, 200, 0.4);
+}
+
+.gift-detail-buy-btn:active {
+    transform: scale(0.97);
+    background: rgba(255, 140, 170, 0.6);
+}
+
+.gift-detail-balance {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 11px;
+    color: rgba(50, 40, 55, 0.3);
+    line-height: 1.6;
+}
+
+/* ===== 分类加号 ===== */
+.gift-category-add {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px dashed rgba(180, 170, 185, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.gift-category-add:active {
+    transform: scale(0.9);
+    background: rgba(255, 180, 200, 0.25);
+}
+
+.gift-category-add svg {
+    stroke: rgba(50, 40, 55, 0.35);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+}
+
+/* ===== 分类删除按钮 ===== */
+.gift-category-chip {
+    position: relative;
+}
+
+.gift-cat-del-x {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(200, 80, 80, 0.5);
+    color: #fff;
+    font-size: 11px;
+    line-height: 1;
+    margin-left: 5px;
+    cursor: pointer;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: all 0.2s;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.gift-category-chip:hover .gift-cat-del-x,
+.gift-category-chip.active .gift-cat-del-x {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@media (hover: none) {
+    .gift-category-chip .gift-cat-del-x {
+        opacity: 0;
+    }
+
+    .gift-category-chip.active .gift-cat-del-x {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== 礼物墙 ===== */
+.gift-wall-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 865;
+    background: rgba(248, 242, 250, 0.95);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.gift-wall-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* ============================================
+   订单确认悬浮窗 — 白色毛玻璃独立悬浮
+   ============================================ */
+.gift-order-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 890;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.gift-order-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.gift-order-panel {
+    width: 88%;
+    max-width: 360px;
+    max-height: 80%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(36px);
+    -webkit-backdrop-filter: blur(36px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.gift-order-overlay.show .gift-order-panel {
+    transform: scale(1) translateY(0);
+}
+
+.gift-order-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 18px 0;
+}
+
+.gift-order-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+}
+
+.gift-order-close {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gift-order-close:active {
+    transform: scale(0.9);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.gift-order-close svg {
+    width: 14px;
+    height: 14px;
+    stroke: rgba(50, 40, 55, 0.4);
+    stroke-width: 2;
+    fill: none;
+}
+
+.gift-order-body {
+    padding: 16px 18px 8px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* 商品条 */
+.gift-order-product {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(248, 245, 250, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 12px;
+}
+
+.gift-order-product-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(230, 230, 230, 0.6);
+}
+
+.gift-order-product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gift-order-product-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.gift-order-product-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.8);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-order-product-desc {
+    font-size: 11px;
+    color: rgba(50, 40, 55, 0.35);
+    margin-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-order-product-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 120, 150, 0.9);
+    flex-shrink: 0;
+}
+
+/* 订单信息块 */
+.gift-order-info-block {
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(248, 245, 250, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 12px;
+}
+
+.gift-order-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 0;
+}
+
+.gift-order-row-label {
+    font-size: 12px;
+    color: rgba(50, 40, 55, 0.45);
+    font-weight: 500;
+}
+
+.gift-order-row-val {
+    font-size: 12px;
+    color: rgba(50, 40, 55, 0.75);
+    font-weight: 500;
+}
+
+.gift-order-no {
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: rgba(50, 40, 55, 0.6);
+}
+
+.gift-order-addr-input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.45);
+    font-size: 13px;
+    color: rgba(50, 40, 55, 0.8);
+    outline: none;
+    font-family: inherit;
+    resize: none;
+    -webkit-appearance: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+.gift-order-addr-input:focus {
+    border-color: rgba(255, 180, 200, 0.5);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 0 3px rgba(255, 180, 200, 0.1);
+}
+
+.gift-order-addr-input::placeholder {
+    color: rgba(50, 40, 55, 0.2);
+}
+
+/* 合计 */
+.gift-order-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background: rgba(248, 245, 250, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 4px;
+}
+
+.gift-order-total span:first-child {
+    font-size: 13px;
+    color: rgba(50, 40, 55, 0.5);
+    font-weight: 500;
+}
+
+.gift-order-total-price {
+    font-size: 20px;
+    font-weight: 800;
+    color: rgba(255, 110, 140, 0.95);
+}
+
+/* 底部按钮 */
+.gift-order-actions {
+    display: flex;
+    gap: 10px;
+    padding: 12px 18px 20px;
+    flex-shrink: 0;
+}
+
+.gift-order-btn-secondary {
+    flex: 1;
+    padding: 13px 0;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.6);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.gift-order-btn-secondary:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 255, 0.75);
+}
+
+.gift-order-btn-primary {
+    flex: 1;
+    padding: 13px 0;
+    border-radius: 16px;
+    background: rgba(255, 140, 170, 0.55);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(255, 180, 200, 0.4);
+}
+
+.gift-order-btn-primary:active {
+    transform: scale(0.97);
+    background: rgba(255, 120, 150, 0.65);
+}
+
+/* ============================================
+   我的订单页面 — 白色毛玻璃全屏
+   ============================================ */
+.gift-orders-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 895;
+    background: rgba(248, 242, 250, 0.95);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.gift-orders-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.gift-orders-header {
+    display: flex;
+    align-items: center;
+    padding: 52px 16px 12px;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.gift-orders-back {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.gift-orders-back:active {
+    background: rgba(255, 180, 200, 0.25);
+    transform: scale(0.93);
+}
+
+.gift-orders-back svg {
+    width: 16px;
+    height: 16px;
+    stroke: rgba(50, 40, 55, 0.5);
+    stroke-width: 2;
+    fill: none;
+}
+
+.gift-orders-title {
+    flex: 1;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: rgba(50, 40, 55, 0.85);
+}
+
+.gift-orders-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 14px 30px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 订单卡片 — 参考拼夕夕/淘宝/美团风格，白色毛玻璃 */
+.gift-order-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.gift-order-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px 0;
+}
+
+.gift-order-card-no {
+    font-size: 11px;
+    color: rgba(50, 40, 55, 0.4);
+    font-weight: 500;
+    font-family: 'SF Mono', 'Menlo', monospace;
+}
+
+.gift-order-card-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 8px;
+}
+
+.gift-order-status-done {
+    color: rgba(80, 160, 100, 0.85);
+    background: rgba(80, 160, 100, 0.08);
+}
+
+.gift-order-status-pending {
+    color: rgba(255, 160, 80, 0.85);
+    background: rgba(255, 160, 80, 0.08);
+}
+
+.gift-order-card-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+}
+
+.gift-order-card-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid rgba(230, 230, 230, 0.6);
+}
+
+.gift-order-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gift-order-card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.gift-order-card-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.8);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-order-card-addr {
+    font-size: 11px;
+    color: rgba(50, 40, 55, 0.4);
+    margin-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-order-card-time {
+    font-size: 10px;
+    color: rgba(50, 40, 55, 0.3);
+    margin-top: 2px;
+}
+
+.gift-order-card-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 120, 150, 0.9);
+    flex-shrink: 0;
+}
+
+.gift-order-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.gift-order-card-paytype {
+    font-size: 11px;
+    color: rgba(50, 40, 55, 0.35);
+    font-weight: 500;
+}
+
+.gift-order-card-del {
+    font-size: 11px;
+    color: rgba(200, 80, 80, 0.5);
+    cursor: pointer;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.gift-order-card-del:active {
+    background: rgba(200, 80, 80, 0.08);
+}
+
+/* ===== 订单页余额条 ===== */
+.gift-orders-balance-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 18px;
+    font-size: 12px;
+    color: rgba(50, 40, 55, 0.4);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    flex-shrink: 0;
+}
+
+.gift-orders-bal-num {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255, 110, 140, 0.9);
+}
+
+.gift-orders-wallet {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.gift-orders-wallet:active {
+    transform: scale(0.93);
+    background: rgba(255, 180, 200, 0.25);
+}
+
+/* ===== 钱包余额卡片 ===== */
+.gift-wallet-balance-card {
+    margin: 14px 16px;
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    text-align: center;
+    position: relative;
+}
+
+.gift-wallet-bal-label {
+    font-size: 12px;
+    color: rgba(50, 40, 55, 0.4);
+    margin-bottom: 4px;
+}
+
+.gift-wallet-bal-num {
+    font-size: 32px;
+    font-weight: 800;
+    color: rgba(50, 40, 55, 0.8);
+    letter-spacing: -1px;
+}
+
+.gift-wallet-recharge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 24px;
+    border-radius: 20px;
+    background: rgba(255, 140, 170, 0.5);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gift-wallet-recharge:active {
+    transform: scale(0.96);
+    background: rgba(255, 120, 150, 0.65);
+}
+
+/* ===== 订单卡片操作按钮 ===== */
+.gift-order-card-action {
+    font-size: 11px;
+    color: rgba(255, 130, 80, 0.7);
+    cursor: pointer;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 130, 80, 0.2);
+    transition: all 0.2s;
+}
+
+.gift-order-card-action:active {
+    background: rgba(255, 130, 80, 0.08);
+}
+
+/* ===== 订单状态 normal ===== */
+.gift-order-status-normal {
+    color: rgba(50, 40, 55, 0.5);
+    background: rgba(50, 40, 55, 0.05);
+}

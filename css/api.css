@@ -1,0 +1,498 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — api.css
+   API 设置内置 App
+   ============================================ */
+
+/* ===== 全屏遮罩 ===== */
+.api-app-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.api-app-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== 面板容器 ===== */
+.api-app-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+    background: rgba(245, 235, 240, 0.65);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+
+.api-app-overlay.show .api-app-panel {
+    transform: translateY(0);
+}
+
+/* ===== 顶栏 ===== */
+.api-app-header {
+    height: 56px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.api-app-back {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: rgba(80, 60, 70, 0.8);
+}
+
+.api-app-back:hover {
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(1.08);
+}
+
+.api-app-back svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.api-app-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.api-header-spacer {
+    width: 36px;
+}
+
+/* ===== 滚动内容区 ===== */
+.api-app-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 18px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== 毛玻璃板块 ===== */
+.api-section {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.api-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.8);
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+}
+
+.api-section-title svg {
+    fill: none;
+    stroke: rgba(248, 164, 184, 0.8);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* ===== 输入框 ===== */
+.api-field {
+    margin-bottom: 10px;
+}
+
+.api-field:last-child {
+    margin-bottom: 0;
+}
+
+.api-field label {
+    display: block;
+    font-size: 11px;
+    color: rgba(100, 80, 90, 0.6);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.api-input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 13px;
+    color: rgba(80, 60, 70, 0.9);
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.api-input:focus {
+    border-color: rgba(248, 164, 184, 0.6);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(248, 164, 184, 0.15);
+}
+
+.api-input::placeholder {
+    color: rgba(140, 120, 130, 0.45);
+}
+
+/* ===== select 下拉 ===== */
+.api-select {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 13px;
+    color: rgba(80, 60, 70, 0.9);
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(80,60,70,0.5)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.api-select:focus {
+    border-color: rgba(248, 164, 184, 0.6);
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(248, 164, 184, 0.15);
+}
+
+/* ===== 操作按钮行 ===== */
+.api-btn-row {
+    display: flex;
+    gap: 8px;
+}
+
+.api-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(80, 60, 70, 0.75);
+}
+
+.api-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.api-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.api-btn:active {
+    transform: scale(0.97);
+}
+
+/* 主色按钮 */
+.api-btn-primary {
+    background: rgba(248, 164, 184, 0.5);
+    border-color: rgba(248, 164, 184, 0.4);
+    color: #fff;
+}
+
+.api-btn-primary:hover {
+    background: rgba(248, 164, 184, 0.72);
+}
+
+/* 保存按钮 */
+.api-btn-save {
+    background: rgba(248, 164, 184, 0.6);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 11px 0;
+    border-radius: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.api-btn-save:hover {
+    background: rgba(248, 164, 184, 0.85);
+    box-shadow: 0 4px 16px rgba(248, 164, 184, 0.25);
+}
+
+/* ===== 拉取模型时加载态 ===== */
+.api-btn.loading {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.api-btn.loading::after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(80, 60, 70, 0.2);
+    border-top-color: rgba(80, 60, 70, 0.6);
+    border-radius: 50%;
+    animation: api-spin 0.6s linear infinite;
+    margin-left: 4px;
+}
+
+@keyframes api-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== 模型状态提示 ===== */
+.api-model-status {
+    font-size: 11px;
+    color: rgba(100, 80, 90, 0.5);
+    margin-top: 6px;
+    letter-spacing: 0.2px;
+    min-height: 16px;
+}
+
+/* ===== 预设列表板块 ===== */
+.api-preset-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.api-preset-empty {
+    text-align: center;
+    padding: 20px 10px;
+    font-size: 12px;
+    color: rgba(120, 100, 110, 0.45);
+    letter-spacing: 0.3px;
+}
+
+/* 预设卡片 */
+.api-preset-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.api-preset-card:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.api-preset-card.active {
+    border-color: rgba(248, 164, 184, 0.55);
+    background: rgba(248, 164, 184, 0.15);
+    box-shadow: 0 2px 12px rgba(248, 164, 184, 0.15);
+}
+
+.api-preset-card.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: rgba(248, 164, 184, 0.7);
+}
+
+/* 预设信息 */
+.api-preset-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.api-preset-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(80, 60, 70, 0.85);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.api-preset-model {
+    font-size: 10px;
+    color: rgba(120, 100, 110, 0.5);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* 预设操作按钮 */
+.api-preset-actions {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.api-preset-action-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(100, 80, 90, 0.55);
+}
+
+.api-preset-action-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+    color: rgba(80, 60, 70, 0.8);
+}
+
+.api-preset-action-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.api-preset-action-btn.delete-btn:hover {
+    background: rgba(255, 100, 100, 0.2);
+    border-color: rgba(255, 100, 100, 0.3);
+    color: rgba(200, 60, 60, 0.75);
+}
+
+/* 使用中标签 */
+.api-preset-badge {
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(248, 164, 184, 0.4);
+    color: rgba(80, 60, 70, 0.75);
+    flex-shrink: 0;
+    letter-spacing: 0.3px;
+}
+
+/* ===== 数据管理板块 ===== */
+.api-data-row {
+    display: flex;
+    gap: 8px;
+}
+
+.api-data-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: rgba(80, 60, 70, 0.7);
+}
+
+.api-data-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.api-data-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.api-data-btn:active {
+    transform: scale(0.97);
+}
+
+/* 隐藏的导入文件 input */
+.api-import-file {
+    display: none;
+}
+
+/* ===== 修复移动端输入框无法输入/粘贴 ===== */
+.api-input,
+.api-select {
+    -webkit-user-select: text !important;
+    user-select: text !important;
+    -webkit-touch-callout: default !important;
+    touch-action: manipulation !important;
+}

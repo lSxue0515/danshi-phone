@@ -1,0 +1,703 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — appearance.css
+   外观设置内置 App
+   ============================================ */
+
+/* ===== 全屏遮罩 ===== */
+.appear-app-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.appear-app-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== 面板容器 ===== */
+.appear-app-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+    background: rgba(245, 235, 240, 0.65);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+}
+
+.appear-app-overlay.show .appear-app-panel {
+    transform: translateY(0);
+}
+
+/* ===== 顶栏 ===== */
+.appear-app-header {
+    height: 56px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.appear-app-back {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: rgba(80, 60, 70, 0.8);
+}
+
+.appear-app-back:hover {
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(1.08);
+}
+
+.appear-app-back svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.appear-app-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.appear-app-save {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    background: rgba(248, 164, 184, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.appear-app-save:hover {
+    background: rgba(248, 164, 184, 0.85);
+    transform: scale(1.05);
+}
+
+.appear-app-save svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===== 滚动内容区 ===== */
+.appear-app-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 18px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== 毛玻璃板块（共用样式复用api-section命名风格） ===== */
+.appear-section {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.appear-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(80, 60, 70, 0.8);
+    margin-bottom: 12px;
+    letter-spacing: 0.3px;
+}
+
+.appear-section-title svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: rgba(248, 164, 184, 0.8);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* ===== 输入框 ===== */
+.appear-field {
+    margin-bottom: 10px;
+}
+
+.appear-field:last-child {
+    margin-bottom: 0;
+}
+
+.appear-field label {
+    display: block;
+    font-size: 11px;
+    color: rgba(100, 80, 90, 0.6);
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.appear-input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 13px;
+    color: rgba(80, 60, 70, 0.9);
+    outline: none;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.appear-input:focus {
+    border-color: rgba(248, 164, 184, 0.6);
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(248, 164, 184, 0.15);
+}
+
+.appear-input::placeholder {
+    color: rgba(140, 120, 130, 0.45);
+}
+
+/* ===== 壁纸预览 ===== */
+.appear-wallpaper-preview {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-height: 180px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+}
+
+.appear-wallpaper-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.appear-wallpaper-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.appear-wp-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(80, 60, 70, 0.75);
+}
+
+.appear-wp-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+.appear-wp-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.appear-wp-btn:active {
+    transform: scale(0.97);
+}
+
+/* ===== 图标风格选择器 ===== */
+.appear-icon-styles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.appear-icon-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 6px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.appear-icon-option:hover {
+    background: rgba(255, 255, 255, 0.45);
+    transform: translateY(-1px);
+}
+
+.appear-icon-option.active {
+    border-color: rgba(248, 164, 184, 0.6);
+    background: rgba(248, 164, 184, 0.15);
+    box-shadow: 0 2px 12px rgba(248, 164, 184, 0.2);
+}
+
+.appear-icon-demo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.appear-icon-demo svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
+}
+
+/* 毛玻璃风格 */
+.appear-icon-demo.style-glass {
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* 渐变风格 */
+.appear-icon-demo.style-gradient {
+    background: linear-gradient(135deg, rgba(248, 164, 184, 0.7), rgba(167, 139, 250, 0.7));
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(248, 164, 184, 0.2);
+}
+
+/* 纯色圆角风格 */
+.appear-icon-demo.style-solid {
+    background: rgba(80, 60, 70, 0.65);
+    border: 1px solid rgba(80, 60, 70, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.appear-icon-label {
+    font-size: 10px;
+    color: rgba(100, 80, 90, 0.6);
+    letter-spacing: 0.3px;
+}
+
+/* ===== 图标风格应用到全局 ===== */
+
+/* 渐变风格 */
+.phone-frame.icon-style-gradient .glass-icon {
+    background: linear-gradient(135deg, rgba(248, 164, 184, 0.7), rgba(167, 139, 250, 0.7)) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 16px rgba(248, 164, 184, 0.2) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.phone-frame.icon-style-gradient .glass-icon::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
+}
+
+.phone-frame.icon-style-gradient .dock-icon {
+    background: linear-gradient(135deg, rgba(248, 164, 184, 0.7), rgba(167, 139, 250, 0.7)) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 16px rgba(248, 164, 184, 0.2) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* 纯色风格 */
+.phone-frame.icon-style-solid .glass-icon {
+    background: rgba(80, 60, 70, 0.65) !important;
+    border-color: rgba(80, 60, 70, 0.3) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.phone-frame.icon-style-solid .glass-icon::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+}
+
+.phone-frame.icon-style-solid .dock-icon {
+    background: rgba(80, 60, 70, 0.65) !important;
+    border-color: rgba(80, 60, 70, 0.3) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ===== 颜色选择行 ===== */
+.appear-color-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.appear-color-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2.5px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+}
+
+.appear-color-dot:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.appear-color-dot.active {
+    border-color: rgba(80, 60, 70, 0.7);
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8), 0 2px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.1);
+}
+
+.appear-color-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.appear-color-native {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding: 0;
+    background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red);
+    -webkit-appearance: none;
+    appearance: none;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.appear-color-native::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.appear-color-native::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.appear-input-short {
+    width: auto;
+    flex: 1;
+    min-width: 0;
+}
+
+/* ★ 图标文字颜色色点 — 复用气泡色点样式 */
+.appear-label-color-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgba(200, 195, 210, 0.3);
+    transition: border-color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+}
+
+.appear-label-color-dot:hover {
+    transform: scale(1.15);
+}
+
+.appear-label-color-dot.active {
+    border-color: rgba(80, 60, 100, 0.8);
+    box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.3);
+}
+
+/* ===== 开关 Toggle ===== */
+.appear-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 0;
+}
+
+.appear-toggle-label {
+    font-size: 13px;
+    color: rgba(80, 60, 70, 0.8);
+    font-weight: 500;
+}
+
+.appear-toggle-desc {
+    font-size: 10px;
+    color: rgba(120, 100, 110, 0.5);
+    margin-top: 2px;
+}
+
+.appear-toggle {
+    position: relative;
+    width: 48px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.appear-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.appear-toggle-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 14px;
+    background: rgba(180, 160, 170, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.appear-toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.appear-toggle input:checked+.appear-toggle-track {
+    background: rgba(248, 164, 184, 0.65);
+    border-color: rgba(248, 164, 184, 0.5);
+}
+
+.appear-toggle input:checked+.appear-toggle-track::after {
+    transform: translateX(20px);
+}
+
+/* ===== 字体提示 ===== */
+.appear-font-hint {
+    font-size: 10px;
+    color: rgba(120, 100, 110, 0.5);
+    margin-top: 6px;
+    letter-spacing: 0.2px;
+}
+
+/* ===== 清除按钮板块 ===== */
+.appear-section-danger {
+    background: rgba(255, 200, 200, 0.25) !important;
+    border-color: rgba(255, 150, 150, 0.3) !important;
+}
+
+.appear-clear-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255, 100, 100, 0.15);
+    border: 1px solid rgba(255, 100, 100, 0.25);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(200, 60, 60, 0.8);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.appear-clear-btn:hover {
+    background: rgba(255, 100, 100, 0.3);
+    transform: scale(1.02);
+}
+
+.appear-clear-btn svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===== 隐藏顶栏状态 ===== */
+.phone-frame.statusbar-hidden .status-bar>* {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 壁纸上传隐藏input */
+.appear-wp-file {
+    display: none;
+}
+
+/* ===== 自定义图标图片网格 ===== */
+.appear-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.appear-icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.appear-icon-item-box {
+    width: 46px;
+    height: 46px;
+    border-radius: 13px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.appear-icon-item-box:hover {
+    border-color: rgba(248, 164, 184, 0.6);
+    transform: scale(1.08);
+    box-shadow: 0 4px 14px rgba(248, 164, 184, 0.2);
+}
+
+.appear-icon-item-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 11px;
+}
+
+.appear-icon-item-box svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: rgba(120, 100, 110, 0.5);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* 已有自定义图片时的标记 */
+.appear-icon-item-box.has-custom {
+    border-color: rgba(248, 164, 184, 0.55);
+    box-shadow: 0 2px 10px rgba(248, 164, 184, 0.15);
+}
+
+.appear-icon-item-name {
+    font-size: 9px;
+    color: rgba(100, 80, 90, 0.55);
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* 清除单个图标的小按钮 */
+.appear-icon-clear {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(255, 100, 100, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.appear-icon-item-box:hover .appear-icon-clear {
+    opacity: 1;
+}
+
+.appear-icon-clear svg {
+    width: 10px;
+    height: 10px;
+    stroke: #fff;
+    stroke-width: 3;
+}

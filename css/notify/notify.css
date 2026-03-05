@@ -1,0 +1,161 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — notify.css
+   消息推送通知横幅样式
+   ============================================ */
+
+/* ===== 推送横幅 ===== */
+.ds-notify-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 8px 12px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+    pointer-events: auto;
+}
+
+.ds-notify-banner.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.ds-notify-banner.hide {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.ds-notify-banner-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(30px) saturate(1.8);
+    -webkit-backdrop-filter: blur(30px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        0 2px 8px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ds-notify-banner-inner:active {
+    transform: scale(0.97);
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== 头像 ===== */
+.ds-notify-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: rgba(248, 240, 244, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ds-notify-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ds-notify-avatar svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: rgba(160, 140, 150, 0.5);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ===== 内容 ===== */
+.ds-notify-content {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.ds-notify-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+.ds-notify-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(50, 40, 55, 0.9);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ds-notify-label {
+    font-size: 10px;
+    color: rgba(120, 100, 110, 0.5);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.ds-notify-text {
+    font-size: 12px;
+    color: rgba(80, 60, 70, 0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+}
+
+/* ===== 关闭按钮 ===== */
+.ds-notify-close {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+    color: rgba(120, 100, 110, 0.45);
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1;
+}
+
+.ds-notify-close:active {
+    background: rgba(0, 0, 0, 0.12);
+    transform: scale(0.85);
+}
+
+/* ===== 外观设置 — 铃声按钮行 ===== */
+.appear-ringtone-btns {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* ===== 主动消息标记气泡 ===== */
+.chat-bubble-auto-tag {
+    display: inline-block;
+    font-size: 9px;
+    color: rgba(248, 164, 184, 0.7);
+    background: rgba(248, 164, 184, 0.1);
+    border: 1px solid rgba(248, 164, 184, 0.2);
+    border-radius: 8px;
+    padding: 1px 6px;
+    margin-top: 3px;
+}

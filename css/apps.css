@@ -1,0 +1,65 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — apps.css
+   全部统一白色毛玻璃 / 白色粗线条图标
+   ============================================ */
+
+/* 统一图标容器 */
+.app-icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    border-radius: var(--icon-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ★ 关键：加粗 SVG 线条 */
+.app-icon svg {
+    width: var(--icon-svg);
+    height: var(--icon-svg);
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.15));
+}
+
+/* 白色毛玻璃 */
+.glass-icon {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* 顶部高光 */
+.glass-icon::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50%;
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.0) 100%);
+    border-radius: var(--icon-radius) var(--icon-radius) 0 0;
+    pointer-events: none;
+}
+
+.glass-icon:hover {
+    background: var(--glass-bg-strong);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.glass-icon:active {
+    transform: scale(0.92);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}

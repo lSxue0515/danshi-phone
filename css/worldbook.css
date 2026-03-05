@@ -1,0 +1,624 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — worldbook.css
+   世界书模块样式 · INS 白灰极简风
+   白 #fff + 浅灰 #fafafa + 深灰 #262626
+   ============================================ */
+
+/* ===== 世界书 Overlay ===== */
+.wb-app-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    background: rgba(250, 250, 250, 0.97);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.wb-app-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* ===== 面板主体 ===== */
+.wb-app-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ===== 顶部导航栏 Navigation ===== */
+.wb-app-header {
+    display: flex;
+    align-items: center;
+    padding: 52px 18px 14px 18px;
+    gap: 10px;
+    flex-shrink: 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.wb-app-back {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.wb-app-back:active {
+    background: rgba(0, 0, 0, 0.04);
+    transform: scale(0.93);
+}
+
+.wb-app-back svg {
+    width: 16px;
+    height: 16px;
+    stroke: #8e8e8e;
+    stroke-width: 2;
+    fill: none;
+}
+
+.wb-app-title {
+    flex: 1;
+    font-size: 17px;
+    font-weight: 700;
+    color: #262626;
+    text-align: center;
+}
+
+.wb-app-header-add {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.wb-app-header-add:active {
+    background: rgba(0, 0, 0, 0.04);
+    transform: scale(0.93);
+}
+
+.wb-app-header-add svg {
+    width: 16px;
+    height: 16px;
+    stroke: #8e8e8e;
+    stroke-width: 2;
+    fill: none;
+}
+
+/* ===== 分组筛选栏 Groups ===== */
+.wb-group-bar {
+    display: flex;
+    gap: 8px;
+    padding: 6px 18px 10px;
+    overflow-x: auto;
+    flex-shrink: 0;
+}
+
+.wb-group-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.wb-group-chip {
+    padding: 5px 14px;
+    border-radius: 14px;
+    font-size: 12px;
+    color: #8e8e8e;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #dbdbdb;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    font-weight: 500;
+}
+
+.wb-group-chip.active {
+    background: #262626;
+    color: #ffffff;
+    font-weight: 600;
+    border-color: #262626;
+}
+
+.wb-group-chip:active {
+    transform: scale(0.95);
+}
+
+/* ===== Tab 切换栏 ===== */
+.wb-tab-bar {
+    display: flex;
+    padding: 0 18px;
+    gap: 0;
+    flex-shrink: 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.wb-tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 13px;
+    color: #c7c7c7;
+    cursor: pointer;
+    border-bottom: 2.5px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.wb-tab.active {
+    color: #262626;
+    font-weight: 700;
+    border-bottom-color: #262626;
+}
+
+/* ===== 列表主体 ===== */
+.wb-app-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 14px 28px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== 空状态 Empty ===== */
+.wb-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 70px 20px;
+    text-align: center;
+}
+
+.wb-empty svg {
+    opacity: 0.2;
+    stroke: #c7c7c7;
+}
+
+.wb-empty p {
+    color: #c7c7c7;
+    font-size: 13px;
+    margin-top: 12px;
+    line-height: 1.6;
+}
+
+/* ===== 条目卡片 Entry Card ===== */
+.wb-entry-card {
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid #efefef;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.wb-entry-card:active {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(0.98);
+}
+
+.wb-entry-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.wb-entry-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #262626;
+}
+
+/* ===== 开关 Toggle ===== */
+.wb-entry-toggle {
+    width: 42px;
+    height: 24px;
+    border-radius: 12px;
+    background: #dbdbdb;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.25s;
+    flex-shrink: 0;
+}
+
+.wb-entry-toggle.on {
+    background: #262626;
+}
+
+.wb-toggle-dot {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.25s;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.wb-entry-toggle.on .wb-toggle-dot {
+    transform: translateX(18px);
+}
+
+.wb-entry-group {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+/* ===== 注入位置标签 Inject Position ===== */
+.wb-entry-inject-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+    background: #efefef;
+    color: #8e8e8e;
+}
+
+.wb-entry-keywords {
+    font-size: 11px;
+    color: #8e8e8e;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.wb-entry-preview {
+    font-size: 12px;
+    color: #8e8e8e;
+    line-height: 1.55;
+    margin-bottom: 8px;
+}
+
+.wb-entry-actions {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #efefef;
+    padding-top: 6px;
+}
+
+.wb-entry-delete {
+    font-size: 12px;
+    color: #ed4956;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.wb-entry-delete:active {
+    background: rgba(237, 73, 86, 0.08);
+    color: #ed4956;
+}
+
+/* ===== 编辑器 Overlay · Editor ===== */
+.wb-editor-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 110;
+    background: rgba(250, 250, 250, 0.98);
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+    border-radius: 44px;
+    overflow: hidden;
+}
+
+.wb-editor-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.wb-editor-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.wb-editor-header {
+    display: flex;
+    align-items: center;
+    padding: 52px 18px 14px 18px;
+    gap: 10px;
+    flex-shrink: 0;
+    border-bottom: 1px solid #efefef;
+}
+
+.wb-editor-back {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.wb-editor-back:active {
+    background: rgba(0, 0, 0, 0.04);
+    transform: scale(0.93);
+}
+
+.wb-editor-back svg {
+    width: 16px;
+    height: 16px;
+    stroke: #8e8e8e;
+    stroke-width: 2;
+    fill: none;
+}
+
+.wb-editor-title {
+    flex: 1;
+    font-size: 17px;
+    font-weight: 700;
+    color: #262626;
+    text-align: center;
+}
+
+.wb-editor-save {
+    padding: 6px 16px;
+    border-radius: 14px;
+    background: #262626;
+    border: 1px solid #262626;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.wb-editor-save:active {
+    background: #1a1a1a;
+    transform: scale(0.95);
+}
+
+.wb-editor-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px 18px 30px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.wb-editor-field {
+    margin-bottom: 18px;
+}
+
+.wb-editor-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8e8e8e;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+}
+
+.wb-editor-input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    color: #262626;
+    outline: none;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.wb-editor-input:focus {
+    border-color: #262626;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.wb-editor-input::placeholder {
+    color: #c7c7c7;
+}
+
+.wb-editor-input option {
+    background: #fff;
+    color: #262626;
+}
+
+.wb-editor-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #dbdbdb;
+    font-size: 14px;
+    color: #262626;
+    outline: none;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.6;
+    box-sizing: border-box;
+    font-family: inherit;
+    transition: all 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.wb-editor-textarea:focus {
+    border-color: #262626;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.wb-editor-textarea::placeholder {
+    color: #c7c7c7;
+}
+
+/* ===== 注入位置 · 折叠选择器 Inject Position ===== */
+.wb-inject-section {
+    margin-top: 6px;
+}
+
+.wb-inject-trigger {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #dbdbdb;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.wb-inject-trigger:active {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.wb-inject-trigger-left {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+}
+
+.wb-inject-trigger-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #8e8e8e;
+}
+
+.wb-inject-trigger-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: #262626;
+}
+
+.wb-inject-arrow {
+    transition: transform 0.25s;
+}
+
+.wb-inject-arrow svg {
+    width: 12px;
+    height: 12px;
+    stroke: #c7c7c7;
+    stroke-width: 2;
+    fill: none;
+}
+
+.wb-inject-section.open .wb-inject-arrow {
+    transform: rotate(180deg);
+}
+
+/* 下拉面板 Dropdown */
+.wb-inject-dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-radius: 0 0 12px 12px;
+}
+
+.wb-inject-section.open .wb-inject-dropdown {
+    max-height: 260px;
+}
+
+.wb-inject-options {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 0;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid #efefef;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+}
+
+.wb-inject-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.wb-inject-opt:active {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.wb-inject-opt .wb-io-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid #dbdbdb;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.wb-inject-opt .wb-io-text {
+    font-size: 13px;
+    color: #8e8e8e;
+    font-weight: 400;
+}
+
+.wb-inject-opt.active {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.wb-inject-opt.active .wb-io-dot {
+    border-color: #262626;
+    background: #262626;
+    box-shadow: inset 0 0 0 3px #fff;
+}
+
+.wb-inject-opt.active .wb-io-text {
+    color: #262626;
+    font-weight: 600;
+}

@@ -1,0 +1,977 @@
+/* ============================================
+   蛋薯机 DanShu Pro v2 — page2widget.css
+   第二页 — 大组件 + 2×2图标 + 便签卡片
+   ============================================ */
+
+/* ========== 第二页专用容器 ========== */
+.p2-page-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 4px 16px 0;
+    box-sizing: border-box;
+}
+
+/* ========== 大组件总容器 ========== */
+.p2-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+/* ============================
+   搜索栏：头像 + 文字 + 搜索
+   ============================ */
+.p2-search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 6px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    flex-shrink: 0;
+}
+
+/* 搜索栏头像 */
+.p2-search-avatar {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(200, 190, 180, 0.25);
+    cursor: pointer;
+    position: relative;
+}
+
+.p2-search-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.p2-search-avatar img[src=""] {
+    display: none;
+}
+
+.p2-avatar-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(160, 150, 140, 0.45);
+}
+
+.p2-avatar-placeholder svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.p2-search-avatar.p2-has-avatar .p2-avatar-placeholder {
+    display: none;
+}
+
+/* 搜索栏文字 */
+.p2-search-text {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(50, 45, 55, 0.75);
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+    min-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.p2-search-text:focus {
+    outline: none !important;
+    color: rgba(50, 45, 55, 0.95);
+}
+
+/* 搜索图标 */
+.p2-search-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: rgba(50, 45, 55, 0.3);
+}
+
+.p2-search-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ============================
+   内容区：左图 + 右列
+   ============================ */
+.p2-content {
+    display: flex;
+    gap: 8px;
+    flex: 0 0 auto;
+    min-height: 0;
+    align-items: stretch;
+}
+
+/* ========== 左侧大图 ========== */
+.p2-img-left {
+    flex: 0 0 55%;
+    aspect-ratio: 3 / 4;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: rgba(200, 210, 225, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.06),
+        0 1px 6px rgba(0, 0, 0, 0.04);
+}
+
+.p2-img-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.p2-img-left img[src=""] {
+    display: none;
+}
+
+/* 添加提示 */
+.p2-img-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(80, 75, 95, 0.85);
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.p2-img-hint svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.p2-has-img .p2-img-hint {
+    display: none;
+}
+
+/* ========== 右侧列 ========== */
+.p2-right-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 0;
+    min-width: 0;
+}
+
+/* ========== 右侧小图 ========== */
+.p2-img-right {
+    flex: 0 0 auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: rgba(200, 210, 225, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow:
+        0 3px 14px rgba(0, 0, 0, 0.05),
+        0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.p2-img-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.p2-img-right img[src=""] {
+    display: none;
+}
+
+.p2-img-right .p2-img-hint {
+    font-size: 8px;
+}
+
+.p2-img-right .p2-img-hint svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ========== 文案 ========== */
+.p2-caption {
+    font-size: 9px;
+    color: rgba(80, 75, 85, 0.7);
+    line-height: 1.45;
+    letter-spacing: 0.2px;
+    padding: 0 2px;
+    flex-shrink: 0;
+}
+
+.p2-caption:focus {
+    outline: none !important;
+    color: rgba(80, 75, 85, 0.95);
+}
+
+/* ============================
+   播放器（深色卡片 + 左侧封面图）
+   ============================ */
+.p2-player {
+    flex: 1;
+    min-height: 54px;
+    background: rgba(55, 55, 60, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* 播放器左侧封面 */
+.p2-player-cover {
+    flex: 0 0 50px;
+    width: 50px;
+    align-self: stretch;
+    background: rgba(80, 80, 85, 0.5);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.p2-player-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.p2-player-cover img[src=""] {
+    display: none;
+}
+
+.p2-player-cover-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+}
+
+.p2-player-cover-hint svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.p2-player-cover.p2-has-bg .p2-player-cover-hint {
+    display: none;
+}
+
+/* 播放器右侧信息区 */
+.p2-player-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+    padding: 5px 8px;
+    min-width: 0;
+}
+
+/* 标题 */
+.p2-player-title {
+    font-size: 8.5px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    letter-spacing: 0.5px;
+    min-height: 11px;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.p2-player-title:focus {
+    outline: none !important;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* 进度条 */
+.p2-player-progress {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.p2-player-time {
+    font-size: 6.5px;
+    color: rgba(255, 255, 255, 0.4);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    min-width: 20px;
+}
+
+.p2-player-time.end {
+    text-align: right;
+}
+
+.p2-player-bar-wrap {
+    flex: 1;
+    height: 3px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.p2-player-bar-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+}
+
+.p2-player-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.3s linear;
+}
+
+.p2-player-bar-dot {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    left: 0%;
+    transition: left 0.3s linear;
+}
+
+/* 控制按钮 */
+.p2-player-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.p2-player-btn {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.2s, transform 0.15s;
+}
+
+.p2-player-btn:active {
+    color: #fff;
+    transform: scale(1.15);
+}
+
+.p2-player-btn svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.p2-player-btn.play-btn {
+    width: 18px;
+    height: 18px;
+}
+
+.p2-player-btn.play-btn svg {
+    stroke-width: 2;
+}
+
+
+/* ========================================================
+   下半区：左侧 2×2 图标 + 右侧便签卡片
+   ======================================================== */
+
+.p2-bottom-row {
+    display: flex;
+    gap: 12px;
+    flex-shrink: 0;
+    align-items: flex-start;
+}
+
+/* ========== 左侧 2×2 应用网格 ========== */
+.p2-apps-grid {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, var(--icon-size, 54px));
+    grid-template-rows: repeat(2, auto);
+    gap: 10px 14px;
+    justify-content: center;
+    padding: 8px 0 0 0;
+}
+
+.p2-apps-grid .app-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.p2-apps-grid .app-icon {
+    width: var(--icon-size, 54px);
+    height: var(--icon-size, 54px);
+    border-radius: var(--icon-radius, 15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.p2-apps-grid .app-icon svg {
+    width: var(--icon-svg, 24px);
+    height: var(--icon-svg, 24px);
+}
+
+.p2-apps-grid .app-name {
+    font-size: 10px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================================
+   右侧便签卡片 — Colorful Widget
+   ======================================================== */
+.p2-note-card {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 12px 14px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+    box-shadow:
+        0 2px 16px rgba(0, 0, 0, 0.06),
+        0 1px 4px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+/* 顶部：头像 + 日期 */
+.p2-note-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0 4px;
+}
+
+/* 便签头像 */
+.p2-note-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(220, 215, 210, 0.3);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+}
+
+.p2-note-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.p2-note-avatar img[src=""] {
+    display: none;
+}
+
+.p2-note-avatar-hint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(180, 170, 165, 0.4);
+}
+
+.p2-note-avatar-hint svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.p2-note-avatar.p2-has-note-avatar .p2-note-avatar-hint {
+    display: none;
+}
+
+/* 日期数字 */
+.p2-note-date {
+    font-size: 32px;
+    font-weight: 700;
+    color: rgba(50, 45, 55, 0.85);
+    line-height: 1;
+    letter-spacing: -1px;
+    font-variant-numeric: tabular-nums;
+}
+
+/* 文案行 */
+.p2-note-line {
+    font-size: 11px;
+    color: rgba(60, 55, 65, 0.75);
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+    padding: 0 2px;
+    min-height: 16px;
+}
+
+.p2-note-line:focus {
+    outline: none !important;
+    color: rgba(60, 55, 65, 0.95);
+}
+
+.p2-note-line.decor {
+    font-size: 10px;
+    color: rgba(60, 55, 65, 0.55);
+    letter-spacing: 1px;
+}
+
+/* 虚线分割 */
+.p2-note-divider {
+    border: none;
+    border-top: 1.5px dashed rgba(0, 0, 0, 0.04);
+    margin: 0 8px;
+}
+
+/* 底部标签 */
+.p2-note-footer {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(50, 45, 55, 0.8);
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    padding-top: 2px;
+}
+
+.p2-note-footer:focus {
+    outline: none !important;
+    color: rgba(50, 45, 55, 1);
+}
+
+/* ========================================================
+   底部大组件：双人头像 + 播放器
+   ======================================================== */
+.p2-duo-widget {
+    flex: 0 0 auto;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 18px;
+    padding: 16px 16px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    box-shadow: none;
+    border: none;
+}
+
+/* ========== 双人头像区 ========== */
+.p2-duo-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.p2-duo-person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    flex: 0 0 auto;
+    padding: 0 10px;
+}
+
+/* 气泡文案 */
+.p2-duo-bubble {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(40, 35, 45, 0.85);
+    letter-spacing: 0.5px;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    position: relative;
+    min-width: 50px;
+}
+
+.p2-duo-bubble:focus {
+    outline: none !important;
+    color: rgba(40, 35, 45, 1);
+}
+
+/* 气泡小三角 */
+.p2-duo-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(255, 255, 255, 0.95);
+}
+
+/* 圆形头像（黑色粗边框） */
+.p2-duo-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: rgba(220, 215, 210, 0.3);
+    cursor: pointer;
+    position: relative;
+    border: 3px solid rgba(200, 198, 210, 0.7);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.p2-duo-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.p2-duo-avatar img[src=""] {
+    display: none;
+}
+
+.p2-duo-avatar-hint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(160, 150, 140, 0.4);
+}
+
+.p2-duo-avatar-hint svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.p2-duo-avatar.p2-has-duo-avatar .p2-duo-avatar-hint {
+    display: none;
+}
+
+/* 耳机线装饰 */
+.p2-duo-wire {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 45px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.p2-duo-wire svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* ========== 中间文案 ========== */
+.p2-duo-caption {
+    font-size: 10px;
+    color: rgba(80, 75, 85, 0.55);
+    text-align: center;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    padding: 2px 8px;
+    min-height: 14px;
+}
+
+.p2-duo-caption:focus {
+    outline: none !important;
+    color: rgba(80, 75, 85, 0.85);
+}
+
+/* ========== 底部深色播放器 ========== */
+.p2-duo-player {
+    width: 100%;
+    background: rgba(235, 235, 242, 0.55);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 14px;
+    padding: 10px 14px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.04),
+        0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* 歌名行 */
+.p2-duo-player-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.p2-duo-song {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(55, 50, 65, 0.85);
+    letter-spacing: 0.3px;
+    min-height: 18px;
+    flex: 1;
+}
+
+.p2-duo-song:focus {
+    outline: none !important;
+    color: #fff;
+}
+
+/* 音波图标 */
+.p2-duo-eq {
+    flex-shrink: 0;
+    width: 20px;
+    height: 16px;
+    color: rgba(100, 105, 120, 0.5);
+}
+
+.p2-duo-eq svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* 装饰文字 */
+.p2-duo-player-decor {
+    font-size: 8.5px;
+    color: rgba(100, 95, 115, 0.45);
+    letter-spacing: 0.8px;
+    text-align: center;
+    min-height: 11px;
+    line-height: 1.3;
+}
+
+.p2-duo-player-decor:focus {
+    outline: none !important;
+    color: rgba(55, 50, 65, 0.75);
+}
+
+/* 进度条 */
+.p2-duo-progress {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 0;
+}
+
+.p2-duo-time {
+    font-size: 9px;
+    color: rgba(100, 95, 115, 0.5);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    min-width: 22px;
+}
+
+.p2-duo-time.end {
+    text-align: right;
+}
+
+.p2-duo-bar-wrap {
+    flex: 1;
+    height: 4px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.p2-duo-bar-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 2px;
+}
+
+.p2-duo-bar-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: rgba(80, 75, 95, 0.45);
+    border-radius: 2px;
+    width: 37%;
+    transition: width 0.3s linear;
+}
+
+.p2-duo-bar-dot {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(80, 75, 95, 0.7);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    left: 37%;
+    transition: left 0.3s linear;
+}
+
+/* 控制按钮行 */
+.p2-duo-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 2px 0 0;
+}
+
+.p2-duo-ctrl-btn {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(80, 75, 95, 0.6);
+    transition: color 0.2s, transform 0.15s;
+}
+
+.p2-duo-ctrl-btn:active {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+.p2-duo-ctrl-btn svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    stroke: none;
+}
+
+.p2-duo-ctrl-btn.big {
+    width: 24px;
+    height: 24px;
+}
+
+.p2-duo-ctrl-btn.big svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
