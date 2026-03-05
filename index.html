@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <script>
+        (function () {
+            var u = navigator.userAgent || '';
+            var h = document.documentElement;
+            if (/Android/i.test(u)) h.classList.add('is-android');
+            if (/iPhone|iPad|iPod/i.test(u) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) h.classList.add('is-ios');
+        })();
+    </script>
+    <title>蛋薯机 DanShu Pro</title>
+
+    <!-- ★★★ 开机遮挡：fixed定位，绝对挡住一切 ★★★ -->
+    <style id="bootBlockStyle">
+        #bootPlaceholder {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 2147483647 !important;
+            background: #000 !important;
+            display: block !important;
+            pointer-events: all !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/apps.css">
+    <link rel="stylesheet" href="css/widgets.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/api.css">
+    <link rel="stylesheet" href="css/appearance.css">
+    <link rel="stylesheet" href="css/notify/notify.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/chat-advanced.css">
+    <link rel="stylesheet" href="css/favorite/favorite.css">
+    <link rel="stylesheet" href="css/beautify/beautify.css">
+    <link rel="stylesheet" href="css/sticker/sticker.css">
+    <link rel="stylesheet" href="css/worldbook.css">
+    <link rel="stylesheet" href="css/page2widget.css">
+    <link rel="stylesheet" href="css/dock.css">
+    <link rel="stylesheet" href="css/page3widget.css">
+    <link rel="stylesheet" href="css/location/location.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="css/music.css">
+    <link rel="stylesheet" href="css/novel.css">
+    <link rel="stylesheet" href="css/boot.css">
+    <link rel="stylesheet" href="css/moments.css">
+    <link rel="stylesheet" href="css/theater.css">
+    <link rel="stylesheet" href="css/forum.css">
+    <link rel="stylesheet" href="css/phonesnoop.css">
+
+
+
+</head>
+
+<body>
+
+    <!-- ★ 全屏开机遮挡层：fixed定位，独立于phone-frame ★ -->
+    <div id="bootPlaceholder"></div>
+
+    <div class="phone-frame" id="phoneFrame">
+
+        <!-- 壁纸背景 -->
+        <div class="wallpaper" id="wallpaper"></div>
+
+        <!-- ====== 状态栏 ====== -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="status-time" id="statusTime">12:00</span>
+            </div>
+            <div class="status-center">
+                <span class="status-model">DANSHU PRO</span>
+            </div>
+            <div class="status-right">
+                <svg class="status-icon" viewBox="0 0 24 24" width="14" height="14">
+                    <path
+                        d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01" />
+                </svg>
+                <svg class="status-icon" viewBox="0 0 24 24" width="14" height="14">
+                    <rect x="1" y="6" width="18" height="12" rx="2" ry="2" />
+                    <line x1="23" y1="13" x2="23" y2="11" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- ====== 页面视口 ====== -->
+        <div class="pages-viewport" id="pagesViewport">
+            <div class="pages-track" id="pagesTrack">
+
+                <!-- ====== 第1页：主屏幕 ====== -->
+                <div class="page page-1">
+                    <div class="grid-container">
+
+                        <!-- ★ 双人头像 + 播放器组件 ★ -->
+                        <div class="p2-duo-widget" id="duoWidget">
+
+                            <!-- 上半：双人头像区 -->
+                            <div class="p2-duo-top">
+                                <!-- 左侧人物 -->
+                                <div class="p2-duo-person">
+                                    <div class="p2-duo-bubble" id="p2DuoBubbleL" contenteditable="true">你在左边</div>
+                                    <div class="p2-duo-avatar" onclick="p2PickDuoAvatar('L')">
+                                        <img src="" id="p2DuoAvatarL" alt="">
+                                        <div class="p2-duo-avatar-hint">
+                                            <svg viewBox="0 0 24 24">
+                                                <circle cx="12" cy="8" r="4" />
+                                                <path d="M20 21a8 8 0 1 0-16 0" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 中间连接线（耳机线装饰） -->
+                                <div class="p2-duo-wire">
+                                    <svg viewBox="0 0 80 55" preserveAspectRatio="none">
+                                        <path d="M5 12 Q12 12 18 24 Q26 42 40 46 Q54 42 62 24 Q68 12 75 12" fill="none"
+                                            stroke="rgba(60,55,65,0.25)" stroke-width="1.5" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+
+                                <!-- 右侧人物 -->
+                                <div class="p2-duo-person">
+                                    <div class="p2-duo-bubble" id="p2DuoBubbleR" contenteditable="true">我紧靠右</div>
+                                    <div class="p2-duo-avatar" onclick="p2PickDuoAvatar('R')">
+                                        <img src="" id="p2DuoAvatarR" alt="">
+                                        <div class="p2-duo-avatar-hint">
+                                            <svg viewBox="0 0 24 24">
+                                                <circle cx="12" cy="8" r="4" />
+                                                <path d="M20 21a8 8 0 1 0-16 0" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 中间文案 -->
+                            <div class="p2-duo-caption" id="p2DuoCaption" contenteditable="true">
+                                我会在每个见不到你的日子里保持想念，时刻期盼与你赴约</div>
+
+                            <!-- 底部深色播放器 -->
+                            <div class="p2-duo-player">
+                                <!-- 歌名行 -->
+                                <div class="p2-duo-player-top">
+                                    <div class="p2-duo-song" id="p2DuoSong" contenteditable="true">Pink Lavender</div>
+                                    <div class="p2-duo-eq">
+                                        <svg viewBox="0 0 26 20">
+                                            <rect x="1" y="8" width="2" height="12" rx="1" fill="currentColor" />
+                                            <rect x="5" y="4" width="2" height="16" rx="1" fill="currentColor" />
+                                            <rect x="9" y="0" width="2" height="20" rx="1" fill="currentColor" />
+                                            <rect x="13" y="6" width="2" height="14" rx="1" fill="currentColor" />
+                                            <rect x="17" y="2" width="2" height="18" rx="1" fill="currentColor" />
+                                            <rect x="21" y="8" width="2" height="12" rx="1" fill="currentColor" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <!-- 装饰文字 -->
+                                <div class="p2-duo-player-decor" id="p2DuoDecor" contenteditable="true">·᷄ɞ̴ˀ † 🐻
+                                    ·ılıılıılı· ♪ ·🖤· ˙✧</div>
+                                <!-- 进度条 -->
+                                <div class="p2-duo-progress">
+                                    <span class="p2-duo-time" id="p2DuoTimeNow">1:26</span>
+                                    <div class="p2-duo-bar-wrap" onclick="p2DuoBarClick(event)">
+                                        <div class="p2-duo-bar-bg"></div>
+                                        <div class="p2-duo-bar-fill" id="p2DuoBarFill"></div>
+                                        <div class="p2-duo-bar-dot" id="p2DuoBarDot"></div>
+                                    </div>
+                                    <span class="p2-duo-time end" id="p2DuoTimeEnd">3:48</span>
+                                </div>
+                                <!-- 控制按钮 -->
+                                <div class="p2-duo-controls">
+                                    <div class="p2-duo-ctrl-btn" onclick="p2DuoStar()">
+                                        <svg viewBox="0 0 24 24">
+                                            <polygon
+                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                        </svg>
+                                    </div>
+                                    <div class="p2-duo-ctrl-btn" onclick="p2DuoPrev()">
+                                        <svg viewBox="0 0 24 24">
+                                            <polygon points="19 20 9 12 19 4 19 20" />
+                                            <polygon points="14 20 4 12 14 4 14 20" />
+                                        </svg>
+                                    </div>
+                                    <div class="p2-duo-ctrl-btn big" onclick="p2DuoPlayPause()">
+                                        <svg viewBox="0 0 24 24" id="p2DuoPlayIcon">
+                                            <line x1="10" y1="5" x2="10" y2="19" />
+                                            <line x1="14" y1="5" x2="14" y2="19" />
+                                        </svg>
+                                    </div>
+                                    <div class="p2-duo-ctrl-btn" onclick="p2DuoNext()">
+                                        <svg viewBox="0 0 24 24">
+                                            <polygon points="5 4 15 12 5 20 5 4" />
+                                            <polygon points="10 4 20 12 10 20 10 4" />
+                                        </svg>
+                                    </div>
+                                    <div class="p2-duo-ctrl-btn" onclick="p2DuoHeart()">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="widget widget-countdown" id="countdownWidget" onclick="openCountdownApp()">
+                            <div class="countdown-top">
+                                <div class="cd-label">已在一起</div>
+                                <div class="cd-days-row">
+                                    <div class="cd-days-num" id="displayDays">15</div>
+                                    <div class="cd-days-unit">天</div>
+                                </div>
+                            </div>
+                            <div class="countdown-bottom">
+                                <div class="cd-title" id="displayTitle">恋爱纪念日</div>
+                                <div class="cd-date" id="displayDate">2026-02-03</div>
+                            </div>
+                            <div class="cd-deco">♡</div>
+                        </div>
+
+                        <div class="apps-grid-2x2">
+                            <div class="app-cell" data-icon-id="icon_api" onclick="openApiApp()">
+                                <div class="app-icon glass-icon" id="icon_api">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M4 17l6-6-6-6M12 19h8M12 5h8M12 12h8" />
+                                    </svg>
+                                </div>
+                                <div class="app-name">API</div>
+                            </div>
+                            <div class="app-cell" data-icon-id="icon_appear" onclick="openAppearanceApp()">
+                                <div class="app-icon glass-icon" id="icon_appear">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="12" r="3" />
+                                        <path
+                                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                                    </svg>
+                                </div>
+                                <div class="app-name">外观</div>
+                            </div>
+                            <div class="app-cell" data-icon-id="icon_tieba" onclick="openForumApp()">
+                                <div class="app-icon glass-icon" id="icon_tieba">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                                        <line x1="9" y1="8" x2="15" y2="8" />
+                                        <line x1="9" y1="12" x2="13" y2="12" />
+                                    </svg>
+                                </div>
+                                <div class="app-name">论坛</div>
+                            </div>
+                            <div class="app-cell" data-icon-id="icon_diary">
+                                <div class="app-icon glass-icon" id="icon_diary">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                                        <line x1="8" y1="7" x2="16" y2="7" />
+                                        <line x1="8" y1="11" x2="14" y2="11" />
+                                    </svg>
+                                </div>
+                                <div class="app-name">日记本</div>
+                            </div>
+                        </div>
+
+                        <div class="widget widget-chat-bubble">
+                            <div class="bubble-row bubble-left">
+                                <div class="bubble-avatar"
+                                    onclick="event.stopPropagation(); triggerFile('avatarLeft');">
+                                    <img src="" id="avatarLeft" alt="">
+                                </div>
+                                <div class="bubble-glass">
+                                    <span class="bubble-text" id="bubbleTextTop" contenteditable="true">今天也要开心鸭 ꒰ᐢ.
+                                        .ᐢ꒱</span>
+                                </div>
+                            </div>
+                            <div class="bubble-row bubble-right">
+                                <div class="bubble-glass">
+                                    <span class="bubble-text" id="bubbleTextBottom" contenteditable="true">嗯嗯！一直在呢
+                                        ♡</span>
+                                </div>
+                                <div class="bubble-avatar"
+                                    onclick="event.stopPropagation(); triggerFile('avatarRight');">
+                                    <img src="" id="avatarRight" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ====== 第2页 ====== -->
+                <!-- ====== 第2页 ====== -->
+                <div class="page page-2">
+                    <div class="p2-page-wrap">
+
+                        <!-- ★ 大组件 ★ -->
+                        <div class="p2-widget">
+
+                            <!-- 搜索栏：头像 + 文字 + 搜索图标 -->
+                            <div class="p2-search-bar">
+                                <div class="p2-search-avatar" onclick="p2PickAvatar()">
+                                    <img src="" id="p2Avatar" alt="">
+                                    <div class="p2-avatar-placeholder">
+                                        <svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="8" r="4" />
+                                            <path d="M20 21a8 8 0 1 0-16 0" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="p2-search-text" id="p2SearchText" contenteditable="true">Love is the best
+                                    magic··</div>
+                                <div class="p2-search-icon">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- 内容区：左大图 + 右列 -->
+                            <div class="p2-content">
+
+                                <!-- 左侧大图 -->
+                                <div class="p2-img-left" id="p2BoxLeft" onclick="p2PickImage('left')">
+                                    <img src="" id="p2ImgLeft" alt="">
+                                    <div class="p2-img-hint">
+                                        <svg viewBox="0 0 24 24">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                            <circle cx="8.5" cy="8.5" r="1.5" />
+                                            <polyline points="21 15 16 10 5 21" />
+                                        </svg>
+                                        <span>点击添加</span>
+                                    </div>
+                                </div>
+
+                                <!-- 右侧列 -->
+                                <div class="p2-right-col">
+
+                                    <!-- 右侧小图 -->
+                                    <div class="p2-img-right" id="p2BoxRight" onclick="p2PickImage('right')">
+                                        <img src="" id="p2ImgRight" alt="">
+                                        <div class="p2-img-hint">
+                                            <svg viewBox="0 0 24 24">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                                <polyline points="21 15 16 10 5 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- 文案 -->
+                                    <div class="p2-caption" id="p2Caption" contenteditable="true">You deserve all the
+                                        beauty in the world •* ꒰ɞ , ˊ</div>
+
+                                    <!-- 迷你播放器（深色） -->
+                                    <div class="p2-player" id="p2Player">
+                                        <div class="p2-player-cover" onclick="p2PickPlayerBg()">
+                                            <img src="" id="p2PlayerBg" alt="">
+                                            <div class="p2-player-cover-hint">
+                                                <svg viewBox="0 0 24 24">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                                    <polyline points="21 15 16 10 5 21" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="p2-player-info">
+                                            <div class="p2-player-title" id="p2PlayerTitle" contenteditable="true">*ˊ•
+                                                ·ᵦ🧸ᵦ· •˙*</div>
+                                            <div class="p2-player-progress">
+                                                <span class="p2-player-time" id="p2TimeNow">00:00</span>
+                                                <div class="p2-player-bar-wrap" onclick="p2BarClick(event)">
+                                                    <div class="p2-player-bar-bg"></div>
+                                                    <div class="p2-player-bar-fill" id="p2BarFill"></div>
+                                                    <div class="p2-player-bar-dot" id="p2BarDot"></div>
+                                                </div>
+                                                <span class="p2-player-time end" id="p2TimeEnd">05:25</span>
+                                            </div>
+                                            <div class="p2-player-controls">
+                                                <div class="p2-player-btn" onclick="p2Prev()">
+                                                    <svg viewBox="0 0 24 24">
+                                                        <polygon points="19 20 9 12 19 4 19 20" />
+                                                        <line x1="5" y1="19" x2="5" y2="5" />
+                                                    </svg>
+                                                </div>
+                                                <div class="p2-player-btn play-btn" onclick="p2PlayPause()">
+                                                    <svg viewBox="0 0 24 24" id="p2PlayIcon">
+                                                        <line x1="10" y1="6" x2="10" y2="18" />
+                                                        <line x1="14" y1="6" x2="14" y2="18" />
+                                                    </svg>
+                                                </div>
+                                                <div class="p2-player-btn" onclick="p2Next()">
+                                                    <svg viewBox="0 0 24 24">
+                                                        <polygon points="5 4 15 12 5 20 5 4" />
+                                                        <line x1="19" y1="5" x2="19" y2="19" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 下半区：左侧2×2图标 + 右侧便签卡片 -->
+                        <div class="p2-bottom-row">
+
+                            <!-- 左：2×2 应用图标 -->
+                            <div class="p2-apps-grid">
+                                <div class="app-cell" data-icon-id="icon_theater" onclick="openTheaterApp()">
+                                    <div class="app-icon glass-icon" id="icon_theater">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M2 3h20v14H2z" />
+                                            <path d="M12 17v4" />
+                                            <path d="M7 21h10" />
+                                            <circle cx="8" cy="10" r="1" />
+                                            <circle cx="16" cy="10" r="1" />
+                                            <path d="M9 13a3 3 0 0 0 6 0" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">线下剧场</div>
+                                </div>
+                                <div class="app-cell" data-icon-id="icon_weather">
+                                    <div class="app-icon glass-icon" id="icon_weather">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+                                            <circle cx="12" cy="12" r="4" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">天气</div>
+                                </div>
+                                <div class="app-cell" data-icon-id="icon_music" onclick="openMusicApp()">
+                                    <div class="app-icon glass-icon" id="icon_music">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M9 18V5l12-2v13" />
+                                            <circle cx="6" cy="18" r="3" />
+                                            <circle cx="18" cy="16" r="3" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">音乐</div>
+                                </div>
+                                <div class="app-cell" data-icon-id="icon_peek" onclick="openPeekApp()">
+                                    <div class="app-icon glass-icon" id="icon_peek">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                            <circle cx="12" cy="12" r="3" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">偷偷看</div>
+                                </div>
+                            </div>
+
+                            <!-- 右：便签卡片 Colorful Widget -->
+                            <div class="p2-note-card">
+                                <!-- 顶部：头像 + 日期 -->
+                                <div class="p2-note-header">
+                                    <div class="p2-note-avatar" onclick="p2PickNoteAvatar()">
+                                        <img src="" id="p2NoteAvatar" alt="">
+                                        <div class="p2-note-avatar-hint">
+                                            <svg viewBox="0 0 24 24">
+                                                <circle cx="12" cy="8" r="4" />
+                                                <path d="M20 21a8 8 0 1 0-16 0" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p2-note-date" id="p2NoteDate">21</div>
+                                </div>
+
+                                <!-- 文案行1 -->
+                                <div class="p2-note-line" id="p2NoteLine1" contenteditable="true">·₊ ♡° Love potion †·₊
+                                </div>
+
+                                <!-- 虚线 -->
+                                <div class="p2-note-divider"></div>
+
+                                <!-- 文案行2 -->
+                                <div class="p2-note-line" id="p2NoteLine2" contenteditable="true">★「世界第一の天才宅女小桃」☆</div>
+
+                                <!-- 虚线 -->
+                                <div class="p2-note-divider"></div>
+
+                                <!-- 文案行3（装饰波浪） -->
+                                <div class="p2-note-line decor" id="p2NoteLine3" contenteditable="true">·°₊·ɜ ˜˜˜˜ ꒰ɞ
+                                    ˜˜˜˜˜ ɜ·₊°·</div>
+
+                                <!-- 底部标签 -->
+                                <div class="p2-note-footer" id="p2NoteFooter" contenteditable="true">Colorful Widget
+                                </div>
+                            </div> <!-- /p2-note-card -->
+                        </div> <!-- /p2-bottom-row -->
+
+                        <!-- ★ 拍立得轮播组件 ★ -->
+
+                    </div> <!-- /p2-page-wrap -->
+                </div> <!-- /page page-2 -->
+
+
+                <!-- ====== 第3页：联系卡片 ====== -->
+                <div class="page page-3">
+
+                    <!-- ★ 新增：个人资料卡片组件 ★ -->
+                    <div class="p3-profile-widget">
+                        <!-- 封面图 -->
+                        <div class="p3-profile-banner" onclick="p3PickProfileBanner()">
+                            <img src="" id="p3ProfileBanner" alt="">
+                            <div class="p3-profile-banner-hint">
+                                <svg viewBox="0 0 24 24" width="28" height="28">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <polyline points="21 15 16 10 5 21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- 头像（悬浮在封面底部） -->
+                        <div class="p3-profile-avatar-wrap">
+                            <div class="p3-profile-avatar" onclick="p3PickProfileAvatar()">
+                                <img src="" id="p3ProfileAvatar" alt="">
+                                <div class="p3-profile-avatar-hint">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="8" r="4" />
+                                        <path d="M20 21a8 8 0 1 0-16 0" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 文字信息区 -->
+                        <div class="p3-profile-info">
+                            <div class="p3-profile-name" id="p3ProfileName" contenteditable="true">蛋蛋</div>
+                            <div class="p3-profile-handle" id="p3ProfileHandle" contenteditable="true">@Broken
+                                Memory</div>
+                            <div class="p3-profile-bio" id="p3ProfileBio" contenteditable="true">˚.⊹ 𖦆
+                                𝒪𝒷𝓈𝒸𝓊𝓇𝑒 𝓅𝑜𝑒𝓉𝓇𝓎 𓈒𓏸˚₊</div>
+                            <div class="p3-profile-location">
+                                <svg viewBox="0 0 24 24" width="13" height="13">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                <span class="p3-profile-loc-text" id="p3ProfileLoc" contenteditable="true">日本
+                                    东京</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p3-contact-widget" id="p3ContactWidget">
+
+                        <!-- 顶部：头像 + 气泡文字 + 爪印 -->
+                        <div class="p3-contact-top">
+                            <div class="p3-contact-avatar" onclick="p3PickAvatar()">
+                                <img src="" id="p3ContactAvatar" alt="">
+                                <div class="p3-contact-avatar-hint">
+                                    <svg viewBox="0 0 24 24">
+                                        <circle cx="12" cy="8" r="4" />
+                                        <path d="M20 21a8 8 0 1 0-16 0" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="p3-contact-bubble">
+                                <span class="p3-contact-bubble-text" id="p3ContactBubble"
+                                    contenteditable="true">幸好爱是小小的奇迹</span>
+                                <div class="p3-contact-paw">
+                                    <svg viewBox="0 0 24 24" width="22" height="22">
+                                        <ellipse cx="12" cy="16" rx="5" ry="4.5" />
+                                        <circle cx="6" cy="10" r="2.2" />
+                                        <circle cx="10" cy="7.5" r="2" />
+                                        <circle cx="14" cy="7.5" r="2" />
+                                        <circle cx="18" cy="10" r="2.2" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 下方信息卡片（整体圆角毛玻璃） -->
+                        <div class="p3-contact-card">
+                            <!-- 左侧：标签 + 输入 -->
+                            <div class="p3-contact-info">
+                                <!-- Baby行 -->
+                                <div class="p3-contact-row">
+                                    <div class="p3-contact-label">Baby</div>
+                                    <div class="p3-contact-input-wrap">
+                                        <span class="p3-contact-value" id="p3ContactName" contenteditable="true">call
+                                            Aero</span>
+                                        <span class="p3-contact-edit" onclick="p3FocusField('p3ContactName')">修改</span>
+                                    </div>
+                                </div>
+                                <!-- Contact行 -->
+                                <div class="p3-contact-row">
+                                    <div class="p3-contact-label">Contact</div>
+                                    <div class="p3-contact-input-wrap">
+                                        <span class="p3-contact-value" id="p3ContactLink"
+                                            contenteditable="true">http//>Aero's love.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 右侧：小圆角图片 -->
+                            <div class="p3-contact-photo" onclick="p3PickPhoto()">
+                                <img src="" id="p3ContactPhoto" alt="">
+                                <div class="p3-contact-photo-hint">
+                                    <svg viewBox="0 0 24 24" width="16" height="16">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <polyline points="21 15 16 10 5 21" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ★ 第三页下半区：左侧4App + 右侧拍立得 ★ -->
+                        <div class="p3-bottom-row">
+
+                            <!-- 左侧：2×2 App -->
+                            <div class="p3-apps-left">
+                                <div class="app-cell" data-icon-id="icon_game" onclick="openGameApp()">
+                                    <div class="app-icon glass-icon" id="icon_game">
+                                        <svg viewBox="0 0 24 24">
+                                            <line x1="6" y1="11" x2="10" y2="11" />
+                                            <line x1="8" y1="9" x2="8" y2="13" />
+                                            <line x1="15" y1="12" x2="15.01" y2="12" />
+                                            <line x1="18" y1="10" x2="18.01" y2="10" />
+                                            <path
+                                                d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.544-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">游戏</div>
+                                </div>
+                                <div class="app-cell" data-icon-id="icon_catnip">
+                                    <div class="app-icon glass-icon" id="icon_catnip">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                                d="M12 3c-1.5 0-2.5 1.5-2.5 3C9.5 7.5 10.5 9 12 9s2.5-1.5 2.5-3C14.5 4.5 13.5 3 12 3z" />
+                                            <path
+                                                d="M7 7c-1.3.7-1.8 2.4-1 3.7.7 1.3 2.4 1.8 3.7 1C10.9 11 11.4 9.3 10.7 8 10 6.8 8.3 6.3 7 7z" />
+                                            <path
+                                                d="M17 7c1.3.7 1.8 2.4 1 3.7-.7 1.3-2.4 1.8-3.7 1-1.2-.7-1.7-2.4-1-3.7C14 6.8 15.7 6.3 17 7z" />
+                                            <path d="M12 9v12" />
+                                            <path d="M9 15c-2 0-4 1-4 3" />
+                                            <path d="M15 15c2 0 4 1 4 3" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">猫尾薄荷</div>
+                                </div>
+                                <div class="app-cell" data-icon-id="icon_mood">
+                                    <div class="app-icon glass-icon" id="icon_mood">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M19.07 4.93A10 10 0 0 0 2 12c0 2.76 1.12 5.26 2.93 7.07" />
+                                            <path d="M4.93 19.07A10 10 0 0 0 22 12c0-2.76-1.12-5.26-2.93-7.07" />
+                                            <circle cx="12" cy="12" r="3" />
+                                            <path d="M12 2v2" />
+                                            <path d="M12 20v2" />
+                                            <path d="M2 12h2" />
+                                            <path d="M20 12h2" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">心绪回响</div>
+                                </div>
+                                <div class="app-cell" data-icon-id="icon_video">
+                                    <div class="app-icon glass-icon" id="icon_video">
+                                        <svg viewBox="0 0 24 24">
+                                            <rect x="2" y="4" width="15" height="16" rx="2" />
+                                            <path d="M17 8l5-3v14l-5-3" />
+                                        </svg>
+                                    </div>
+                                    <div class="app-name">视频</div>
+                                </div>
+                            </div>
+
+                            <!-- 右侧：拍立得组（左侧垫底小图 + 表面大图） -->
+                            <div class="p3-polaroid-group">
+
+                                <!-- 1. 新增的小拍立得（垫在底层左侧） -->
+                                <div class="p3-polaroid p3-polaroid-sm" id="p3PolaroidSm">
+                                    <div class="p3-polaroid-photo" onclick="p3PickTicketImgSm()">
+                                        <img src="" id="p3TicketImgSm" alt="">
+                                        <div class="p3-polaroid-photo-hint" id="p3TicketImgSmHint">
+                                            <svg viewBox="0 0 24 24" width="20" height="20">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                                <polyline points="21 15 16 10 5 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p3-polaroid-caption" id="p3TicketTextSm" contenteditable="true">✨</div>
+                                </div>
+
+                                <!-- 2. 原来的大拍立得（保持不变） -->
+                                <div class="p3-polaroid" id="p3Polaroid">
+                                    <div class="p3-polaroid-photo" onclick="p3PickTicketImg()">
+                                        <img src="" id="p3TicketImg" alt="">
+                                        <div class="p3-polaroid-photo-hint" id="p3TicketImgHint">
+                                            <svg viewBox="0 0 24 24" width="26" height="26">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                                <polyline points="21 15 16 10 5 21" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="p3-polaroid-caption" id="p3TicketText" contenteditable="true">💭₊˚🤍₊⁺
+                                        딩동
+                                        ㅎㅇ…🩶
+                                    </div>
+                                </div>
+
+                            </div> <!-- 拍立得组结束 -->
+
+                        </div>
+                    </div> <!-- ★★★ 加上这行！补回不小心删掉的闭合标签 ★★★ -->
+                </div> <!-- /page page-3 -->
+
+            </div> <!-- ★ /pages-track ★ -->
+        </div> <!-- ★★★ /pages-viewport ★★★ 这行之前一直缺！ -->
+
+        <!-- 页面指示器 -->
+        <div class="page-dots">
+            <div class="dot active" data-page="0"></div>
+            <div class="dot" data-page="1"></div>
+            <div class="dot" data-page="2"></div>
+        </div>
+
+        <!-- ====== Dock 栏 ====== -->
+        <div class="dock-container">
+
+            <!-- 消息 -->
+            <div class="app-cell" onclick="openChatApp()">
+                <div class="app-icon glass-icon dock-icon" id="icon_dock_msg">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                </div>
+                <div class="app-name">消息</div>
+            </div>
+
+            <!-- 柿子小说 -->
+            <div class="app-cell" onclick="openNovelApp()">
+                <div class="app-icon glass-icon dock-icon" id="icon_dock_note">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                    </svg>
+                </div>
+                <div class="app-name">柿子小说</div>
+            </div>
+
+            <!-- 世界书 -->
+            <div class="app-cell" onclick="openWorldBookApp()">
+                <div class="app-icon glass-icon dock-icon" id="icon_dock_worldbook">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                </div>
+                <div class="app-name">世界书</div>
+            </div>
+
+        </div>
+
+        <!-- 底部横条 -->
+        <div class="home-indicator"></div>
+
+        <!-- Toast -->
+        <div class="toast" id="toast"></div>
+
+        <!-- 纪念日面板 -->
+        <div class="cd-app-overlay" id="cdAppOverlay">
+            <div class="cd-app-panel" id="cdAppPanel">
+                <div class="cd-app-header">
+                    <div class="cd-app-back" onclick="closeCountdownApp()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </div>
+                    <div class="cd-app-title">纪念日设置</div>
+                    <div class="cd-app-save" onclick="saveCountdownSettings()">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>保存</span>
+                    </div>
+                </div>
+                <div class="cd-app-body">
+                    <div class="cd-app-section">
+                        <div class="cd-app-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            实时预览
+                        </div>
+                        <div class="cd-preview-card" id="cdPreviewCard">
+                            <div class="cd-preview-top">
+                                <div class="cd-preview-label">已在一起</div>
+                                <div class="cd-preview-days-row">
+                                    <span class="cd-preview-days" id="cdPreviewDays">15</span>
+                                    <span class="cd-preview-unit">天</span>
+                                </div>
+                            </div>
+                            <div class="cd-preview-bottom">
+                                <div class="cd-preview-title" id="cdPreviewTitle">恋爱纪念日</div>
+                                <div class="cd-preview-date" id="cdPreviewDate">2026-02-03</div>
+                            </div>
+                            <div class="cd-preview-deco">♡</div>
+                        </div>
+                    </div>
+                    <div class="cd-app-section">
+                        <div class="cd-app-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                                <line x1="16" y1="2" x2="16" y2="6" />
+                                <line x1="8" y1="2" x2="8" y2="6" />
+                                <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            基本信息
+                        </div>
+                        <div class="cd-app-field">
+                            <label>纪念日标题</label>
+                            <input type="text" id="cdInputTitle" class="cd-input" value="恋爱纪念日" placeholder="输入标题…">
+                        </div>
+                        <div class="cd-app-field">
+                            <label>纪念日日期</label>
+                            <input type="date" id="cdInputDate" class="cd-input" value="2026-02-03">
+                        </div>
+                    </div>
+                    <div class="cd-app-section">
+                        <div class="cd-app-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path
+                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                            字体颜色
+                        </div>
+                        <div class="cd-color-row">
+                            <div class="cd-color-dot" style="background:#503c46" data-color="#503c46"
+                                onclick="pickCdFontColor(this)"></div>
+                            <div class="cd-color-dot" style="background:#ffffff" data-color="#ffffff"
+                                onclick="pickCdFontColor(this)"></div>
+                            <div class="cd-color-dot" style="background:#ffa4b6" data-color="#ffa4b6"
+                                onclick="pickCdFontColor(this)"></div>
+                            <div class="cd-color-dot" style="background:#a78bfa" data-color="#a78bfa"
+                                onclick="pickCdFontColor(this)"></div>
+                            <div class="cd-color-dot" style="background:#67e8f9" data-color="#67e8f9"
+                                onclick="pickCdFontColor(this)"></div>
+                            <div class="cd-color-dot" style="background:#fcd34d" data-color="#fcd34d"
+                                onclick="pickCdFontColor(this)"></div>
+                            <div class="cd-color-dot" style="background:#86efac" data-color="#86efac"
+                                onclick="pickCdFontColor(this)"></div>
+                            <div class="cd-color-dot" style="background:#f9a8d4" data-color="#f9a8d4"
+                                onclick="pickCdFontColor(this)"></div>
+                        </div>
+                        <div class="cd-color-input-row">
+                            <input type="color" id="cdFontColorPicker" class="cd-color-native" value="#503c46"
+                                onchange="setCdFontColorFromPicker(this.value)">
+                            <input type="text" id="cdFontColorHex" class="cd-input cd-input-short" value="#503c46"
+                                placeholder="#hex色号" oninput="setCdFontColorFromHex(this.value)">
+                        </div>
+                    </div>
+                    <div class="cd-app-section">
+                        <div class="cd-app-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <polyline points="4 7 4 4 20 4 20 7" />
+                                <line x1="9" y1="20" x2="15" y2="20" />
+                                <line x1="12" y1="4" x2="12" y2="20" />
+                            </svg>
+                            自定义字体
+                        </div>
+                        <div class="cd-app-field">
+                            <label>字体URL（.woff2 / .ttf / .otf）</label>
+                            <input type="text" id="cdFontUrl" class="cd-input" placeholder="粘贴字体文件链接…"
+                                oninput="previewCdFont(this.value)">
+                        </div>
+                        <div class="cd-font-hint">粘贴后预览卡片会实时切换字体</div>
+                    </div>
+                    <div class="cd-app-section">
+                        <div class="cd-app-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <polyline points="21 15 16 10 5 21" />
+                            </svg>
+                            小组件背景
+                        </div>
+                        <div class="cd-bg-mode-row">
+                            <div class="cd-bg-mode-btn active" id="cdBgModeColor" onclick="switchCdBgMode('color')">
+                                纯色背景
+                            </div>
+                            <div class="cd-bg-mode-btn" id="cdBgModeImage" onclick="switchCdBgMode('image')">
+                                图片背景</div>
+                        </div>
+                        <div class="cd-bg-color-panel" id="cdBgColorPanel">
+                            <div class="cd-color-row">
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(255,255,255,0.65)"
+                                    data-color="rgba(255,255,255,0.65)" onclick="pickCdBgColor(this)"></div>
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(255,220,230,0.7)"
+                                    data-color="rgba(255,220,230,0.7)" onclick="pickCdBgColor(this)"></div>
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(167,139,250,0.45)"
+                                    data-color="rgba(167,139,250,0.45)" onclick="pickCdBgColor(this)"></div>
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(103,232,249,0.4)"
+                                    data-color="rgba(103,232,249,0.4)" onclick="pickCdBgColor(this)"></div>
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(252,211,77,0.45)"
+                                    data-color="rgba(252,211,77,0.45)" onclick="pickCdBgColor(this)"></div>
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(134,239,172,0.4)"
+                                    data-color="rgba(134,239,172,0.4)" onclick="pickCdBgColor(this)"></div>
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(0,0,0,0.35)"
+                                    data-color="rgba(0,0,0,0.35)" onclick="pickCdBgColor(this)"></div>
+                                <div class="cd-color-dot cd-bg-dot" style="background:rgba(248,164,184,0.5)"
+                                    data-color="rgba(248,164,184,0.5)" onclick="pickCdBgColor(this)"></div>
+                            </div>
+                            <div class="cd-color-input-row">
+                                <input type="color" id="cdBgColorPicker" class="cd-color-native" value="#ffffff"
+                                    onchange="setCdBgColorFromPicker(this.value)">
+                                <input type="text" id="cdBgColorHex" class="cd-input cd-input-short"
+                                    value="rgba(255,255,255,0.65)" placeholder="色号或rgba()"
+                                    oninput="setCdBgColorFromHex(this.value)">
+                            </div>
+                        </div>
+                        <div class="cd-bg-image-panel" id="cdBgImagePanel" style="display:none;">
+                            <div class="cd-app-field">
+                                <label>图片URL</label>
+                                <input type="text" id="cdBgImageUrl" class="cd-input" placeholder="粘贴图片链接…"
+                                    oninput="previewCdBgImage()">
+                            </div>
+                            <div class="cd-bg-upload-btn" onclick="triggerCdBgUpload()">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="17 8 12 3 7 8" />
+                                    <line x1="12" y1="3" x2="12" y2="15" />
+                                </svg>
+                                或点击上传本地图片
+                            </div>
+                            <input type="file" id="cdBgFileInput" accept="image/*" style="display:none"
+                                onchange="handleCdBgFile(event)">
+                            <div class="cd-bg-preview-wrap" id="cdBgPreviewWrap" style="display:none;">
+                                <div class="cd-bg-preview-label">背景图预览 & 位置调整</div>
+                                <div class="cd-bg-preview-box" id="cdBgPreviewBox">
+                                    <img src="" id="cdBgPreviewImg" alt="" draggable="false">
+                                </div>
+                                <div class="cd-bg-pos-controls">
+                                    <div class="cd-pos-row">
+                                        <label>水平位置</label>
+                                        <input type="range" id="cdBgPosX" min="0" max="100" value="50" class="cd-range"
+                                            oninput="updateCdBgPosition()">
+                                        <span id="cdBgPosXVal">50%</span>
+                                    </div>
+                                    <div class="cd-pos-row">
+                                        <label>垂直位置</label>
+                                        <input type="range" id="cdBgPosY" min="0" max="100" value="50" class="cd-range"
+                                            oninput="updateCdBgPosition()">
+                                        <span id="cdBgPosYVal">50%</span>
+                                    </div>
+                                    <div class="cd-pos-row">
+                                        <label>缩放比例</label>
+                                        <input type="range" id="cdBgScale" min="100" max="300" value="100"
+                                            class="cd-range" oninput="updateCdBgPosition()">
+                                        <span id="cdBgScaleVal">100%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cd-app-section cd-section-danger">
+                        <div class="cd-clear-btn" onclick="clearAllCdSettings()">
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <polyline points="3 6 5 6 21 6" />
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                            </svg>
+                            清除所有纪念日设置
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API 面板 -->
+        <div class="api-app-overlay" id="apiAppOverlay">
+            <div class="api-app-panel">
+                <div class="api-app-header">
+                    <div class="api-app-back" onclick="closeApiApp()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </div>
+                    <div class="api-app-title">API 设置</div>
+                    <div class="api-header-spacer"></div>
+                </div>
+                <div class="api-app-body">
+                    <div class="api-section">
+                        <div class="api-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M12 20h9" />
+                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                            </svg>
+                            配置信息
+                        </div>
+                        <div class="api-field"><label>API 名称</label><input type="text" id="apiName" class="api-input"
+                                placeholder="例：我的GPT接口"></div>
+                        <div class="api-field"><label>API URL</label><input type="text" id="apiUrl" class="api-input"
+                                placeholder="https://api.example.com/v1"></div>
+                        <div class="api-field"><label>API Key</label>
+                            <div style="position:relative;">
+                                <input type="text" id="apiKey" class="api-input" placeholder="sk-..."
+                                    style="-webkit-text-security:disc;" autocomplete="off" autocorrect="off"
+                                    autocapitalize="off" spellcheck="false">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-section">
+                        <div class="api-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                                <line x1="12" y1="22.08" x2="12" y2="12" />
+                            </svg>
+                            模型设置
+                        </div>
+                        <div class="api-btn-row">
+                            <div class="api-btn api-btn-primary" id="apiFetchBtn" onclick="fetchApiModels()">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <polyline points="1 4 1 10 7 10" />
+                                    <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                                </svg>
+                                拉取模型
+                            </div>
+                        </div>
+                        <div class="api-model-status" id="apiModelStatus">填写 URL 和 Key 后点击拉取</div>
+                        <div class="api-field"><label>选择模型</label><select id="apiModelSelect" class="api-select">
+                                <option value="">-- 请先拉取模型 --</option>
+                            </select></div>
+                    </div>
+                    <div class="api-section">
+                        <div class="api-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                                <polyline points="17 21 17 13 7 13 7 21" />
+                                <polyline points="7 3 7 8 15 8" />
+                            </svg>
+                            保存预设
+                        </div>
+                        <div class="api-btn api-btn-save" onclick="saveApiPreset()">
+                            <svg viewBox="0 0 24 24" width="15" height="15">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            保存为预设
+                        </div>
+                    </div>
+                    <div class="api-section">
+                        <div class="api-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            数据管理
+                        </div>
+                        <div class="api-data-row">
+                            <div class="api-data-btn" onclick="importApiData()">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="17 8 12 3 7 8" />
+                                    <line x1="12" y1="3" x2="12" y2="15" />
+                                </svg>
+                                导入数据
+                            </div>
+                            <div class="api-data-btn" onclick="exportApiData()">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="7 10 12 15 17 10" />
+                                    <line x1="12" y1="15" x2="12" y2="3" />
+                                </svg>
+                                备份数据
+                            </div>
+                        </div>
+                        <input type="file" id="apiImportFile" class="api-import-file" accept=".json"
+                            onchange="handleApiImport(event)">
+                    </div>
+                    <div class="api-section">
+                        <div class="api-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <line x1="8" y1="6" x2="21" y2="6" />
+                                <line x1="8" y1="12" x2="21" y2="12" />
+                                <line x1="8" y1="18" x2="21" y2="18" />
+                                <line x1="3" y1="6" x2="3.01" y2="6" />
+                                <line x1="3" y1="12" x2="3.01" y2="12" />
+                                <line x1="3" y1="18" x2="3.01" y2="18" />
+                            </svg>
+                            已保存的预设
+                        </div>
+                        <div class="api-preset-list" id="apiPresetList">
+                            <div class="api-preset-empty">暂无预设，保存后将显示在这里</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 外观设置面板 ====== -->
+        <div class="appear-app-overlay" id="appearAppOverlay">
+            <div class="appear-app-panel">
+                <div class="appear-app-header">
+                    <div class="appear-app-back" onclick="closeAppearanceApp()">
+                        <svg viewBox="0 0 24 24" width="20" height="20">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </div>
+                    <div class="appear-app-title">外观设置</div>
+                    <div class="appear-app-save" onclick="saveAppearanceSettings()">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>保存</span>
+                    </div>
+                </div>
+                <div class="appear-app-body">
+                    <div class="appear-section">
+                        <div class="appear-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <polyline points="21 15 16 10 5 21" />
+                            </svg>
+                            主屏幕壁纸
+                        </div>
+                        <div class="appear-wallpaper-preview">
+                            <img src="" id="appearWpPreviewImg" alt="" style="display:none;">
+                        </div>
+                        <div class="appear-field">
+                            <label>壁纸图片URL（推荐使用URL，无大小限制）</label>
+                            <input type="text" id="appearWpUrl" class="appear-input" placeholder="粘贴图片链接..."
+                                oninput="refreshWallpaperPreview()">
+                        </div>
+                        <div class="appear-wallpaper-btns">
+                            <div class="appear-wp-btn" onclick="triggerAppearWpUpload()">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                    <polyline points="17 8 12 3 7 8" />
+                                    <line x1="12" y1="3" x2="12" y2="15" />
+                                </svg>
+                                上传本地图片
+                            </div>
+                        </div>
+                        <input type="file" id="appearWpFile" class="appear-wp-file" accept="image/*"
+                            onchange="handleAppearWpFile(event)">
+                        <div class="appear-font-hint">本地上传会自动压缩，建议尽量使用图片URL以获得最佳画质</div>
+                    </div>
+                    <div class="appear-section">
+                        <div class="appear-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <polyline points="21 15 16 10 5 21" />
+                            </svg>
+                            自定义图标图片
+                        </div>
+                        <div class="appear-font-hint" style="margin-bottom:10px">点击下方图标可单独换成你喜欢的图片，留空恢复默认SVG图标
+                        </div>
+                        <div class="appear-icon-grid" id="appearIconGrid"></div>
+                    </div>
+                    <div class="appear-section">
+                        <div class="appear-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <polyline points="4 7 4 4 20 4 20 7" />
+                                <line x1="9" y1="20" x2="15" y2="20" />
+                                <line x1="12" y1="4" x2="12" y2="20" />
+                            </svg>
+                            全局字体
+                        </div>
+                        <div class="appear-field">
+                            <label>字体URL（.woff2 / .ttf / .otf）</label>
+                            <input type="text" id="appearFontUrl" class="appear-input" placeholder="粘贴字体文件链接...">
+                        </div>
+                        <div class="appear-font-hint">保存后全局生效，留空则使用系统默认字体</div>
+                    </div>
+                    <div class="appear-section">
+                        <div class="appear-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg>
+                            气泡小组件字体颜色
+                        </div>
+                        <div class="appear-color-row">
+                            <div class="appear-color-dot" style="background:rgba(80,60,70,0.9)"
+                                data-color="rgba(80,60,70,0.9)" onclick="pickAppearBubbleColor(this)"></div>
+                            <div class="appear-color-dot" style="background:#ffffff" data-color="#ffffff"
+                                onclick="pickAppearBubbleColor(this)"></div>
+                            <div class="appear-color-dot" style="background:#ffdde7" data-color="#ffdde7"
+                                onclick="pickAppearBubbleColor(this)"></div>
+                            <div class="appear-color-dot" style="background:#ffa4b6" data-color="#ffa4b6"
+                                onclick="pickAppearBubbleColor(this)"></div>
+                            <div class="appear-color-dot" style="background:#a78bfa" data-color="#a78bfa"
+                                onclick="pickAppearBubbleColor(this)"></div>
+                            <div class="appear-color-dot" style="background:#67e8f9" data-color="#67e8f9"
+                                onclick="pickAppearBubbleColor(this)"></div>
+                            <div class="appear-color-dot" style="background:#fcd34d" data-color="#fcd34d"
+                                onclick="pickAppearBubbleColor(this)"></div>
+                            <div class="appear-color-dot" style="background:#86efac" data-color="#86efac"
+                                onclick="pickAppearBubbleColor(this)"></div>
+                        </div>
+                        <div class="appear-color-input-row">
+                            <input type="color" id="appearBubbleColorPicker" class="appear-color-native" value="#503c46"
+                                onchange="setAppearBubbleFromPicker(this.value)">
+                            <input type="text" id="appearBubbleColorHex" class="appear-input appear-input-short"
+                                value="rgba(80,60,70,0.9)" placeholder="#hex或rgba()"
+                                oninput="setAppearBubbleFromHex(this.value)">
+                        </div>
+                    </div>
+                    <!-- ★ 图标文字颜色 ★ -->
+                    <div class="appear-section">
+                        <div class="appear-section-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>
+                            图标文字颜色
+                        </div>
+                        <div class="appear-color-row">
+                            <div class="appear-label-color-dot" style="background:rgba(80,60,70,0.9)"
+                                data-color="rgba(80,60,70,0.9)" onclick="pickLabelColor(this)"></div>
+                            <div class="appear-label-color-dot" style="background:#ffffff" data-color="#ffffff"
+                                onclick="pickLabelColor(this)"></div>
+                            <div class="appear-label-color-dot" style="background:#333333" data-color="#333333"
+                                onclick="pickLabelColor(this)"></div>
+                            <div class="appear-label-color-dot" style="background:#ffdde7" data-color="#ffdde7"
+                                onclick="pickLabelColor(this)"></div>
+                            <div class="appear-label-color-dot" style="background:#ffa4b6" data-color="#ffa4b6"
+                                onclick="pickLabelColor(this)"></div>
+                            <div class="appear-label-color-dot" style="background:#a78bfa" data-color="#a78bfa"
+                                onclick="pickLabelColor(this)"></div>
+                        </div>
+                        <div class="appear-color-custom">
+                            <input type="color" id="appearLabelColorPicker" value="#333333"
+                                oninput="setLabelColorFromPicker(this.value)">
+                            <input type="text" id="appearLabelColorHex" placeholder="#333333 或 rgba(...)"
+                                oninput="setLabelColorFromHex(this.value)">
+                        </div>
+                        <div class="appear-font-hint">设置应用图标下方文字的颜色。留空则使用默认颜色。</div>
+                    </div>
+                    <div class="appear-section">
+                        <div class="appear-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <rect x="2" y="3" width="20" height="4" rx="1" />
+                                <line x1="6" y1="5" x2="6" y2="5.01" />
+                                <line x1="10" y1="5" x2="10" y2="5.01" />
+                            </svg>
+                            顶部状态栏
+                        </div>
+                        <div class="appear-toggle-row">
+                            <div>
+                                <div class="appear-toggle-label">显示状态栏</div>
+                                <div class="appear-toggle-desc">关闭后隐藏时间、电量、网络等信息</div>
+                            </div>
+                            <label class="appear-toggle">
+                                <input type="checkbox" id="appearStatusbarToggle" checked>
+                                <div class="appear-toggle-track"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- 消息铃声 -->
+                    <div class="appear-section">
+                        <div class="appear-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                            </svg>
+                            消息铃声
+                        </div>
+                        <div class="appear-field">
+                            <label>铃声URL（支持 mp3 / wav / ogg）</label>
+                            <input type="text" class="appear-input" id="appearRingtoneUrl" value=""
+                                placeholder="https://example.com/notify.mp3">
+                        </div>
+                        <div class="appear-ringtone-btns">
+                            <div class="appear-wp-btn" onclick="testRingtone()">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <polygon points="5 3 19 12 5 21 5 3" />
+                                </svg>
+                                <span>试听</span>
+                            </div>
+                            <div class="appear-wp-btn"
+                                onclick="document.getElementById('appearRingtoneUrl').value='';showToast('已清空铃声')">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <line x1="18" y1="6" x2="6" y2="18" />
+                                    <line x1="6" y1="6" x2="18" y2="18" />
+                                </svg>
+                                <span>清空</span>
+                            </div>
+                        </div>
+                        <div class="appear-font-hint">设置后，收到角色消息时会播放此铃声。留空则无提示音。</div>
+                    </div>
+                    <div class="appear-section appear-section-danger">
+                        <div class="appear-clear-btn" onclick="clearAllAppearSettings()">
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <polyline points="3 6 5 6 21 6" />
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                            </svg>
+                            清除所有外观设置
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== 世界书 App Overlay ====== -->
+        <div class="wb-app-overlay" id="wbAppOverlay">
+            <div class="wb-app-panel">
+                <div class="wb-app-header">
+                    <div class="wb-app-back" onclick="closeWorldBookApp()">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </div>
+                    <div class="wb-app-title">World Book · 世界书</div>
+                    <div class="wb-app-header-add" onclick="openWbEditor()">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="wb-group-bar" id="wbGroupBar"></div>
+                <div class="wb-tab-bar" id="wbTabBar">
+                    <div class="wb-tab active" data-tab="global" onclick="switchWbTab('global')">Global · 全局</div>
+                    <div class="wb-tab" data-tab="role" onclick="switchWbTab('role')">Character · 角色</div>
+                </div>
+                <div class="wb-app-body" id="wbAppBody"></div>
+            </div><!-- /wb-app-panel -->
+
+            <!-- 世界书编辑器 -->
+            <div class="wb-editor-overlay" id="wbEditorOverlay">
+                <div class="wb-editor-panel">
+                    <div class="wb-editor-header">
+                        <div class="wb-app-back" onclick="closeWbEditor()">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="15 18 9 12 15 6" />
+                            </svg>
+                        </div>
+                        <div class="wb-app-title" id="wbEditorTitle">New Entry · 新建</div>
+                        <div class="wb-editor-save" onclick="saveWbEntry()">Save</div>
+                    </div>
+                    <div class="wb-editor-body">
+                        <!-- 名称 -->
+                        <div class="wb-editor-field">
+                            <div class="wb-editor-label">NAME · 名称</div>
+                            <input type="text" id="wbEdName" class="wb-editor-input" placeholder="给这条世界书起个名字">
+                        </div>
+                        <!-- 分组 -->
+                        <div class="wb-editor-field">
+                            <div class="wb-editor-label">GROUP · 分组</div>
+                            <select id="wbEdGroup" class="wb-editor-input">
+                                <option value="默认">默认</option>
+                                <option value="角色">角色</option>
+                                <option value="场景">场景</option>
+                                <option value="规则">规则</option>
+                                <option value="剧情">剧情</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <!-- 关键词 -->
+                        <div class="wb-editor-field">
+                            <div class="wb-editor-label">KEYWORDS · 关键词（逗号分隔）</div>
+                            <input type="text" id="wbEdKeywords" class="wb-editor-input" placeholder="森林, 魔法, 古堡">
+                        </div>
+                        <!-- 内容 -->
+                        <div class="wb-editor-field">
+                            <div class="wb-editor-label">CONTENT · 内容</div>
+                            <textarea id="wbEdContent" class="wb-editor-textarea" rows="8"
+                                placeholder="在这里编写世界观设定、角色描述、规则等..."></textarea>
+                        </div>
+                        <!-- 注入位置 -->
+                        <div class="wb-editor-field">
+                            <div class="wb-inject-section" id="wbInjectSection">
+                                <div class="wb-inject-trigger" onclick="toggleWbInjectDropdown()">
+                                    <div class="wb-inject-trigger-left">
+                                        <span class="wb-inject-trigger-label">INJECT · 注入位置</span>
+                                        <span class="wb-inject-trigger-value" id="wbInjectDisplay">前</span>
+                                    </div>
+                                    <div class="wb-inject-arrow">
+                                        <svg viewBox="0 0 24 24">
+                                            <polyline points="6 9 12 15 18 9" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="wb-inject-dropdown">
+                                    <div class="wb-inject-options">
+                                        <div class="wb-inject-opt active" data-pos="before"
+                                            onclick="selectWbInject('before')">
+                                            <div class="wb-io-dot"></div>
+                                            <span class="wb-io-text">前 · 系统提示之后</span>
+                                        </div>
+                                        <div class="wb-inject-opt" data-pos="middle" onclick="selectWbInject('middle')">
+                                            <div class="wb-io-dot"></div>
+                                            <span class="wb-io-text">中 · 对话中间插入</span>
+                                        </div>
+                                        <div class="wb-inject-opt" data-pos="after" onclick="selectWbInject('after')">
+                                            <div class="wb-io-dot"></div>
+                                            <span class="wb-io-text">后 · 最新消息之后</span>
+                                        </div>
+                                    </div><!-- /wb-inject-options -->
+                                </div><!-- /wb-inject-dropdown -->
+                            </div><!-- /wb-inject-section -->
+                        </div><!-- /wb-editor-field (注入位置) -->
+                    </div><!-- /wb-editor-body -->
+                </div><!-- /wb-editor-panel -->
+            </div><!-- /wb-editor-overlay -->
+        </div><!-- ★★★ /wb-app-overlay ★★★ -->
+
+        <!-- ====== 聊一聊 App Overlay ====== -->
+        <div class="chat-app-overlay" id="chatAppOverlay">
+            <div class="chat-header">
+                <div class="chat-close-btn" onclick="closeChatApp()">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg>
+                </div>
+                <div class="chat-header-title" id="chatHeaderTitle">消息</div>
+                <div class="chat-header-actions">
+                    <div class="chat-header-btn" onclick="toggleChatMenu()">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="chat-plus-menu" id="chatPlusMenu">
+                    <div class="chat-plus-menu-item" onclick="openCreateRole(); toggleChatMenu();">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="8.5" cy="7" r="4" />
+                            <line x1="20" y1="8" x2="20" y2="14" />
+                            <line x1="23" y1="11" x2="17" y2="11" />
+                        </svg>
+                        <span>创建角色</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="chat-body" id="chatBody"></div>
+            <div class="chat-conversation" id="chatConversation"></div>
+
+            <!-- ★ 定位面板 ★ -->
+            <div class="loc-overlay" id="locationOverlay"></div>
+
+
+            <!-- 个人主页 -->
+            <div class="chat-profile-page" id="chatProfilePage">
+                <div class="chat-profile-header">
+                    <div class="chat-profile-back" onclick="closeProfilePage()">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </div>
+                    <div class="chat-profile-title">个人主页</div>
+                </div>
+                <div class="chat-profile-body" id="chatProfileBody"></div>
+            </div>
+
+            <!-- ====== 聊天美化面板 ====== -->
+            <div class="beautify-page" id="beautifyPage">
+                <div class="beautify-header">
+                    <div class="beautify-back" onclick="closeBeautifyPage()">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </div>
+                    <div class="beautify-title">聊天美化</div>
+                    <div class="beautify-header-spacer"></div>
+                </div>
+                <div class="beautify-body">
+
+                    <!-- ===== CSS气泡主题 ===== -->
+                    <div class="beautify-section">
+                        <div class="beautify-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                            </svg>
+                            CSS 气泡主题
+                        </div>
+
+                        <!-- ★ 气泡实时预览 -->
+                        <div class="beautify-bubble-preview-wrap" id="bfBubblePreviewWrap">
+                            <div class="beautify-bubble-preview-label">气泡预览</div>
+                            <div class="beautify-bubble-preview-box" id="bfBubblePreviewBox">
+                                <!-- 角色气泡（左） -->
+                                <div class="beautify-bp-row beautify-bp-left">
+                                    <div class="beautify-bp-name-left">角色</div>
+                                    <div class="chat-bubble beautify-bp-bubble" id="bfBpCharBubble">
+                                        <span>今天天气真好呀～要不要一起出去走走？</span>
+                                    </div>
+                                </div>
+                                <!-- 用户气泡（右） -->
+                                <div class="beautify-bp-row beautify-bp-right">
+                                    <div class="chat-bubble chat-bubble-self beautify-bp-bubble" id="bfBpUserBubble">
+                                        <span>好呀！我马上准备 ♡</span>
+                                    </div>
+                                    <div class="beautify-bp-name-right">我</div>
+                                </div>
+                                <!-- 角色气泡2（左） -->
+                                <div class="beautify-bp-row beautify-bp-left">
+                                    <div class="beautify-bp-name-left">角色</div>
+                                    <div class="chat-bubble beautify-bp-bubble" id="bfBpCharBubble2">
+                                        <span>那我在老地方等你～ 🌸</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 预览区专属style，实时注入 -->
+                            <style id="bfBubblePreviewStyle"></style>
+                        </div>
+
+                        <div class="beautify-field">
+                            <label>自定义CSS代码（可修改气泡、工具栏图标、返回键等）</label>
+                            <textarea id="bfCssCode" class="beautify-textarea" rows="8"
+                                oninput="liveUpdateBubblePreview()"
+                                placeholder="/* 可用选择器: */&#10;.chat-bubble&#10;.chat-bubble::before&#10;.chat-bubble::after&#10;.chat-bubble-row.self .chat-bubble&#10;.chat-bubble-row.self .chat-bubble::before&#10;.chat-bubble-row.self .chat-bubble::after&#10;&#10;/* 示例: */&#10;.chat-bubble {&#10;    background: rgba(255,192,203,0.3) !important;&#10;}&#10;.chat-bubble-row.self .chat-bubble {&#10;    background: rgba(173,216,230,0.3) !important;&#10;}"></textarea>
+                        </div>
+
+                        <div class="beautify-btn-row">
+                            <div class="beautify-btn" onclick="previewCssTheme()">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                                应用到聊天
+                            </div>
+                            <div class="beautify-btn beautify-btn-primary" onclick="saveCssPreset()">
+                                <svg viewBox="0 0 24 24" width="14" height="14">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+                                    <polyline points="17 21 17 13 7 13 7 21" />
+                                    <polyline points="7 3 7 8 15 8" />
+                                </svg>
+                                保存主题
+                            </div>
+                        </div>
+
+                        <!-- CSS主题预设列表 -->
+                        <div class="beautify-sub-title">主题预设</div>
+                        <div class="beautify-preset-list" id="bfCssPresetList">
+                            <div class="beautify-preset-empty">暂无主题预设</div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 全局背景 ===== -->
+                    <div class="beautify-section">
+                        <div class="beautify-section-title">
+                            <svg viewBox="0 0 24 24" width="14" height="14">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <polyline points="21 15 16 10 5 21" />
+                            </svg>
+                            全局背景
+                        </div>
+                        <div class="beautify-field">
+                            <label>聊天背景（图片URL/文件上传）</label>
+                            <div class="beautify-wallpaper-preview" id="bfWallpaperPreview">
+                                <img id="bfWallpaperImg" src="" alt="" style="display:none">
+                                <div class="beautify-wallpaper-placeholder" id="bfWallpaperPlaceholder">
+                                    <svg viewBox="0 0 24 24" width="24" height="24">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                        <polyline points="21 15 16 10 5 21" />
+                                    </svg>
+                                    <span>暂无背景</span>
+                                </div>
+                            </div>
+                            <div class="beautify-input-row" style="margin-bottom:8px">
+                                <input type="text" id="bfWallpaperUrl" class="beautify-input beautify-input-flex"
+                                    placeholder="粘贴图片URL">
+                            </div>
+                            <div class="beautify-btn-row">
+                                <div class="beautify-btn" onclick="triggerWallpaperUpload()">
+                                    <svg viewBox="0 0 24 24" width="14" height="14">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                        <polyline points="17 8 12 3 7 8" />
+                                        <line x1="12" y1="3" x2="12" y2="15" />
+                                    </svg>
+                                    上传图片
+                                </div>
+                                <div class="beautify-btn beautify-btn-primary" onclick="applyWallpaper()">
+                                    <svg viewBox="0 0 24 24" width="14" height="14">
+                                        <polyline points="20 6 9 17 4 12" />
+                                    </svg>
+                                    应用背景
+                                </div>
+                            </div>
+                            <input type="file" id="bfWallpaperFile" accept="image/*" style="display:none"
+                                onchange="handleWallpaperFile(event)">
+                        </div>
+                    </div>
+
+                    <!-- ===== 恢复默认 ===== -->
+                    <div class="beautify-section beautify-section-danger">
+                        <div class="beautify-danger-btn" onclick="resetAllBeautify()">
+                            <svg viewBox="0 0 24 24" width="16" height="16">
+                                <polyline points="1 4 1 10 7 10" />
+                                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10" />
+                            </svg>
+                            恢复默认外观
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ====== 表情包管理页面 ====== -->
+            <div class="sticker-manager-page" id="stickerManagerPage" style="display:none">
+                <div class="stk-header">
+                    <div class="stk-header-back" onclick="closeStickerManager()">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </div>
+                    <div class="stk-header-title">表情包管理</div>
+                    <div class="stk-header-spacer"></div>
+                </div>
+                <div class="stk-body" id="stickerManagerBody"></div>
+            </div>
+
+            <!-- 人设编辑器 -->
+            <div class="chat-persona-editor" id="chatPersonaEditor">
+                <div class="chat-pe-header">
+                    <div class="chat-pe-back" onclick="closePersonaEditor()">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </div>
+                    <div class="chat-pe-title">新建角色</div>
+                    <div class="chat-pe-save" onclick="savePersona()">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>保存</span>
+                    </div>
+                </div>
+                <div class="chat-pe-body">
+                    <div class="chat-pe-avatar-wrap" onclick="triggerPeAvatarUpload()">
+                        <div class="chat-pe-avatar" id="peAvatarPreview">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <div class="chat-pe-avatar-hint">上传头像</div>
+                        </div>
+                    </div>
+                    <input type="file" id="peAvatarFile" accept="image/*" style="display:none"
+                        onchange="handlePeAvatarFile(event)">
+                    <div class="chat-pe-section">
+                        <div class="chat-pe-section-title">基本信息</div>
+                        <div class="chat-pe-field"><label>名字</label><input type="text" id="peName" class="chat-pe-input"
+                                placeholder="角色的名字"></div>
+                        <div class="chat-pe-field"><label>昵称</label><input type="text" id="peNickname"
+                                class="chat-pe-input" placeholder="显示的昵称（选填）"></div>
+                        <div class="chat-pe-field"><label>签名</label><input type="text" id="peSignature"
+                                class="chat-pe-input" placeholder="一句话签名"></div>
+                    </div>
+                    <div class="chat-pe-section">
+                        <div class="chat-pe-section-title">性别</div>
+                        <div class="chat-pe-gender-row">
+                            <div class="chat-pe-gender-btn active" data-gender="male" onclick="selectPeGender('male')">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <circle cx="10" cy="14" r="5" />
+                                    <line x1="19" y1="5" x2="13.6" y2="10.4" />
+                                    <line x1="19" y1="5" x2="15" y2="5" />
+                                    <line x1="19" y1="5" x2="19" y2="9" />
+                                </svg>
+                                <span>男</span>
+                            </div>
+                            <div class="chat-pe-gender-btn" data-gender="female" onclick="selectPeGender('female')">
+                                <svg viewBox="0 0 24 24" width="16" height="16">
+                                    <circle cx="12" cy="10" r="5" />
+                                    <line x1="12" y1="15" x2="12" y2="22" />
+                                    <line x1="9" y1="19" x2="15" y2="19" />
+                                </svg>
+                                <span>女</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-pe-section">
+                        <div class="chat-pe-section-title">详细信息</div>
+                        <div class="chat-pe-field"><textarea id="peDetail" class="chat-pe-textarea" rows="4"
+                                placeholder="年龄、身份、性格、外貌等详细描述..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 创建AI角色面板 -->
+            <div class="chat-create-role" id="chatCreateRole">
+                <div class="chat-create-header">
+                    <div class="chat-create-back" onclick="closeCreateRole()">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </div>
+                    <div class="chat-create-title">创建角色</div>
+                    <div class="chat-create-save" onclick="saveRole()">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        <span>保存</span>
+                    </div>
+                </div>
+                <div class="chat-create-body">
+                    <div class="chat-cr-section"
+                        style="background:transparent;border:none;backdrop-filter:none;box-shadow:none;padding:0;">
+                        <div class="chat-cr-avatar-wrap" onclick="triggerRoleAvatarUpload()">
+                            <div class="chat-cr-avatar" id="crAvatarPreview">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                                <div class="chat-cr-avatar-hint">上传头像</div>
+                            </div>
+                        </div>
+                        <input type="file" id="crAvatarFile" accept="image/*" style="display:none"
+                            onchange="handleRoleAvatarFile(event)">
+                    </div>
+                    <div class="chat-cr-section">
+                        <div class="chat-cr-section-title"><svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>基本信息</div>
+                        <div class="chat-cr-field"><label>角色名字</label><input type="text" id="crName"
+                                class="chat-cr-input" placeholder="角色的正式名字"></div>
+                        <div class="chat-cr-field"><label>昵称</label><input type="text" id="crNickname"
+                                class="chat-cr-input" placeholder="聊天时显示的昵称（选填）"></div>
+                        <div class="chat-cr-field"><label>性别</label>
+                            <div class="chat-cr-gender-row">
+                                <div class="chat-cr-gender-btn active" data-gender="male"
+                                    onclick="selectRoleGender('male')"><svg viewBox="0 0 24 24" width="16" height="16">
+                                        <circle cx="10" cy="14" r="5" />
+                                        <line x1="19" y1="5" x2="13.6" y2="10.4" />
+                                        <line x1="19" y1="5" x2="15" y2="5" />
+                                        <line x1="19" y1="5" x2="19" y2="9" />
+                                    </svg><span>男</span></div>
+                                <div class="chat-cr-gender-btn" data-gender="female"
+                                    onclick="selectRoleGender('female')">
+                                    <svg viewBox="0 0 24 24" width="16" height="16">
+                                        <circle cx="12" cy="10" r="5" />
+                                        <line x1="12" y1="15" x2="12" y2="22" />
+                                        <line x1="9" y1="19" x2="15" y2="19" />
+                                    </svg><span>女</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-cr-field"><label>详细信息</label><textarea id="crDetail" class="chat-cr-textarea"
+                                rows="3" placeholder="年龄、身份、性格、外貌等详细描述..."></textarea>
+                        </div>
+                    </div>
+                    <div class="chat-cr-section">
+                        <div class="chat-cr-section-title"><svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>选择分组</div>
+                        <div class="chat-cr-field">
+                            <select id="crGroup" class="chat-cr-select">
+                                <option value="默认">默认</option>
+                            </select>
+                            <div class="chat-cr-custom-group"><input type="text" id="crCustomGroup"
+                                    class="chat-cr-input" placeholder="或输入自定义分组名">
+                                <div class="chat-cr-small-btn" onclick="addCustomGroup()">添加</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-cr-section">
+                        <div class="chat-cr-section-title"><svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                            </svg>挂载设定</div>
+                        <div class="chat-cr-mount-btn" onclick="openMountSelector('persona')"><svg viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                            <div class="chat-cr-mount-text">挂载人设</div>
+                            <div class="chat-cr-mount-value" id="crMount_persona_val">未选择</div><svg
+                                class="chat-cr-mount-arrow" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                        </div>
+                        <div class="chat-cr-mount-btn" onclick="openMountSelector('worldbook')"><svg
+                                viewBox="0 0 24 24">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                            </svg>
+                            <div class="chat-cr-mount-text">挂载世界书</div>
+                            <div class="chat-cr-mount-value" id="crMount_worldbook_val">未选择</div><svg
+                                class="chat-cr-mount-arrow" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                        </div>
+                        <div class="chat-cr-mount-btn" onclick="openMountSelector('sticker')"><svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                <line x1="9" y1="9" x2="9.01" y2="9" />
+                                <line x1="15" y1="9" x2="15.01" y2="9" />
+                            </svg>
+                            <div class="chat-cr-mount-text">挂载表情包</div>
+                            <div class="chat-cr-mount-value" id="crMount_sticker_val">未选择</div><svg
+                                class="chat-cr-mount-arrow" viewBox="0 0 24 24">
+                                <polyline points="9 18 15 12 9 6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="chat-cr-section">
+                        <div class="chat-cr-section-title"><svg viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                            </svg>消息行为</div>
+                        <div class="chat-cr-toggle-row">
+                            <div>
+                                <div class="chat-cr-toggle-label">消息弹窗通知</div>
+                                <div class="chat-cr-toggle-desc">收到消息时弹出提示</div>
+                            </div><label class="chat-cr-toggle"><input type="checkbox" id="crNotify" checked>
+                                <div class="chat-cr-toggle-track"></div>
+                            </label>
+                        </div>
+                        <div class="chat-cr-toggle-row">
+                            <div>
+                                <div class="chat-cr-toggle-label">允许后台主动发消息</div>
+                                <div class="chat-cr-toggle-desc">角色可在后台随机发送消息</div>
+                            </div><label class="chat-cr-toggle"><input type="checkbox" id="crBgMsg">
+                                <div class="chat-cr-toggle-track"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="chat-cr-section">
+                        <div class="chat-cr-section-title"><svg viewBox="0 0 24 24" width="14" height="14">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>对话记忆</div>
+                        <div class="chat-cr-field"><label>记忆轮数（上下文保留对话数，上限100）</label>
+                            <div class="chat-cr-memory-row"><input type="range" id="crMemory" min="1" max="100"
+                                    value="20" class="chat-cr-range" oninput="updateMemoryDisplay()"><span
+                                    class="chat-cr-memory-val" id="crMemoryVal">20轮</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部Tab栏 -->
+            <div class="chat-tab-bar">
+                <div class="chat-tab-item active" data-tab="messages" onclick="switchChatTab('messages')">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg><span>消息</span>
+                </div>
+                <div class="chat-tab-item" data-tab="contacts" onclick="switchChatTab('contacts')"><svg
+                        viewBox="0 0 24 24">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg><span>联系人</span></div>
+                <div class="chat-tab-item" data-tab="moments" onclick="switchChatTab('moments')"><svg
+                        viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="12" />
+                        <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg><span>动态</span></div>
+                <div class="chat-tab-item" data-tab="me" onclick="switchChatTab('me')"><svg viewBox="0 0 24 24">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                        <circle cx="12" cy="7" r="4" />
+                    </svg><span>我</span></div>
+            </div>
+
+        </div>
+
+        <!-- 自定义图标用的隐藏file input -->
+        <input type="file" id="iconCustomFile" accept="image/*" style="display:none"
+            onchange="handleIconCustomFile(event)">
+
+        <div class="game-overlay" id="gameOverlay"></div>
+        <div class="music-overlay" id="musicOverlay"></div>
+        <div class="novel-overlay" id="novelOverlay"></div>
+        <div class="theater-overlay" id="theaterOverlay"></div>
+
+        <!-- ====== 论坛 Forum ====== -->
+        <div class="forum-overlay" id="forumOverlay"></div>
+        <div id="muFloatLyric" class="mu-float-widget"></div>
+
+    </div> <!-- /phone-frame -->
+
+    <!-- 隐藏文件输入 -->
+    <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFileSelect(event)">
+
+    <!-- JS 文件 -->
+    <script src="js/boot.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/viewport-fix.js"></script>
+    <script src="js/pages.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/appearance.js"></script>
+    <script src="js/notify.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/chat-advanced.js"></script>
+    <script src="js/favorite.js"></script>
+    <script src="js/beautify/beautify.js"></script>
+    <script src="js/sticker/sticker.js"></script>
+    <script src="js/worldbook.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/music.js"></script>
+    <script src="js/novel.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/theater.js"></script>
+    <script src="js/forum.js"></script>
+    <script src="js/moments.js"></script>
+    <script src="js/page2widget.js"></script>
+    <script src="js/page3widget.js"></script>
+    <script src="js/phonesnoop.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
+
+
+
+</body>
+
+</html>
