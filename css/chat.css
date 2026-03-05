@@ -5736,3 +5736,15 @@
     border: none !important;
     box-shadow: none !important;
 }
+
+/* ===== 真机全屏适配：去除模拟器圆角 ===== */
+.chat-app-overlay,
+.chat-conversation,
+.chat-profile-page,
+.chat-persona-editor,
+.chat-create-role,
+.chat-mount-modal,
+.chat-settings-overlay,
+.voice-recorder-overlay {
+    border-radius: 0 !important;
+}
