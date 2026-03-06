@@ -167,7 +167,17 @@ function openChatApp() {
 }
 function closeChatApp() {
     var o = document.getElementById('chatAppOverlay');
-    if (o) o.classList.remove('show');
+    if (o) {
+        // ★ 先强制移除所有子元素的 backdrop-filter，防止 Android 糊屏残影
+        o.style.backdropFilter = 'none';
+        o.style.webkitBackdropFilter = 'none';
+        // 稍微延迟再移除 show，让浏览器来得及清除 blur 层
+        setTimeout(function () {
+            o.style.backdropFilter = '';
+            o.style.webkitBackdropFilter = '';
+            o.classList.remove('show');
+        }, 30);
+    }
     closeChatConversation(); closeCreateRole(); closeChatMenu();
     closeProfilePage(); closePersonaEditor();
 }
@@ -1150,7 +1160,7 @@ function openConversation(rid) {
     // 输入行 — 续写在左，发送在右
     h += '<div class="chat-conv-input-row" id="chatInputRow">';
     h += '<div class="chat-conv-action-btn" onclick="toggleStickerPanel()" title="表情包"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>';
-    h += '<input class="chat-conv-input" id="chatConvInput" type="text" placeholder="说点什么..." onkeydown="if(event.key===\'Enter\'){sendChatMessage();event.preventDefault();}">';
+    h += '<input class="chat-conv-input" id="chatConvInput" type="text" placeholder="说点什么..." onkeydown="if(event.key===\'Enter\'){event.preventDefault();event.stopPropagation();sendChatMessage();}">';
     // 续写键
     h += '<div class="chat-conv-action-btn continue-btn" onclick="continueChat()" title="续写"><svg viewBox="0 0 24 24"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg></div>';
     // 发送键
