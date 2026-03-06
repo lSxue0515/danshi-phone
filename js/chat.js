@@ -1148,14 +1148,14 @@ function openConversation(rid) {
     h += '<div class="chat-conv-multiselect-bar" id="chatMultiBar" style="display:none"><div class="chat-conv-multi-info" id="chatMultiInfo">已选 0 条</div><div class="chat-conv-multi-actions"><div class="chat-conv-multi-btn danger" onclick="multiDeleteMsgs()">删除选中</div><div class="chat-conv-multi-btn" onclick="exitMultiSelect()">取消</div></div></div>';
 
     // 输入行 — 续写在左，发送在右
-    h += '<div class="chat-conv-input-row" id="chatInputRow">';
+    h += '<form class="chat-conv-input-row" id="chatInputRow" onsubmit="event.preventDefault(); sendChatMessage(); return false;">';
     h += '<div class="chat-conv-action-btn" onclick="toggleStickerPanel()" title="表情包"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>';
-    h += '<input class="chat-conv-input" id="chatConvInput" type="text" placeholder="说点什么...">';
+    h += '<input class="chat-conv-input" id="chatConvInput" type="text" placeholder="说点什么..." enterkeyhint="send">';
     // 续写键
     h += '<div class="chat-conv-action-btn continue-btn" onclick="continueChat()" title="续写"><svg viewBox="0 0 24 24"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg></div>';
     // 发送键
-    h += '<div class="chat-conv-action-btn send-btn" onclick="sendChatMessage()" title="发送"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>';
-    h += '</div>';
+    h += '<button type="submit" class="chat-conv-action-btn send-btn" title="发送"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>';
+    h += '</form>';
     h += '</div>'; // 关闭 bottombar
     // 表情包选择面板（移到 bottombar 外面）
     h += '<div class="chat-sticker-panel" id="chatStickerPanel"></div>';
