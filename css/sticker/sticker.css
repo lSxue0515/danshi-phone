@@ -367,10 +367,10 @@
     border-radius: 18px 18px 0 0;
     z-index: 50;
     display: none;
-    /* ← 改：默认不显示 */
     flex-direction: column;
+    overflow: hidden;
+    /* ★ 新增：子项不得溢出面板 */
     transform: translateY(0);
-    /* ← 改：不用位移 */
     transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
 }
@@ -417,10 +417,21 @@
     overflow-y: auto;
     padding: 6px 10px 10px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(4, 1fr);
+    /* ← 改为4列，跟截图吻合 */
+    gap: 8px;
     align-content: start;
     -webkit-overflow-scrolling: touch;
+    min-height: 0;
+    /* ★ 关键：防止 flex 子项溢出撑爆高度 */
+}
+
+/* ★ 新增：隐藏态彻底不占位 */
+.stk-panel-grid[style*="display:none"] {
+    display: none !important;
+    flex: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
 }
 
 .stk-panel-item {
