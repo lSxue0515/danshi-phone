@@ -506,7 +506,7 @@ function renderStickerPanel(visibleGroups) {
     var h = '';
 
     // 多分组时显示 tabs
-    if (groups.length > 1) {
+    if (groups.length > 0) {
         h += '<div class="stk-panel-tabs">';
         for (var i = 0; i < groups.length; i++) {
             var g = groups[i];
