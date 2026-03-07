@@ -1,4 +1,4 @@
-const CACHE_NAME = 'danshu-shell-v1';
+const CACHE_NAME = 'danshu-shell-v2';
 const SHELL_ASSETS = [
   './index.html',
   './manifest.webmanifest',
