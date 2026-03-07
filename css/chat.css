@@ -31,9 +31,9 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity .3s ease;
-    background: rgba(248, 242, 250, 0.7);
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    background: rgba(248, 242, 250, 0.4);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     overflow: hidden;
     border-radius: 44px;
 }
@@ -41,6 +41,12 @@
 .chat-app-overlay.show {
     opacity: 1;
     pointer-events: auto;
+}
+
+.chat-app-overlay.chat-conv-open {
+    background: rgba(248, 242, 250, 0.7);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
 }
 
 .chat-app-overlay.chat-conv-open,

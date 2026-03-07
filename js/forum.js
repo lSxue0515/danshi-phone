@@ -182,7 +182,7 @@
         window.KeyboardManager.registerKeyboardContext({
             id: 'forum-overlay',
             getRoot: function () {
-                return document.getElementById('forumOverlay');
+                return document.getElementById('forumKeyboardStage');
             },
             getScrollContainer: function () {
                 var modalBody = document.querySelector('#fmCreateModal .fm-modal-body, #fmPostModal .fm-modal-body');
@@ -241,7 +241,7 @@
 
     /* ===== 渲染主框架 ===== */
     function _fmRender() {
-        var el = document.getElementById('forumOverlay');
+        var el = document.getElementById('forumKeyboardStage');
         if (!el) return;
         var h = '<div class="fm-app">';
         h += _fmRenderTopbar();
