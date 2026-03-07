@@ -495,8 +495,12 @@ function deletePersona(id) {
    ================================================================ */
 var _chatEditorKeyboardContextsReady = false;
 
-function getChatConversationRoot() {
+function getChatConversationOverlay() {
     return document.getElementById('chatConversation');
+}
+
+function getChatConversationRoot() {
+    return document.getElementById('chatConversationStage');
 }
 
 function getChatConversationBody() {
@@ -504,7 +508,7 @@ function getChatConversationBody() {
 }
 
 function getChatConversationBottomBar() {
-    var root = getChatConversationRoot();
+    var root = getChatConversationOverlay();
     return root ? root.querySelector('.chat-conv-bottombar') : null;
 }
 
@@ -555,7 +559,7 @@ function bindChatConversationKeyboardObservers() {
     disconnectChatConversationKeyboardObservers();
     syncChatConversationBottomBarHeight();
 
-    var conv = getChatConversationRoot();
+    var conv = getChatConversationOverlay();
     if (!conv) return;
 
     var bindBottomBarObserver = function () {
@@ -616,8 +620,8 @@ function ensureChatConversationKeyboardContext() {
             return input ? [input] : [];
         },
         isVisible: function () {
-            var root = getChatConversationRoot();
-            return !!(root && root.classList.contains('show'));
+            var overlayRoot = getChatConversationOverlay();
+            return !!(overlayRoot && overlayRoot.classList.contains('show'));
         },
         scrollStrategy: 'message-flow',
         preserveBottomAnchor: true,
@@ -630,10 +634,12 @@ function ensureChatConversationKeyboardContext() {
         },
         onStateChange: function (keyboardActive, keyboardOffset) {
             var conv = getChatConversationRoot();
+            var overlayRoot = getChatConversationOverlay();
             var overlay = document.getElementById('chatAppOverlay');
             if (!conv) return;
             conv.classList.toggle('chat-keyboard-active', !!keyboardActive);
             conv.style.setProperty('--chat-keyboard-inset', (keyboardActive ? keyboardOffset : 0) + 'px');
+            if (overlayRoot) overlayRoot.classList.toggle('chat-keyboard-active', !!keyboardActive);
             if (overlay) overlay.classList.toggle('chat-keyboard-active', !!keyboardActive);
         },
         onActivate: function () {
@@ -643,12 +649,14 @@ function ensureChatConversationKeyboardContext() {
         onDeactivate: function () {
             disconnectChatConversationKeyboardObservers();
             var conv = getChatConversationRoot();
+            var overlayRoot = getChatConversationOverlay();
             var overlay = document.getElementById('chatAppOverlay');
             if (conv) {
                 conv.classList.remove('chat-keyboard-active');
                 conv.style.setProperty('--chat-conv-bottom-bar-height', '0px');
                 conv.style.setProperty('--chat-keyboard-inset', '0px');
             }
+            if (overlayRoot) overlayRoot.classList.remove('chat-keyboard-active');
             if (overlay) overlay.classList.remove('chat-keyboard-active');
         }
     });
@@ -1427,6 +1435,7 @@ function openConversation(rid) {
     h += '<button type="submit" class="chat-conv-action-btn send-btn" title="发送"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>';
     h += '</form>';
     h += '</div>'; // 关闭 bottombar
+    h += '</div>';
     // 表情包选择面板（移到 bottombar 外面）
     h += '<div class="chat-sticker-panel" id="chatStickerPanel"></div>';
 
@@ -1440,8 +1449,12 @@ function openConversation(rid) {
     conv.innerHTML = h;
     conv.style.display = '';
     conv.classList.remove('chat-keyboard-active');
-    conv.style.setProperty('--chat-conv-bottom-bar-height', '0px');
-    conv.style.setProperty('--chat-keyboard-inset', '0px');
+    var stage = document.getElementById('chatConversationStage');
+    if (stage) {
+        stage.classList.remove('chat-keyboard-active');
+        stage.style.setProperty('--chat-conv-bottom-bar-height', '0px');
+        stage.style.setProperty('--chat-keyboard-inset', '0px');
+    }
     conv.classList.add('show');
     if (window.KeyboardManager) window.KeyboardManager.activateKeyboardContext('chat-conversation');
     setChatConversationScrollLock(true);

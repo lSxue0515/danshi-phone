@@ -706,6 +706,17 @@
     pointer-events: auto;
 }
 
+.chat-conv-stage {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    --chat-conv-bottom-bar-height: 0px;
+    --chat-keyboard-inset: 0px;
+    --chat-ios-keyboard-extra-offset: 0px;
+}
+
 /* 对话顶栏 — 悬浮独立毛玻璃 */
 .chat-conv-topbar {
     margin: 44px 12px 0 12px;
@@ -979,15 +990,13 @@
     position: relative;
     padding: 10px 12px 12px 12px;
     z-index: 2;
-    transform: translateY(calc(var(--keyboard-offset, var(--chat-keyboard-inset, 0px)) * -1));
-    transition: transform .18s ease-out;
-    will-change: transform;
+    transition: none;
+    will-change: auto;
 }
 
 .is-ios .chat-conv-bottombar {
-    bottom: calc(var(--keyboard-offset, var(--chat-keyboard-inset, 0px)) + var(--chat-ios-keyboard-extra-offset, 0px));
     transform: none;
-    transition: bottom .18s ease-out;
+    transition: none;
     will-change: auto;
 }
 
@@ -5802,29 +5811,36 @@
 }
 
 .chat-conversation.chat-keyboard-active .chat-conv-topbar,
-.chat-conversation.chat-keyboard-active .chat-conv-bottombar {
+.chat-conversation.chat-keyboard-active .chat-conv-bottombar,
+.chat-conv-stage.keyboard-active .chat-conv-topbar,
+.chat-conv-stage.keyboard-active .chat-conv-bottombar {
     background: rgba(255, 255, 255, 0.96);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
 
 .chat-conversation.chat-keyboard-active .chat-conv-body,
-.chat-conversation.chat-keyboard-active .chat-conv-bottombar {
+.chat-conversation.chat-keyboard-active .chat-conv-bottombar,
+.chat-conv-stage.keyboard-active .chat-conv-body,
+.chat-conv-stage.keyboard-active .chat-conv-bottombar {
     transition: none;
 }
 
-.chat-conversation.chat-keyboard-active .chat-conv-body {
-    padding-bottom: calc(12px + var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px)) + var(--keyboard-offset, var(--chat-keyboard-inset, 0px)));
-    scroll-padding-bottom: calc(var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px)) + var(--keyboard-offset, var(--chat-keyboard-inset, 0px)));
+.chat-conversation.chat-keyboard-active .chat-conv-body,
+.chat-conv-stage.keyboard-active .chat-conv-body {
+    padding-bottom: calc(12px + var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px)));
+    scroll-padding-bottom: var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px));
 }
 
-.is-ios .chat-conversation.chat-keyboard-active {
+.is-ios .chat-conversation.chat-keyboard-active,
+.is-ios .chat-conv-stage.keyboard-active {
     --chat-ios-keyboard-extra-offset: 14px;
 }
 
-.is-ios .chat-conversation.chat-keyboard-active .chat-conv-body {
-    padding-bottom: calc(12px + var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px)) + var(--keyboard-offset, var(--chat-keyboard-inset, 0px)) + var(--chat-ios-keyboard-extra-offset, 0px));
-    scroll-padding-bottom: calc(var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px)) + var(--keyboard-offset, var(--chat-keyboard-inset, 0px)) + var(--chat-ios-keyboard-extra-offset, 0px));
+.is-ios .chat-conversation.chat-keyboard-active .chat-conv-body,
+.is-ios .chat-conv-stage.keyboard-active .chat-conv-body {
+    padding-bottom: calc(12px + var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px)) + var(--chat-ios-keyboard-extra-offset, 0px));
+    scroll-padding-bottom: calc(var(--chat-conv-bottom-bar-height, var(--keyboard-bottom-bar-height, 0px)) + var(--chat-ios-keyboard-extra-offset, 0px));
 }
 
 /* ===== 真机全屏适配：去除模拟器圆角 ===== */
