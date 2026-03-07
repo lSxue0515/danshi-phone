@@ -969,11 +969,19 @@
     border: 1px solid rgba(255, 255, 255, 0.75);
     box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.04);
     flex-shrink: 0;
+    position: relative;
     padding: 10px 12px 12px 12px;
     z-index: 2;
     transform: translateY(calc(var(--chat-keyboard-inset, 0px) * -1));
     transition: transform .18s ease-out;
     will-change: transform;
+}
+
+.is-ios .chat-conv-bottombar {
+    bottom: var(--chat-keyboard-inset, 0px);
+    transform: none;
+    transition: bottom .18s ease-out;
+    will-change: auto;
 }
 
 /* 工具栏（输入框上方） */
@@ -5777,6 +5785,10 @@
 .chat-conversation.chat-keyboard-active .chat-conv-body,
 .chat-conversation.chat-keyboard-active .chat-conv-bottombar {
     transition: none;
+}
+
+.chat-conversation.chat-keyboard-active .chat-conv-body {
+    padding-bottom: calc(12px + var(--chat-conv-bottom-bar-height, 0px) + var(--chat-keyboard-inset, 0px));
 }
 
 /* ===== 真机全屏适配：去除模拟器圆角 ===== */

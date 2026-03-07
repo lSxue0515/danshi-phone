@@ -88,7 +88,17 @@
 
         var vv = window.visualViewport;
         var baseHeight = chatLockedAppHeight || getAppliedAppHeight();
-        var inset = baseHeight - Math.round((vv.height || 0) + (vv.offsetTop || 0));
+        var inset = 0;
+
+        if (isIOS) {
+            var vvHeightInset = baseHeight - Math.round(vv.height || 0);
+            var innerHeightInset = baseHeight - Math.round(window.innerHeight || 0);
+            var clientHeightInset = baseHeight - Math.round(document.documentElement.clientHeight || 0);
+            inset = Math.max(vvHeightInset, innerHeightInset, clientHeightInset);
+        } else {
+            inset = baseHeight - Math.round((vv.height || 0) + (vv.offsetTop || 0));
+        }
+
         if (inset < 0) inset = 0;
         return inset;
     }
