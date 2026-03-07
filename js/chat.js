@@ -1613,11 +1613,19 @@ function closeChatConversation() {
     setChatConversationScrollLock(false);
     if (overlay) overlay.classList.remove('chat-keyboard-active');
     if (c) {
+        c.style.transition = 'none';
         c.classList.remove('show');
         c.classList.remove('chat-keyboard-active');
         c.style.setProperty('--chat-conv-bottom-bar-height', '0px');
         c.style.setProperty('--chat-keyboard-inset', '0px');
-        setTimeout(function () { c.innerHTML = ''; }, 300);
+        c.style.backgroundImage = '';
+        c.style.backgroundSize = '';
+        c.style.backgroundPosition = '';
+        c.offsetHeight;
+        setTimeout(function () {
+            c.innerHTML = '';
+            c.style.transition = '';
+        }, 0);
     }
     _chatCurrentConv = null;
     _chatMultiSelectMode = false; _chatMultiSelected = []; _chatQuoteData = null;
