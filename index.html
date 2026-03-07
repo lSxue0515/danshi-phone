@@ -1909,6 +1909,10 @@
 
     <!-- 隐藏文件输入 -->
     <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFileSelect(event)">
+    <button id="pwaInstallBtn" hidden
+        style="position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:950;padding:10px 16px;border:none;border-radius:999px;background:linear-gradient(135deg,rgba(255,181,196,0.95),rgba(214,162,180,0.95));color:#fff;font-size:13px;font-weight:700;letter-spacing:.02em;box-shadow:0 10px 24px rgba(214,162,180,0.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">
+        安装应用
+    </button>
 
     <!-- JS 文件 -->
     <script src="js/boot.js"></script>
