@@ -50,13 +50,6 @@ function saveApiPresets(list) {
     }
 }
 
-// 存储用量
-h += '<div class="api-section">';
-h += '<div class="api-section-title"><svg viewBox="0 0 24 24" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="4"/><line x1="8" y1="12" x2="16" y2="12"/></svg> 存储用量</div>';
-h += '<div id="storageInfoArea" style="padding:8px 12px;font-size:12px;color:rgba(120,100,110,0.7);line-height:1.8;">计算中…</div>';
-h += '<div class="api-btn-row"><div class="api-btn" onclick="dsCleanupStorage()" style="background:linear-gradient(135deg,rgba(255,180,180,0.5),rgba(255,200,200,0.4));">🧹 清理存储</div></div>';
-h += '</div>';
-
 /* ========== 填充表单 ========== */
 function fillFormFromPreset(preset) {
     document.getElementById('apiName').value = preset.name || '';
