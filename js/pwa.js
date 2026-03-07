@@ -2,6 +2,33 @@
     'use strict';
 
     var installBtn = null;
+    var debugPanel = null;
+
+    function logPwaDebug() {
+        var message = Array.prototype.slice.call(arguments).map(function (part) {
+            if (typeof part === 'string') {
+                return part;
+            }
+
+            try {
+                return JSON.stringify(part);
+            } catch (error) {
+                return String(part);
+            }
+        }).join(' ');
+
+        console.log(message);
+
+        if (!debugPanel) {
+            debugPanel = document.getElementById('pwaDebugPanel');
+        }
+        if (!debugPanel) {
+            return;
+        }
+
+        debugPanel.textContent += (debugPanel.textContent ? '\n' : '') + message;
+        debugPanel.scrollTop = debugPanel.scrollHeight;
+    }
 
     function setInstallButtonVisible(visible) {
         if (!installBtn) {
@@ -37,7 +64,7 @@
     }
 
     if (!('serviceWorker' in navigator)) {
-        console.log('[PWA] Service worker is not supported in this browser.');
+        logPwaDebug('[PWA] Service worker is not supported in this browser.');
         return;
     }
 
@@ -47,21 +74,21 @@
         event.preventDefault();
         window.deferredPwaInstallPrompt = event;
         setInstallButtonVisible(true);
-        console.log('[PWA] beforeinstallprompt captured.');
+        logPwaDebug('[PWA] beforeinstallprompt captured.');
     });
 
     window.addEventListener('appinstalled', function () {
         clearInstallPrompt();
-        console.log('[PWA] App installed.');
+        logPwaDebug('[PWA] App installed.');
     });
 
     window.addEventListener('load', function () {
-        console.log('[PWA] location.href =', window.location.href);
-        console.log('[PWA] display-mode standalone?', window.matchMedia('(display-mode: standalone)').matches);
+        logPwaDebug('[PWA] location.href =', window.location.href);
+        logPwaDebug('[PWA] display-mode standalone?', window.matchMedia('(display-mode: standalone)').matches);
         navigator.serviceWorker.register('./sw.js', { scope: './' }).then(function (registration) {
-            console.log('[PWA] Service worker registered:', registration.scope);
+            logPwaDebug('[PWA] Service worker registered:', registration.scope);
         }).catch(function (error) {
-            console.error('[PWA] Service worker registration failed:', error);
+            logPwaDebug('[PWA] Service worker registration failed:', String(error));
         });
     });
 })();
