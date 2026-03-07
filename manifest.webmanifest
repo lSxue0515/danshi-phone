@@ -2,6 +2,7 @@
   "name": "DanShu Pro",
   "short_name": "DanShu",
   "description": "DanShu Pro mobile web app shell with installable PWA support.",
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

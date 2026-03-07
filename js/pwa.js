@@ -56,6 +56,8 @@
     });
 
     window.addEventListener('load', function () {
+        console.log('[PWA] location.href =', window.location.href);
+        console.log('[PWA] display-mode standalone?', window.matchMedia('(display-mode: standalone)').matches);
         navigator.serviceWorker.register('./sw.js', { scope: './' }).then(function (registration) {
             console.log('[PWA] Service worker registered:', registration.scope);
         }).catch(function (error) {
