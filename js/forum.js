@@ -175,67 +175,15 @@
     }
 
     /* ===== 入口 ===== */
-    var _fmKeyboardContextReady = false;
-
-    function _fmEnsureKeyboardContext() {
-        if (_fmKeyboardContextReady || !window.KeyboardManager) return;
-        window.KeyboardManager.registerKeyboardContext({
-            id: 'forum-overlay',
-            getRoot: function () {
-                return document.getElementById('forumOverlay');
-            },
-            getScrollContainer: function () {
-                var modalBody = document.querySelector('#fmCreateModal .fm-modal-body, #fmPostModal .fm-modal-body');
-                return modalBody || document.querySelector('#forumOverlay .fm-body');
-            },
-            getBottomBar: function () {
-                if (document.getElementById('fmCreateModal') || document.getElementById('fmPostModal')) return null;
-                return document.getElementById('fmCommentBar');
-            },
-            getInputs: function () {
-                var root = document.getElementById('forumOverlay');
-                return root ? root.querySelectorAll('.fm-comment-input, .fm-field-input, .fm-field-textarea') : [];
-            },
-            isVisible: function () {
-                var root = document.getElementById('forumOverlay');
-                return !!(root && root.classList.contains('show'));
-            },
-            ensureResizesContent: true
-        });
-        _fmKeyboardContextReady = true;
-    }
-
-    function _fmRefreshKeyboard() {
-        if (window.KeyboardManager) window.KeyboardManager.refreshKeyboardContext('forum-overlay');
-    }
-
-    function _fmCloseCreateForum() {
-        var modal = document.getElementById('fmCreateModal');
-        if (modal) modal.remove();
-        _fmRefreshKeyboard();
-    }
-
-    function _fmCloseCreatePost() {
-        var modal = document.getElementById('fmPostModal');
-        if (modal) modal.remove();
-        _fmRefreshKeyboard();
-    }
-
-    window._fmCloseCreateForum = _fmCloseCreateForum;
-    window._fmCloseCreatePost = _fmCloseCreatePost;
-
     window.openForumApp = function () {
         var el = document.getElementById('forumOverlay');
         if (!el) return;
-        _fmEnsureKeyboardContext();
         _fm.tab = 'home'; _fm.view = 'main';
         el.classList.add('show'); _fmRender();
-        if (window.KeyboardManager) window.KeyboardManager.activateKeyboardContext('forum-overlay');
     };
 
     function _fmClose() {
         var el = document.getElementById('forumOverlay');
-        if (window.KeyboardManager) window.KeyboardManager.deactivateKeyboardContext('forum-overlay');
         if (el) el.classList.remove('show');
     }
 
@@ -256,7 +204,7 @@
         else if (_fm.view === 'myLikes') { h += _fmRenderMyLikes(); }
         h += '</div>';
         if (_fm.view === 'postDetail') {
-            h += '<div class="fm-comment-bar" id="fmCommentBar">';
+            h += '<div class="fm-comment-bar" style="bottom:16px">';
             h += '<input class="fm-comment-input" id="fmCommentInput" placeholder="Write a comment 写评论...">';
             h += '<div class="fm-comment-send" onclick="_fmSendComment()">SEND</div>';
             h += '</div>';
@@ -264,7 +212,6 @@
         if (_fm.view === 'main') { h += _fmRenderDock(); }
         h += '</div>';
         el.innerHTML = h;
-        _fmRefreshKeyboard();
     }
 
     /* ===== 顶栏 ===== */
@@ -558,7 +505,7 @@
         var roles = _fmGetRoles();
         var h = '<div class="fm-modal-overlay" id="fmCreateModal"><div class="fm-modal">';
         h += '<div class="fm-modal-header"><div class="fm-modal-title">CREATE FORUM 创建论坛</div>';
-        h += '<div class="fm-modal-close" onclick="_fmCloseCreateForum()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>';
+        h += '<div class="fm-modal-close" onclick="document.getElementById(\'fmCreateModal\').remove()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>';
         h += '<div class="fm-modal-body">';
         h += '<div class="fm-field"><div class="fm-field-label">AVATAR</div><div class="fm-publish-av" id="fmForumAvPreview" onclick="_fmPickForumAv()"><svg viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#ccc;stroke-width:1.5;fill:none"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div></div>';
         h += '<div class="fm-field"><div class="fm-field-label">NAME</div><input class="fm-field-input" id="fmForumName" placeholder="论坛名称"></div>';
@@ -577,7 +524,6 @@
         h += '<div class="fm-modal-submit" onclick="_fmSubmitForum()">CREATE 创建</div>';
         h += '</div></div></div>';
         var panel = document.createElement('div'); panel.innerHTML = h; el.appendChild(panel.firstChild);
-        _fmRefreshKeyboard();
     };
 
     var _fmTempForumAv = '';
@@ -605,7 +551,7 @@
             avatar: _fmTempForumAv || '', charIds: charIds, ts: Date.now()
         });
         _fmTempForumAv = ''; _fmSave();
-        _fmCloseCreateForum();
+        var modal = document.getElementById('fmCreateModal'); if (modal) modal.remove();
         _fm.tab = 'follow'; _fm.view = 'main'; _fmRender();
         if (typeof showToast === 'function') showToast('论坛已创建');
     };
@@ -616,14 +562,13 @@
         if (!el || !_fm.currentForum || document.getElementById('fmPostModal')) return;
         var h = '<div class="fm-modal-overlay" id="fmPostModal"><div class="fm-modal">';
         h += '<div class="fm-modal-header"><div class="fm-modal-title">NEW POST 发帖</div>';
-        h += '<div class="fm-modal-close" onclick="_fmCloseCreatePost()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>';
+        h += '<div class="fm-modal-close" onclick="document.getElementById(\'fmPostModal\').remove()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div></div>';
         h += '<div class="fm-modal-body">';
         h += '<div class="fm-field"><div class="fm-field-label">TITLE</div><input class="fm-field-input" id="fmPostTitle" placeholder="帖子标题"></div>';
         h += '<div class="fm-field"><div class="fm-field-label">CONTENT</div><textarea class="fm-field-textarea" id="fmPostBody" placeholder="帖子内容..." style="min-height:120px"></textarea></div>';
         h += '<div class="fm-modal-submit" onclick="_fmSubmitPost()">PUBLISH 发布</div>';
         h += '</div></div></div>';
         var panel = document.createElement('div'); panel.innerHTML = h; el.appendChild(panel.firstChild);
-        _fmRefreshKeyboard();
     };
     window._fmSubmitPost = function () {
         var title = ((document.getElementById('fmPostTitle') || {}).value || '').trim();
@@ -631,7 +576,7 @@
         if (!title) { if (typeof showToast === 'function') showToast('请输入标题'); return; }
         var post = { id: _fmId(), forumId: _fm.currentForum.id, title: title, body: body, nick: _fmUserNick(), ts: Date.now(), likes: 0, comments: [], isUser: true, likedByUser: false };
         _fm.posts.push(post); _fmSave();
-        _fmCloseCreatePost();
+        var modal = document.getElementById('fmPostModal'); if (modal) modal.remove();
         _fmRender();
         if (typeof showToast === 'function') showToast('已发布');
         setTimeout(function () { _fmGenCharReplies(post.id); }, 1200);
