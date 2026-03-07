@@ -693,6 +693,7 @@
     overflow: hidden;
     --chat-conv-bottom-bar-height: 0px;
     --chat-keyboard-inset: 0px;
+    --chat-ios-keyboard-extra-offset: 0px;
 }
 
 .chat-conversation.show {
@@ -978,7 +979,7 @@
 }
 
 .is-ios .chat-conv-bottombar {
-    bottom: var(--chat-keyboard-inset, 0px);
+    bottom: calc(var(--chat-keyboard-inset, 0px) + var(--chat-ios-keyboard-extra-offset, 0px));
     transform: none;
     transition: bottom .18s ease-out;
     will-change: auto;
@@ -5789,6 +5790,15 @@
 
 .chat-conversation.chat-keyboard-active .chat-conv-body {
     padding-bottom: calc(12px + var(--chat-conv-bottom-bar-height, 0px) + var(--chat-keyboard-inset, 0px));
+}
+
+.is-ios .chat-conversation.chat-keyboard-active {
+    --chat-ios-keyboard-extra-offset: 14px;
+}
+
+.is-ios .chat-conversation.chat-keyboard-active .chat-conv-body {
+    padding-bottom: calc(12px + var(--chat-conv-bottom-bar-height, 0px) + var(--chat-keyboard-inset, 0px) + var(--chat-ios-keyboard-extra-offset, 0px));
+    scroll-padding-bottom: calc(var(--chat-conv-bottom-bar-height, 0px) + var(--chat-keyboard-inset, 0px) + var(--chat-ios-keyboard-extra-offset, 0px));
 }
 
 /* ===== 真机全屏适配：去除模拟器圆角 ===== */
