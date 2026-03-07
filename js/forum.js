@@ -199,7 +199,8 @@
             isVisible: function () {
                 var root = document.getElementById('forumOverlay');
                 return !!(root && root.classList.contains('show'));
-            }
+            },
+            ensureResizesContent: true
         });
         _fmKeyboardContextReady = true;
     }

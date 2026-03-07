@@ -9,6 +9,10 @@
     var syncFrame = 0;
     var blurTimer = 0;
     var pendingSyncReason = '';
+    var viewportMetaState = {
+        count: 0,
+        originalContent: null
+    };
 
     var syncReasonPriority = {
         '': 0,
@@ -47,6 +51,13 @@
             return Math.round(window.visualViewport.height);
         }
         return Math.round(window.innerHeight || document.documentElement.clientHeight || 0);
+    }
+
+    function getViewportOffsetTop() {
+        if (window.visualViewport && typeof window.visualViewport.offsetTop === 'number') {
+            return Math.max(0, Math.round(window.visualViewport.offsetTop || 0));
+        }
+        return 0;
     }
 
     function measureBaseHeight(ctx) {
@@ -129,9 +140,30 @@
         root.style.removeProperty('--keyboard-bottom-space');
         root.style.removeProperty('--keyboard-bottom-bar-height');
         root.style.removeProperty('--keyboard-viewport-height');
+        root.style.removeProperty('--keyboard-viewport-offset-top');
         root.style.height = '';
         root.style.maxHeight = '';
         if (typeof ctx.onStateChange === 'function') ctx.onStateChange(false, 0);
+    }
+
+    function updateInteractiveWidgetMode(enable) {
+        var vpMeta = document.querySelector('meta[name="viewport"]');
+        if (!vpMeta) return;
+
+        if (enable) {
+            if (!viewportMetaState.count) viewportMetaState.originalContent = vpMeta.content || '';
+            viewportMetaState.count += 1;
+            if ((vpMeta.content || '').indexOf('interactive-widget=resizes-content') === -1) {
+                vpMeta.content = (vpMeta.content || '') + ', interactive-widget=resizes-content';
+            }
+            return;
+        }
+
+        if (viewportMetaState.count > 0) viewportMetaState.count -= 1;
+        if (!viewportMetaState.count && viewportMetaState.originalContent !== null) {
+            vpMeta.content = viewportMetaState.originalContent;
+            viewportMetaState.originalContent = null;
+        }
     }
 
     function getMessageScroller(ctx, fallback) {
@@ -227,6 +259,7 @@
         var scrollSnapshot = captureScrollSnapshot(messageScroller || scrollEl);
         var baseHeight = measureBaseHeight(ctx);
         var viewportHeight = getViewportHeight();
+        var viewportOffsetTop = getViewportOffsetTop();
         var innerHeight = Math.round(window.innerHeight || 0);
         var clientHeight = Math.round(document.documentElement.clientHeight || 0);
         var keyboardOffset = Math.max(0, baseHeight - viewportHeight, baseHeight - innerHeight, baseHeight - clientHeight);
@@ -264,6 +297,7 @@
         root.style.setProperty('--keyboard-bottom-space', (keyboardActive ? keyboardOffset + bottomHeight : bottomHeight) + 'px');
         root.style.setProperty('--keyboard-bottom-bar-height', bottomHeight + 'px');
         root.style.setProperty('--keyboard-viewport-height', appliedHeight + 'px');
+        root.style.setProperty('--keyboard-viewport-offset-top', (keyboardActive ? viewportOffsetTop : 0) + 'px');
         root.style.height = appliedHeight + 'px';
         root.style.maxHeight = appliedHeight + 'px';
 
@@ -372,6 +406,7 @@
             getInputs: config.getInputs,
             getLockTarget: config.getLockTarget,
             isVisible: config.isVisible,
+            ensureResizesContent: !!config.ensureResizesContent,
             scrollStrategy: config.scrollStrategy || 'default',
             preserveBottomAnchor: !!config.preserveBottomAnchor,
             bottomStickThreshold: config.bottomStickThreshold,
@@ -399,6 +434,7 @@
         activeId = id;
         window.__keyboardManagerActiveContext = id;
         window.__disableLegacyChatKeyboard = true;
+        if (ctx.ensureResizesContent) updateInteractiveWidgetMode(true);
         lockPages(ctx);
         measureBaseHeight(ctx);
         if (typeof ctx.onActivate === 'function') ctx.onActivate();
@@ -424,6 +460,7 @@
         ctx.baseHeight = 0;
         ctx.keyboardTransitionActive = false;
         ctx.lastKeyboardActive = false;
+        if (ctx.ensureResizesContent) updateInteractiveWidgetMode(false);
         unlockPages(ctx);
         clearKeyboardState(ctx);
         if (typeof ctx.onDeactivate === 'function') ctx.onDeactivate();

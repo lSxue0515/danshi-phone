@@ -623,6 +623,7 @@ function ensureChatConversationKeyboardContext() {
             var overlayRoot = getChatConversationOverlay();
             return !!(overlayRoot && overlayRoot.classList.contains('show'));
         },
+        ensureResizesContent: true,
         scrollStrategy: 'message-flow',
         preserveBottomAnchor: true,
         bottomStickThreshold: 72,
